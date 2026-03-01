@@ -4,32 +4,32 @@ import SectionHeading from "./SectionHeading";
 
 export default function ToolsGrid() {
   return (
-    <section className="py-24 px-4">
+    <section className="py-24 sm:py-32 px-5">
       <SectionHeading
         id="tools"
-        title="Works With Your Stack"
+        title="Your tools. Your models."
         subtitle="12 built-in DevOps tools and 6 LLM providers, ready out of the box"
       />
-      <div className="max-w-5xl mx-auto space-y-16">
+      <div className="max-w-5xl mx-auto space-y-20">
         {/* DevOps Tools */}
         <div>
-          <h3 className="text-sm font-semibold text-text-secondary uppercase tracking-wider text-center mb-8">
+          <p className="text-[11px] font-medium text-text-secondary/60 uppercase tracking-[0.15em] text-center mb-8">
             DevOps Tools
-          </h3>
-          <div className="grid grid-cols-3 sm:grid-cols-4 lg:grid-cols-6 gap-4">
+          </p>
+          <div className="grid grid-cols-3 sm:grid-cols-4 lg:grid-cols-6 gap-3">
             {DEVOPS_TOOLS.map((tool) => (
               <div
                 key={tool.name}
-                className="group flex flex-col items-center gap-3 p-4 rounded-xl border border-glass-border bg-surface/50 hover:border-glass-border-hover hover:bg-surface/80 hover:shadow-[0_0_20px_rgba(0,229,255,0.15)] transition-all cursor-default"
+                className="group flex flex-col items-center gap-3 p-4 rounded-xl border border-glass-border bg-surface/40 hover:border-glass-border-hover hover:bg-surface/70 transition-all duration-300 cursor-default"
               >
                 <Image
                   src={`/icons/tools/${tool.icon}`}
                   alt={tool.name}
-                  width={32}
-                  height={32}
+                  width={28}
+                  height={28}
                   className="icon-tool"
                 />
-                <span className="text-xs text-text-secondary group-hover:text-text-primary transition-colors text-center">
+                <span className="text-[11px] text-text-secondary/70 group-hover:text-text-primary transition-colors text-center leading-tight">
                   {tool.name}
                 </span>
               </div>
@@ -39,10 +39,10 @@ export default function ToolsGrid() {
 
         {/* LLM Providers */}
         <div>
-          <h3 className="text-sm font-semibold text-text-secondary uppercase tracking-wider text-center mb-8">
+          <p className="text-[11px] font-medium text-text-secondary/60 uppercase tracking-[0.15em] text-center mb-8">
             LLM Providers
-          </h3>
-          <div className="flex flex-wrap items-center justify-center gap-8 sm:gap-12">
+          </p>
+          <div className="flex flex-wrap items-center justify-center gap-10 sm:gap-14">
             {LLM_PROVIDERS.map((provider) => (
               <div
                 key={provider.name}
@@ -52,18 +52,18 @@ export default function ToolsGrid() {
                   <Image
                     src={`/icons/providers/${provider.icon}`}
                     alt={provider.name}
-                    width={40}
-                    height={40}
-                    className="object-contain w-10 h-10 icon-provider"
+                    width={36}
+                    height={36}
+                    className="object-contain w-9 h-9 icon-provider"
                   />
                 </div>
-                <span className="text-xs text-text-secondary group-hover:text-text-primary transition-colors">
+                <span className="text-[11px] text-text-secondary/60 group-hover:text-text-primary transition-colors">
                   {provider.name}
                 </span>
               </div>
             ))}
           </div>
-          <p className="text-center text-text-secondary text-sm mt-6">
+          <p className="text-center text-text-secondary/60 text-xs mt-8">
             Bring your own model. No vendor lock-in. Run fully local with Ollama.
           </p>
         </div>

@@ -1,17 +1,20 @@
 @import "tailwindcss";
 
 :root {
-  --bg-deep: #0a0a0f;
+  --bg-deep: #050508;
+  --bg-deep-rgb: 5, 5, 8;
   --neon-cyan: #00e5ff;
+  --neon-cyan-rgb: 0, 229, 255;
   --neon-cyan-dim: #00b8d4;
-  --dark-navy: #1a1a3e;
-  --surface: #0f1520;
-  --text-primary: #e2e8f0;
-  --text-secondary: #94a3b8;
-  --glass-border: rgba(0, 200, 255, 0.08);
-  --glass-border-hover: rgba(0, 229, 255, 0.2);
-  --glow-cyan: 0 0 20px rgba(0, 229, 255, 0.3);
-  --glow-cyan-strong: 0 0 40px rgba(0, 229, 255, 0.4), 0 0 80px rgba(0, 229, 255, 0.15);
+  --dark-navy: #0d1117;
+  --surface: #0a0f18;
+  --surface-elevated: #111827;
+  --text-primary: #e8edf5;
+  --text-secondary: #7b8ba3;
+  --glass-border: rgba(0, 200, 255, 0.06);
+  --glass-border-hover: rgba(0, 229, 255, 0.18);
+  --glow-cyan: 0 0 20px rgba(0, 229, 255, 0.15), 0 0 60px rgba(0, 229, 255, 0.05);
+  --glow-cyan-strong: 0 0 30px rgba(0, 229, 255, 0.25), 0 0 80px rgba(0, 229, 255, 0.1);
 }
 
 @theme inline {
@@ -20,11 +23,12 @@
   --color-neon-cyan-dim: var(--neon-cyan-dim);
   --color-dark-navy: var(--dark-navy);
   --color-surface: var(--surface);
+  --color-surface-elevated: var(--surface-elevated);
   --color-text-primary: var(--text-primary);
   --color-text-secondary: var(--text-secondary);
   --color-glass-border: var(--glass-border);
   --color-glass-border-hover: var(--glass-border-hover);
-  --font-sans: var(--font-inter);
+  --font-sans: var(--font-sora);
   --font-mono: var(--font-jetbrains-mono);
 }
 
@@ -45,19 +49,34 @@ body {
 }
 
 ::selection {
-  background: rgba(0, 229, 255, 0.25);
+  background: rgba(0, 229, 255, 0.2);
   color: #fff;
 }
 
-/* Ambient grid background */
+/* Ambient grid — radial fade from center */
 .ambient-grid {
   background-image:
-    linear-gradient(rgba(0, 229, 255, 0.03) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(0, 229, 255, 0.03) 1px, transparent 1px);
-  background-size: 60px 60px;
+    radial-gradient(ellipse 80% 60% at 50% 0%, rgba(0, 229, 255, 0.04), transparent 70%),
+    linear-gradient(rgba(0, 229, 255, 0.025) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 229, 255, 0.025) 1px, transparent 1px);
+  background-size: 100% 100%, 80px 80px, 80px 80px;
 }
 
-/* Terminal animation */
+/* Noise texture overlay */
+.noise-overlay::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  pointer-events: none;
+  opacity: 0.018;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+  background-repeat: repeat;
+  background-size: 256px 256px;
+}
+
+/* ======== ANIMATIONS ======== */
+
 @keyframes typeIn {
   from { opacity: 0; transform: translateY(4px); }
   to { opacity: 1; transform: translateY(0); }
@@ -69,17 +88,36 @@ body {
 }
 
 @keyframes fadeInUp {
-  from { opacity: 0; transform: translateY(20px); }
+  from { opacity: 0; transform: translateY(24px); }
   to { opacity: 1; transform: translateY(0); }
 }
 
-@keyframes pulse-glow {
-  0%, 100% { box-shadow: 0 0 20px rgba(0, 229, 255, 0.2); }
-  50% { box-shadow: 0 0 40px rgba(0, 229, 255, 0.4); }
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes shimmer {
+  0% { background-position: -200% center; }
+  100% { background-position: 200% center; }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-6px); }
+}
+
+@keyframes pulse-border {
+  0%, 100% { border-color: rgba(0, 229, 255, 0.1); }
+  50% { border-color: rgba(0, 229, 255, 0.3); }
 }
 
 .animate-fade-in-up {
-  animation: fadeInUp 0.6s ease-out forwards;
+  animation: fadeInUp 0.7s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.6s ease-out forwards;
 }
 
 .terminal-line {
@@ -88,15 +126,16 @@ body {
 }
 
 .cursor-blink::after {
-  content: "█";
+  content: "\2588";
   animation: blink 1s step-end infinite;
   color: var(--neon-cyan);
 }
 
-/* Glow card hover effect */
+/* ======== GLOW CARD ======== */
+
 .glow-card {
   position: relative;
-  transition: all 0.3s ease;
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s ease;
 }
 
 .glow-card::before {
@@ -105,7 +144,12 @@ body {
   inset: 0;
   border-radius: inherit;
   padding: 1px;
-  background: linear-gradient(135deg, transparent, rgba(0, 229, 255, 0.1), transparent);
+  background: linear-gradient(
+    135deg,
+    transparent 20%,
+    rgba(0, 229, 255, 0.12) 50%,
+    transparent 80%
+  );
   mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
   mask-composite: exclude;
   -webkit-mask-composite: xor;
@@ -119,46 +163,84 @@ body {
 
 .glow-card:hover {
   box-shadow: var(--glow-cyan);
-  transform: translateY(-2px);
+  transform: translateY(-3px);
 }
 
-/* Tool icon styling — grayscale by default, original color on hover */
+/* ======== ICON STYLING ======== */
+
 .icon-tool {
-  opacity: 0.6;
-  filter: grayscale(100%) brightness(1.5);
-  transition: opacity 0.3s ease, filter 0.3s ease;
+  opacity: 0.5;
+  filter: grayscale(100%) brightness(1.4);
+  transition: opacity 0.3s ease, filter 0.3s ease, transform 0.3s ease;
 }
 
 .group:hover .icon-tool {
   opacity: 1;
   filter: grayscale(0%) brightness(1);
+  transform: scale(1.08);
 }
 
-/* Provider icons — force neon cyan */
 .icon-provider {
   filter: brightness(0) saturate(100%) invert(76%) sepia(65%) saturate(1000%) hue-rotate(152deg) brightness(104%) contrast(104%);
-  opacity: 0.7;
-  transition: opacity 0.3s ease;
+  opacity: 0.5;
+  transition: opacity 0.3s ease, transform 0.3s ease;
 }
 
 .group:hover .icon-provider {
   opacity: 1;
+  transform: scale(1.1);
 }
 
-/* Scrollbar styling */
+/* ======== BADGE ======== */
+
+.badge-shimmer {
+  background: linear-gradient(
+    90deg,
+    rgba(0, 229, 255, 0) 0%,
+    rgba(0, 229, 255, 0.06) 50%,
+    rgba(0, 229, 255, 0) 100%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 4s ease-in-out infinite;
+}
+
+/* ======== SECTION DIVIDER ======== */
+
+.section-divider {
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(0, 229, 255, 0.12) 30%,
+    rgba(0, 229, 255, 0.12) 70%,
+    transparent
+  );
+}
+
+/* ======== SCROLLBAR ======== */
+
 ::-webkit-scrollbar {
-  width: 6px;
+  width: 5px;
 }
 
 ::-webkit-scrollbar-track {
-  background: var(--bg-deep);
+  background: transparent;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: var(--dark-navy);
+  background: rgba(0, 229, 255, 0.15);
   border-radius: 3px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: var(--neon-cyan-dim);
+  background: rgba(0, 229, 255, 0.3);
+}
+
+/* ======== MISC ======== */
+
+.text-gradient-cyan {
+  background: linear-gradient(135deg, var(--neon-cyan), #67e8f9, var(--neon-cyan));
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
 }

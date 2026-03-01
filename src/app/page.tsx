@@ -1,3 +1,4 @@
+import FloatingIconsBg from "@/components/FloatingIconsBg";
 import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
 import InstallSection from "@/components/InstallSection";
@@ -11,6 +12,7 @@ import Footer from "@/components/Footer";
 export default function Home() {
   return (
     <>
+      <FloatingIconsBg />
       <Navbar />
       <main>
         <Hero />

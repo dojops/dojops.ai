@@ -65,7 +65,7 @@ export default function RootLayout({
   return (
     <html lang="en" className="dark">
       <body
-        className={`${sora.variable} ${jetbrainsMono.variable} antialiased ambient-grid noise-overlay`}
+        className={`${sora.variable} ${jetbrainsMono.variable} antialiased ambient-glow noise-overlay`}
       >
         {children}
       </body>

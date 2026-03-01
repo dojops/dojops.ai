@@ -53,13 +53,38 @@ body {
   color: #fff;
 }
 
-/* Ambient grid — radial fade from center */
-.ambient-grid {
+/* Ambient top glow — subtle radial gradient at page top */
+.ambient-glow {
   background-image:
-    radial-gradient(ellipse 80% 60% at 50% 0%, rgba(0, 229, 255, 0.04), transparent 70%),
-    linear-gradient(rgba(0, 229, 255, 0.025) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(0, 229, 255, 0.025) 1px, transparent 1px);
-  background-size: 100% 100%, 80px 80px, 80px 80px;
+    radial-gradient(ellipse 80% 50% at 50% 0%, rgba(0, 229, 255, 0.035), transparent 70%);
+}
+
+/* Floating background icons */
+@keyframes drift-1 {
+  0%, 100% { transform: translate(0, 0) rotate(var(--r)); }
+  25% { transform: translate(8px, -12px) rotate(calc(var(--r) + 3deg)); }
+  50% { transform: translate(-5px, -20px) rotate(calc(var(--r) - 2deg)); }
+  75% { transform: translate(12px, -8px) rotate(calc(var(--r) + 4deg)); }
+}
+
+@keyframes drift-2 {
+  0%, 100% { transform: translate(0, 0) rotate(var(--r)); }
+  33% { transform: translate(-10px, 15px) rotate(calc(var(--r) - 4deg)); }
+  66% { transform: translate(6px, -10px) rotate(calc(var(--r) + 3deg)); }
+}
+
+@keyframes drift-3 {
+  0%, 100% { transform: translate(0, 0) rotate(var(--r)); }
+  50% { transform: translate(15px, 10px) rotate(calc(var(--r) + 5deg)); }
+}
+
+.floating-icon {
+  position: absolute;
+  pointer-events: none;
+  filter: grayscale(100%) brightness(1.5);
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: infinite;
+  will-change: transform;
 }
 
 /* Noise texture overlay */

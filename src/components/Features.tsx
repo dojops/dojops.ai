@@ -1,6 +1,7 @@
 import { FEATURES } from "@/lib/constants";
 import SectionHeading from "./SectionHeading";
 import GlowCard from "./GlowCard";
+import ScrollReveal from "./ScrollReveal";
 
 function FeatureIcon({ icon }: { icon: string }) {
   const iconMap: Record<string, React.ReactNode> = {
@@ -59,22 +60,26 @@ function FeatureIcon({ icon }: { icon: string }) {
 export default function Features() {
   return (
     <section className="py-24 sm:py-32 px-5">
-      <SectionHeading
-        id="features"
-        title="Built for real infrastructure"
-        subtitle="From generation to execution, every step is validated, sandboxed, and auditable"
-      />
+      <ScrollReveal>
+        <SectionHeading
+          id="features"
+          title="Built for real infrastructure"
+          subtitle="From generation to execution, every step is validated, sandboxed, and auditable"
+        />
+      </ScrollReveal>
       <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
-        {FEATURES.map((feature) => (
-          <GlowCard key={feature.title}>
-            <FeatureIcon icon={feature.icon} />
-            <h3 className="text-[15px] font-semibold text-text-primary mb-2 tracking-tight">
-              {feature.title}
-            </h3>
-            <p className="text-text-secondary text-[13px] leading-relaxed">
-              {feature.description}
-            </p>
-          </GlowCard>
+        {FEATURES.map((feature, i) => (
+          <ScrollReveal key={feature.title} delay={i * 100}>
+            <GlowCard>
+              <FeatureIcon icon={feature.icon} />
+              <h3 className="text-base font-semibold text-text-primary mb-2 tracking-tight">
+                {feature.title}
+              </h3>
+              <p className="text-text-secondary text-sm leading-relaxed">
+                {feature.description}
+              </p>
+            </GlowCard>
+          </ScrollReveal>
         ))}
       </div>
     </section>

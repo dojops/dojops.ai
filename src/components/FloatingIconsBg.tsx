@@ -1,4 +1,4 @@
-import Image from "next/image";
+/* eslint-disable @next/next/no-img-element */
 
 /**
  * Each icon placement: tool file, position (%), size, rotation, opacity, animation variant + duration.
@@ -45,7 +45,7 @@ const ICONS = [
 export default function FloatingIconsBg() {
   return (
     <div
-      className="fixed inset-0 overflow-hidden pointer-events-none"
+      className="hidden md:block fixed inset-0 overflow-hidden pointer-events-none"
       style={{ zIndex: 0 }}
       aria-hidden="true"
     >
@@ -65,13 +65,12 @@ export default function FloatingIconsBg() {
             animationDuration: `${icon.dur}s`,
           }}
         >
-          <Image
+          <img
             src={`/icons/tools/${icon.src}`}
             alt=""
             width={icon.size}
             height={icon.size}
             className="w-full h-full"
-            loading="lazy"
           />
         </div>
       ))}

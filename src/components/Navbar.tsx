@@ -59,7 +59,7 @@ export default function Navbar() {
 
         {/* Mobile hamburger */}
         <button
-          className="md:hidden text-text-secondary hover:text-neon-cyan transition-colors"
+          className="md:hidden p-2 -mr-2 rounded-lg text-text-secondary hover:text-neon-cyan hover:bg-neon-cyan/5 transition-all"
           onClick={() => setMobileOpen(!mobileOpen)}
           aria-label="Toggle menu"
         >
@@ -79,7 +79,7 @@ export default function Navbar() {
 
       {/* Mobile drawer */}
       {mobileOpen && (
-        <div className="md:hidden bg-bg-deep/95 backdrop-blur-2xl border-b border-glass-border">
+        <div className="md:hidden mobile-drawer-enter bg-bg-deep/95 backdrop-blur-2xl border-b border-glass-border">
           <div className="px-5 py-5 flex flex-col gap-1">
             {NAV_ITEMS.map((item) => (
               <a

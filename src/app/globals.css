@@ -261,6 +261,39 @@ body {
   background: rgba(0, 229, 255, 0.3);
 }
 
+/* ======== FOCUS STATES ======== */
+
+:focus-visible {
+  outline: 2px solid var(--neon-cyan);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+:focus:not(:focus-visible) {
+  outline: none;
+}
+
+/* ======== ACTIVE STATES ======== */
+
+button:active, a:active {
+  transform: scale(0.97);
+}
+
+.glow-card:active {
+  transform: translateY(-1px) scale(0.99);
+}
+
+/* ======== MOBILE NAV DRAWER ======== */
+
+.mobile-drawer-enter {
+  animation: slideDown 0.25s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes slideDown {
+  from { opacity: 0; transform: translateY(-8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
 /* ======== MISC ======== */
 
 .text-gradient-cyan {
@@ -268,4 +301,16 @@ body {
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
+}
+
+/* ======== REDUCED MOTION ======== */
+
+@media (prefers-reduced-motion: reduce) {
+  .floating-icon { animation: none !important; }
+  .badge-shimmer { animation: none !important; }
+  .cursor-blink::after { animation: none !important; }
+  .terminal-line { animation: none !important; opacity: 1 !important; }
+  .animate-fade-in-up, .animate-fade-in { animation: none !important; opacity: 1 !important; }
+  .mobile-drawer-enter { animation: none !important; opacity: 1 !important; }
+  * { transition-duration: 0.01ms !important; }
 }

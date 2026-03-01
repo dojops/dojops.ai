@@ -17,7 +17,7 @@ export default function InstallSection() {
   const activeTabData = tabs.find((t) => t.key === activeTab)!;
 
   return (
-    <section className="py-20 px-5" id="install">
+    <section className="py-24 sm:py-32 px-5 scroll-mt-20" id="install">
       <div className="max-w-2xl mx-auto">
         {/* Section title */}
         <div className="flex items-center gap-3 mb-6">
@@ -59,7 +59,7 @@ export default function InstallSection() {
           {/* Terminal body */}
           <div className="p-5 sm:p-6 font-mono text-[13px] text-left">
             {/* Comment line */}
-            <div className="text-text-secondary/40 mb-3">
+            <div className="text-text-secondary/60 mb-3">
               {activeTabData.comment}
             </div>
 
@@ -79,39 +79,39 @@ export default function InstallSection() {
 
         {/* What's next — step flow */}
         <div className="mt-8 pl-1">
-          <p className="text-text-secondary/50 text-[11px] tracking-wide uppercase font-medium mb-4">
+          <p className="text-text-secondary/70 text-xs tracking-wide uppercase font-medium mb-4">
             What&apos;s next
           </p>
           <div className="flex flex-col gap-4">
             {/* Step 1 */}
             <div className="flex items-start gap-3">
-              <span className="text-[10px] text-neon-cyan/50 font-mono mt-0.5 shrink-0 w-4">01</span>
+              <span className="text-[10px] text-neon-cyan/70 font-mono mt-0.5 shrink-0 w-4">01</span>
               <div>
                 <p className="text-text-secondary/70 text-xs mb-1">Configure your LLM provider</p>
                 <code className="font-mono text-[13px] text-text-primary/80">
-                  <span className="text-neon-cyan/40 select-none">$ </span>
+                  <span className="text-neon-cyan/60 select-none">$ </span>
                   dojops config
                 </code>
               </div>
             </div>
             {/* Step 2 */}
             <div className="flex items-start gap-3">
-              <span className="text-[10px] text-neon-cyan/50 font-mono mt-0.5 shrink-0 w-4">02</span>
+              <span className="text-[10px] text-neon-cyan/70 font-mono mt-0.5 shrink-0 w-4">02</span>
               <div>
                 <p className="text-text-secondary/70 text-xs mb-1">Initialize in your project</p>
                 <code className="font-mono text-[13px] text-text-primary/80">
-                  <span className="text-neon-cyan/40 select-none">$ </span>
+                  <span className="text-neon-cyan/60 select-none">$ </span>
                   dojops init
                 </code>
               </div>
             </div>
             {/* Step 3 */}
             <div className="flex items-start gap-3">
-              <span className="text-[10px] text-neon-cyan/50 font-mono mt-0.5 shrink-0 w-4">03</span>
+              <span className="text-[10px] text-neon-cyan/70 font-mono mt-0.5 shrink-0 w-4">03</span>
               <div>
                 <p className="text-text-secondary/70 text-xs mb-1">Describe what you need</p>
                 <code className="font-mono text-[13px] text-text-primary/80">
-                  <span className="text-neon-cyan/40 select-none">$ </span>
+                  <span className="text-neon-cyan/60 select-none">$ </span>
                   dojops &quot;Create a Terraform config for S3&quot;
                 </code>
               </div>

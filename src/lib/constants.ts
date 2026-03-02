@@ -63,9 +63,9 @@ export const FEATURES: Feature[] = [
     icon: "scan",
   },
   {
-    title: "Build Your Own Tools",
+    title: "Build & Share Tools",
     description:
-      "12 built-in tools cover the essentials. Need more? Create custom tools with a declarative DOPS manifest and JSON Schema. Enterprise teams get governance via allowedTools/blockedTools.",
+      "12 built-in tools cover the essentials. Need more? Create custom tools with a declarative DOPS manifest, publish them to the DojOps Hub, and install community tools with SHA-256 integrity verification.",
     icon: "plugin",
   },
 ];

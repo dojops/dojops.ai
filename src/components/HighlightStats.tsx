@@ -1,11 +1,15 @@
 import { HIGHLIGHT_STATS } from "@/lib/constants";
 import ScrollReveal from "./ScrollReveal";
+import NpmDownloadChart from "./NpmDownloadChart";
 
 export default function HighlightStats() {
   return (
     <section className="py-16 sm:py-20 px-5">
       <div className="max-w-4xl mx-auto">
         <div className="section-divider mb-12" />
+        <ScrollReveal delay={0}>
+          <NpmDownloadChart />
+        </ScrollReveal>
         <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-y-8">
           {HIGHLIGHT_STATS.map((stat, i) => (
             <ScrollReveal key={stat.label} delay={i * 80}>

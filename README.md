@@ -1,6 +1,12 @@
-# dojops.ai
+<p align="center">
+  <img src="public/icons/official-dojops-icon.png" alt="DojOps" width="80" />
+</p>
 
-Marketing website and landing page for [DojOps](https://github.com/dojops/dojops) — the AI DevOps Automation Engine.
+<h1 align="center">dojops.ai</h1>
+
+<p align="center">
+  Landing page for <a href="https://github.com/dojops/dojops">DojOps</a> — the AI DevOps Automation Engine.
+</p>
 
 **Live:** [https://dojops.ai](https://dojops.ai)
 
@@ -66,16 +72,6 @@ npm install       # Install dependencies
 npm run dev       # Start dev server (http://localhost:3000)
 npm run build     # Static export to out/
 npm run lint      # ESLint
-```
-
-## Deployment
-
-The site is configured for static export (`output: 'export'` in `next.config.ts`). Deploy the `out/` directory to any static host.
-
-For Vercel:
-
-```bash
-vercel
 ```
 
 ## Related Repos

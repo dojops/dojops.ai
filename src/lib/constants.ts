@@ -1,7 +1,7 @@
 export const LINKS = {
   github: "https://github.com/dojops/dojops",
   npm: "https://www.npmjs.com/package/@dojops/cli",
-  docs: "https://docs.dojops.ai",
+  docs: "https://doc.dojops.ai",
   hub: "https://hub.dojops.ai",
 } as const;
 

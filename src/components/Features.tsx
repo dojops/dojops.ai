@@ -6,14 +6,26 @@ import ScrollReveal from "./ScrollReveal";
 function FeatureIcon({ icon }: { icon: string }) {
   const iconMap: Record<string, React.ReactNode> = {
     brain: (
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="w-5 h-5">
+      <svg
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="1.5"
+        className="w-5 h-5"
+      >
         <path d="M12 2a7 7 0 0 0-7 7c0 3 1.5 5.5 4 7v2a2 2 0 0 0 2 2h2a2 2 0 0 0 2-2v-2c2.5-1.5 4-4 4-7a7 7 0 0 0-7-7Z" />
         <path d="M9 18h6" />
         <path d="M10 22h4" />
       </svg>
     ),
     agents: (
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="w-5 h-5">
+      <svg
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="1.5"
+        className="w-5 h-5"
+      >
         <circle cx="12" cy="8" r="3" />
         <circle cx="5" cy="17" r="2.5" />
         <circle cx="19" cy="17" r="2.5" />
@@ -21,13 +33,25 @@ function FeatureIcon({ icon }: { icon: string }) {
       </svg>
     ),
     shield: (
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="w-5 h-5">
+      <svg
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="1.5"
+        className="w-5 h-5"
+      >
         <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10Z" />
         <path d="m9 12 2 2 4-4" />
       </svg>
     ),
     plan: (
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="w-5 h-5">
+      <svg
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="1.5"
+        className="w-5 h-5"
+      >
         <rect x="3" y="3" width="7" height="7" rx="1" />
         <rect x="14" y="3" width="7" height="7" rx="1" />
         <rect x="8" y="14" width="7" height="7" rx="1" />
@@ -35,14 +59,26 @@ function FeatureIcon({ icon }: { icon: string }) {
       </svg>
     ),
     scan: (
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="w-5 h-5">
+      <svg
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="1.5"
+        className="w-5 h-5"
+      >
         <circle cx="11" cy="11" r="8" />
         <path d="m21 21-4.35-4.35" />
         <path d="M11 8v6m-3-3h6" />
       </svg>
     ),
     plugin: (
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="w-5 h-5">
+      <svg
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="1.5"
+        className="w-5 h-5"
+      >
         <path d="M12 2v4m0 12v4M2 12h4m12 0h4" />
         <circle cx="12" cy="12" r="4" />
         <path d="m15 9 2-2m-10 0 2 2m0 6-2 2m10 0-2-2" />
@@ -75,9 +111,7 @@ export default function Features() {
               <h3 className="text-base font-semibold text-text-primary mb-2 tracking-tight">
                 {feature.title}
               </h3>
-              <p className="text-text-secondary text-sm leading-relaxed">
-                {feature.description}
-              </p>
+              <p className="text-text-secondary text-sm leading-relaxed">{feature.description}</p>
             </GlowCard>
           </ScrollReveal>
         ))}

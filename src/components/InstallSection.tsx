@@ -7,12 +7,15 @@ import CopyButton from "./CopyButton";
 const tabs = [
   { key: "npm" as const, label: "npm", comment: "# Install globally via npm" },
   { key: "curl" as const, label: "curl", comment: "# One-liner. Works everywhere." },
-  { key: "docker" as const, label: "Docker", comment: "# Mount project + config so nothing is lost" },
+  {
+    key: "docker" as const,
+    label: "Docker",
+    comment: "# Mount project + config so nothing is lost",
+  },
 ];
 
 export default function InstallSection() {
-  const [activeTab, setActiveTab] =
-    useState<keyof typeof INSTALL_COMMANDS>("npm");
+  const [activeTab, setActiveTab] = useState<keyof typeof INSTALL_COMMANDS>("npm");
 
   const activeTabData = tabs.find((t) => t.key === activeTab)!;
 
@@ -59,9 +62,7 @@ export default function InstallSection() {
           {/* Terminal body */}
           <div className="p-5 sm:p-6 font-mono text-[13px] text-left">
             {/* Comment line */}
-            <div className="text-text-secondary/60 mb-3">
-              {activeTabData.comment}
-            </div>
+            <div className="text-text-secondary/60 mb-3">{activeTabData.comment}</div>
 
             {/* Command line with copy button */}
             <div className="flex items-start justify-between gap-4">
@@ -69,10 +70,7 @@ export default function InstallSection() {
                 <span className="text-neon-cyan/60 select-none">$ </span>
                 {INSTALL_COMMANDS[activeTab]}
               </code>
-              <CopyButton
-                text={INSTALL_COMMANDS[activeTab]}
-                className="shrink-0 mt-0.5"
-              />
+              <CopyButton text={INSTALL_COMMANDS[activeTab]} className="shrink-0 mt-0.5" />
             </div>
           </div>
         </div>
@@ -85,7 +83,9 @@ export default function InstallSection() {
           <div className="flex flex-col gap-4">
             {/* Step 1 */}
             <div className="flex items-start gap-3">
-              <span className="text-[10px] text-neon-cyan/70 font-mono mt-0.5 shrink-0 w-4">01</span>
+              <span className="text-[10px] text-neon-cyan/70 font-mono mt-0.5 shrink-0 w-4">
+                01
+              </span>
               <div>
                 <p className="text-text-secondary/70 text-xs mb-1">Configure your LLM provider</p>
                 <code className="font-mono text-[13px] text-text-primary/80">
@@ -96,7 +96,9 @@ export default function InstallSection() {
             </div>
             {/* Step 2 */}
             <div className="flex items-start gap-3">
-              <span className="text-[10px] text-neon-cyan/70 font-mono mt-0.5 shrink-0 w-4">02</span>
+              <span className="text-[10px] text-neon-cyan/70 font-mono mt-0.5 shrink-0 w-4">
+                02
+              </span>
               <div>
                 <p className="text-text-secondary/70 text-xs mb-1">Initialize in your project</p>
                 <code className="font-mono text-[13px] text-text-primary/80">
@@ -107,7 +109,9 @@ export default function InstallSection() {
             </div>
             {/* Step 3 */}
             <div className="flex items-start gap-3">
-              <span className="text-[10px] text-neon-cyan/70 font-mono mt-0.5 shrink-0 w-4">03</span>
+              <span className="text-[10px] text-neon-cyan/70 font-mono mt-0.5 shrink-0 w-4">
+                03
+              </span>
               <div>
                 <p className="text-text-secondary/70 text-xs mb-1">Describe what you need</p>
                 <code className="font-mono text-[13px] text-text-primary/80">

@@ -32,8 +32,7 @@ export const metadata: Metadata = {
   authors: [{ name: "DojOps" }],
   openGraph: {
     title: "DojOps — AI DevOps Automation Engine",
-    description:
-      "Generate, validate, and execute infrastructure & CI/CD configurations using AI.",
+    description: "Generate, validate, and execute infrastructure & CI/CD configurations using AI.",
     url: "https://dojops.ai",
     siteName: "DojOps",
     images: [
@@ -49,8 +48,7 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: "DojOps — AI DevOps Automation Engine",
-    description:
-      "Generate, validate, and execute infrastructure & CI/CD configurations using AI.",
+    description: "Generate, validate, and execute infrastructure & CI/CD configurations using AI.",
   },
   icons: {
     icon: "/icons/official-dojops-icon.png",

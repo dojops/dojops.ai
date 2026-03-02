@@ -80,11 +80,11 @@ vercel
 
 ## Related Repos
 
-| Repo | Description |
-|---|---|
-| [dojops/dojops](https://github.com/dojops/dojops) | Main monorepo — CLI, API, all @dojops/* packages |
-| [dojops/dojops-doc](https://github.com/dojops/dojops-doc) | Documentation site |
-| [dojops/dojops-hub](https://github.com/dojops/dojops-hub) | Tool/agent marketplace |
+| Repo                                                      | Description                                       |
+| --------------------------------------------------------- | ------------------------------------------------- |
+| [dojops/dojops](https://github.com/dojops/dojops)         | Main monorepo — CLI, API, all @dojops/\* packages |
+| [dojops/dojops-doc](https://github.com/dojops/dojops-doc) | Documentation site                                |
+| [dojops/dojops-hub](https://github.com/dojops/dojops-hub) | Tool/agent marketplace                            |
 
 ## License
 

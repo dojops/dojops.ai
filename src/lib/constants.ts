@@ -157,35 +157,43 @@ export interface SecurityFeature {
 export const SECURITY_FEATURES: SecurityFeature[] = [
   {
     title: "Structured output enforcement",
-    description: "Provider-native JSON modes ensure LLM output is always valid and parseable. No guessing, no fixing.",
+    description:
+      "Provider-native JSON modes ensure LLM output is always valid and parseable. No guessing, no fixing.",
   },
   {
     title: "Schema validation",
-    description: "Every response validated against Zod schemas via safeParse(). Markdown stripping, JSON parsing, and type checks before any output is used.",
+    description:
+      "Every response validated against Zod schemas via safeParse(). Markdown stripping, JSON parsing, and type checks before any output is used.",
   },
   {
     title: "Deep verification",
-    description: "External tool validation: terraform validate, hadolint, kubectl --dry-run, plus built-in structure lints for GitHub Actions and GitLab CI.",
+    description:
+      "External tool validation: terraform validate, hadolint, kubectl --dry-run, plus built-in structure lints for GitHub Actions and GitLab CI.",
   },
   {
     title: "Policy engine",
-    description: "ExecutionPolicy controls allowed paths, denied paths, environment variables, timeouts, and file size limits. Write allowlist restricts output to infrastructure paths.",
+    description:
+      "ExecutionPolicy controls allowed paths, denied paths, environment variables, timeouts, and file size limits. Write allowlist restricts output to infrastructure paths.",
   },
   {
     title: "Approval workflows",
-    description: "Interactive diff preview before every write. Auto-approve, auto-deny, or custom callbacks for CI/CD. HIGH-risk plans require explicit confirmation.",
+    description:
+      "Interactive diff preview before every write. Auto-approve, auto-deny, or custom callbacks for CI/CD. HIGH-risk plans require explicit confirmation.",
   },
   {
     title: "Sandboxed execution",
-    description: "Path restriction, size limits, atomic writes via temp + rename, .bak backups, and per-file audit logging. PID-based locking prevents concurrent mutations.",
+    description:
+      "Path restriction, size limits, atomic writes via temp + rename, .bak backups, and per-file audit logging. PID-based locking prevents concurrent mutations.",
   },
   {
     title: "Immutable audit trail",
-    description: "Hash-chained JSONL with SHA-256 integrity verification. SIEM-compatible format. Verify tampering with a single command.",
+    description:
+      "Hash-chained JSONL with SHA-256 integrity verification. SIEM-compatible format. Verify tampering with a single command.",
   },
   {
     title: "Zero telemetry",
-    description: "Nothing leaves your machine except requests to your chosen LLM provider. No analytics, no tracking. Run fully local with Ollama.",
+    description:
+      "Nothing leaves your machine except requests to your chosen LLM provider. No analytics, no tracking. Run fully local with Ollama.",
   },
 ];
 

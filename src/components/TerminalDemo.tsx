@@ -21,13 +21,7 @@ export default function TerminalDemo() {
           const delay = `${0.5 + i * 0.35}s`;
 
           if (line.text === "") {
-            return (
-              <div
-                key={i}
-                className="terminal-line h-4"
-                style={{ animationDelay: delay }}
-              />
-            );
+            return <div key={i} className="terminal-line h-4" style={{ animationDelay: delay }} />;
           }
 
           let colorClass = "text-text-secondary/70";

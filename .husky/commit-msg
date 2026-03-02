@@ -1,0 +1,20 @@
+#!/bin/sh
+
+# Enforce conventional commit format: type(scope?): description
+# Types: feat, fix, docs, style, refactor, perf, test, build, ci, chore, revert
+commit_msg=$(cat "$1")
+pattern='^(feat|fix|docs|style|refactor|perf|test|build|ci|chore|revert)(\(.+\))?: .+'
+
+if ! echo "$commit_msg" | head -1 | grep -qE "$pattern"; then
+  echo "ERROR: Commit message does not follow Conventional Commits format."
+  echo ""
+  echo "  Format: <type>(<scope>): <description>"
+  echo "  Types:  feat, fix, docs, style, refactor, perf, test, build, ci, chore, revert"
+  echo ""
+  echo "  Examples:"
+  echo "    feat(ui): add terminal demo animation"
+  echo "    fix: correct mobile nav breakpoint"
+  echo "    chore: update dependencies"
+  echo ""
+  exit 1
+fi

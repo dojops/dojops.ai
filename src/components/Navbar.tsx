@@ -41,9 +41,7 @@ export default function Navbar() {
             <a
               key={item.label}
               href={item.href}
-              {...(item.external
-                ? { target: "_blank", rel: "noopener noreferrer" }
-                : {})}
+              {...(item.external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
               className="text-[13px] text-text-secondary hover:text-text-primary transition-colors duration-200"
             >
               {item.label}
@@ -63,7 +61,14 @@ export default function Navbar() {
           onClick={() => setMobileOpen(!mobileOpen)}
           aria-label="Toggle menu"
         >
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
+          <svg
+            width="22"
+            height="22"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="1.5"
+          >
             {mobileOpen ? (
               <path d="M18 6L6 18M6 6l12 12" />
             ) : (
@@ -85,9 +90,7 @@ export default function Navbar() {
               <a
                 key={item.label}
                 href={item.href}
-                {...(item.external
-                  ? { target: "_blank", rel: "noopener noreferrer" }
-                  : {})}
+                {...(item.external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
                 className="text-text-secondary hover:text-text-primary transition-colors py-2.5 text-sm"
                 onClick={() => setMobileOpen(false)}
               >

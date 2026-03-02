@@ -45,7 +45,15 @@ export default function Footer() {
               className="opacity-60"
             />
             <span className="text-xs text-text-secondary/70">
-              &copy; {new Date().getFullYear()} DojOps &middot; MIT License
+              &copy; {new Date().getFullYear()} DojOps &middot; MIT License &middot; Created by{" "}
+              <a
+                href="https://github.com/MHChlagou"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-text-secondary hover:text-neon-cyan transition-colors duration-200"
+              >
+                Mohamed Hedi CHLAGOU
+              </a>
             </span>
           </div>
 

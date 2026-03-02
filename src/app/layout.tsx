@@ -51,7 +51,7 @@ export const metadata: Metadata = {
     description: "Generate, validate, and execute infrastructure & CI/CD configurations using AI.",
   },
   icons: {
-    icon: "/icons/official-dojops-icon.png",
+    icon: "/icons/dojops-favicon.png",
   },
 };
 

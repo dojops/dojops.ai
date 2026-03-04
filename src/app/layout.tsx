@@ -18,7 +18,7 @@ export const metadata: Metadata = {
   metadataBase: new URL("https://dojops.ai"),
   title: "DojOps — AI DevOps Automation Engine",
   description:
-    "Generate, validate, and execute infrastructure & CI/CD configurations using AI. 12 DevOps tools, 16 specialist agents, structured output enforcement, and sandboxed execution.",
+    "Generate, validate, and execute infrastructure & CI/CD configurations using AI. 12 DevOps modules, 16 specialist agents, structured output enforcement, and sandboxed execution.",
   keywords: [
     "DevOps",
     "AI",

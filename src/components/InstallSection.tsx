@@ -89,8 +89,7 @@ export default function InstallSection() {
               <div>
                 <p className="text-text-secondary/70 text-xs mb-1">Configure your LLM provider</p>
                 <code className="font-mono text-[13px] text-text-primary/80">
-                  <span className="text-neon-cyan/60 select-none">$ </span>
-                  dojops config
+                  <span className="text-neon-cyan/60 select-none">$</span> dojops config
                 </code>
               </div>
             </div>
@@ -102,8 +101,7 @@ export default function InstallSection() {
               <div>
                 <p className="text-text-secondary/70 text-xs mb-1">Initialize in your project</p>
                 <code className="font-mono text-[13px] text-text-primary/80">
-                  <span className="text-neon-cyan/60 select-none">$ </span>
-                  dojops init
+                  <span className="text-neon-cyan/60 select-none">$</span> dojops init
                 </code>
               </div>
             </div>
@@ -115,8 +113,8 @@ export default function InstallSection() {
               <div>
                 <p className="text-text-secondary/70 text-xs mb-1">Describe what you need</p>
                 <code className="font-mono text-[13px] text-text-primary/80">
-                  <span className="text-neon-cyan/60 select-none">$ </span>
-                  dojops &quot;Create a Terraform config for S3&quot;
+                  <span className="text-neon-cyan/60 select-none">$</span> dojops &quot;Create a
+                  Terraform config for S3&quot;
                 </code>
               </div>
             </div>

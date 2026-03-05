@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import Image from "next/image";
+import Link from "next/link";
 import { NAV_ITEMS, LINKS } from "@/lib/constants";
 
 export default function Navbar() {
@@ -24,7 +25,7 @@ export default function Navbar() {
     >
       <div className="max-w-6xl mx-auto px-5 sm:px-8 h-16 flex items-center justify-between">
         {/* Logo */}
-        <a href="#" className="flex items-center gap-2.5 group">
+        <Link href="/" className="flex items-center gap-2.5 group">
           <Image
             src="/icons/official-dojops-icon.png"
             alt="DojOps"
@@ -33,7 +34,7 @@ export default function Navbar() {
             className="group-hover:drop-shadow-[0_0_10px_rgba(0,229,255,0.6)] transition-all duration-300"
           />
           <span className="font-semibold text-text-primary tracking-tight">DojOps</span>
-        </a>
+        </Link>
 
         {/* Desktop nav */}
         <div className="hidden md:flex items-center gap-7">

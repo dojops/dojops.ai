@@ -4,7 +4,7 @@ interface SectionHeadingProps {
   id?: string;
 }
 
-export default function SectionHeading({ title, subtitle, id }: SectionHeadingProps) {
+export default function SectionHeading({ title, subtitle, id }: Readonly<SectionHeadingProps>) {
   return (
     <div className="text-center mb-16 sm:mb-20">
       <h2

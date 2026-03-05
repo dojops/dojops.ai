@@ -2,3 +2,9 @@ node_modules
 .next
 out
 .git
+.env
+.env.*
+*.key
+*.pem
+*.p12
+*.pfx

@@ -8,7 +8,7 @@ interface Props {
   delay?: number;
 }
 
-export default function ScrollReveal({ children, className = "", delay = 0 }: Props) {
+export default function ScrollReveal({ children, className = "", delay = 0 }: Readonly<Props>) {
   const ref = useRef<HTMLDivElement>(null);
   const [visible, setVisible] = useState(false);
 

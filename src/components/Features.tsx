@@ -3,7 +3,7 @@ import SectionHeading from "./SectionHeading";
 import GlowCard from "./GlowCard";
 import ScrollReveal from "./ScrollReveal";
 
-function FeatureIcon({ icon }: { icon: string }) {
+function FeatureIcon({ icon }: Readonly<{ icon: string }>) {
   const iconMap: Record<string, React.ReactNode> = {
     brain: (
       <svg

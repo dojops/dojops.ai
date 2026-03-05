@@ -134,19 +134,23 @@ export const HOW_IT_WORKS_STEPS: HowItWorksStep[] = [
 ];
 
 export const TERMINAL_LINES = [
-  { type: "prompt" as const, text: '$ dojops plan "Set up CI/CD for Node.js with Docker"' },
-  { type: "info" as const, text: "" },
-  { type: "info" as const, text: "  Routing to specialist agent..." },
-  { type: "success" as const, text: "  \u2713 Routed to cicd-specialist" },
-  { type: "info" as const, text: "" },
-  { type: "info" as const, text: "  Decomposing goal into tasks..." },
-  { type: "success" as const, text: "  \u2713 3 tasks planned (risk: LOW)" },
-  { type: "info" as const, text: "" },
-  { type: "task" as const, text: "  #1  github-actions   Create CI workflow" },
-  { type: "task" as const, text: "  #2  dockerfile       Build Docker image" },
-  { type: "task" as const, text: "  #3  docker-compose   Service orchestration" },
-  { type: "info" as const, text: "" },
-  { type: "done" as const, text: "  Ready. Run dojops apply to execute." },
+  {
+    id: "prompt",
+    type: "prompt" as const,
+    text: '$ dojops plan "Set up CI/CD for Node.js with Docker"',
+  },
+  { id: "blank-1", type: "info" as const, text: "" },
+  { id: "routing", type: "info" as const, text: "  Routing to specialist agent..." },
+  { id: "routed", type: "success" as const, text: "  \u2713 Routed to cicd-specialist" },
+  { id: "blank-2", type: "info" as const, text: "" },
+  { id: "decomposing", type: "info" as const, text: "  Decomposing goal into tasks..." },
+  { id: "tasks-planned", type: "success" as const, text: "  \u2713 3 tasks planned (risk: LOW)" },
+  { id: "blank-3", type: "info" as const, text: "" },
+  { id: "task-1", type: "task" as const, text: "  #1  github-actions   Create CI workflow" },
+  { id: "task-2", type: "task" as const, text: "  #2  dockerfile       Build Docker image" },
+  { id: "task-3", type: "task" as const, text: "  #3  docker-compose   Service orchestration" },
+  { id: "blank-4", type: "info" as const, text: "" },
+  { id: "done", type: "done" as const, text: "  Ready. Run dojops apply to execute." },
 ];
 
 export interface SecurityFeature {

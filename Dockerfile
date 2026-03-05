@@ -12,7 +12,7 @@ COPY . .
 ENV NEXT_TELEMETRY_DISABLED=1
 RUN npm run build
 
-FROM nginx:alpine AS runner
+FROM nginxinc/nginx-unprivileged:alpine AS runner
 COPY --from=builder /app/out /usr/share/nginx/html
 COPY <<'EOF' /etc/nginx/conf.d/default.conf
 server {

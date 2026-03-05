@@ -120,8 +120,8 @@ export default function NpmDownloadChart() {
     setHover(Math.max(0, Math.min(data.length - 1, idx)));
   };
 
-  const hoverPoint = hover !== null ? points[hover] : null;
-  const hoverData = hover !== null ? data[hover] : null;
+  const hoverPoint = hover === null ? null : points[hover];
+  const hoverData = hover === null ? null : data[hover];
 
   return (
     <div className="w-full max-w-3xl mx-auto mb-8">
@@ -143,9 +143,8 @@ export default function NpmDownloadChart() {
           preserveAspectRatio="none"
           onMouseMove={handleMouseMove}
           onMouseLeave={() => setHover(null)}
-          role="img"
-          aria-label={`npm download trend chart showing ${formatCount(total)} downloads over the last 30 days`}
         >
+          <title>{`npm download trend chart showing ${formatCount(total)} downloads over the last 30 days`}</title>
           <defs>
             <linearGradient id="areaFill" x1="0" y1="0" x2="0" y2="1">
               <stop offset="0%" stopColor="var(--neon-cyan)" stopOpacity="0.25" />

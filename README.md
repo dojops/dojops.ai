@@ -8,6 +8,14 @@
   Landing page for <a href="https://github.com/dojops/dojops">DojOps</a> — the AI DevOps Automation Engine.
 </p>
 
+<p align="center">
+  <a href="https://sonarcloud.io/summary/new_code?id=dojops_dojops.ai"><img src="https://sonarcloud.io/api/project_badges/measure?project=dojops_dojops.ai&metric=alert_status" alt="Quality Gate Status" /></a>
+  <a href="https://sonarcloud.io/summary/overall?id=dojops_dojops.ai"><img src="https://sonarcloud.io/api/project_badges/measure?project=dojops_dojops.ai&metric=bugs" alt="Bugs" /></a>
+  <a href="https://sonarcloud.io/summary/overall?id=dojops_dojops.ai"><img src="https://sonarcloud.io/api/project_badges/measure?project=dojops_dojops.ai&metric=vulnerabilities" alt="Vulnerabilities" /></a>
+  <a href="https://sonarcloud.io/summary/overall?id=dojops_dojops.ai"><img src="https://sonarcloud.io/api/project_badges/measure?project=dojops_dojops.ai&metric=security_hotspots" alt="Security Hotspots" /></a>
+  <a href="https://sonarcloud.io/summary/overall?id=dojops_dojops.ai"><img src="https://sonarcloud.io/api/project_badges/measure?project=dojops_dojops.ai&metric=code_smells" alt="Code Smells" /></a>
+</p>
+
 **Live:** [https://dojops.ai](https://dojops.ai)
 
 ## Tech Stack

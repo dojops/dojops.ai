@@ -49,9 +49,9 @@ export default function FloatingIconsBg() {
       style={{ zIndex: 0 }}
       aria-hidden="true"
     >
-      {ICONS.map((icon, i) => (
+      {ICONS.map((icon) => (
         <div
-          key={i}
+          key={`${icon.src}-${icon.top}-${icon.left}`}
           className="floating-icon"
           style={{
             top: `${icon.top}%`,

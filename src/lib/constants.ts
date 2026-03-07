@@ -12,7 +12,7 @@ export interface NavItem {
 }
 
 export const NAV_ITEMS: NavItem[] = [
-  { label: "How It Works", href: "#how-it-works" },
+  { label: "How It Works", href: "#pipeline" },
   { label: "Features", href: "#features" },
   { label: "Modules", href: "#tools" },
   { label: "Docs", href: LINKS.docs, external: true },
@@ -198,6 +198,70 @@ export const SECURITY_FEATURES: SecurityFeature[] = [
     title: "Zero telemetry",
     description:
       "Nothing leaves your machine except requests to your chosen LLM provider. No analytics, no tracking. Run fully local with Ollama.",
+  },
+];
+
+export interface PipelineStage {
+  id: string;
+  label: string;
+  icon: string;
+  description: string;
+}
+
+export const PIPELINE_STAGES: PipelineStage[] = [
+  {
+    id: "prompt",
+    label: "Prompt",
+    icon: "M12 20h9M16.5 3.5a2.121 2.121 0 013 3L7 19l-4 1 1-4L16.5 3.5z",
+    description: "Describe your goal in plain English",
+  },
+  {
+    id: "route",
+    label: "Route",
+    icon: "M16 3h5v5M4 20L21 3M21 16v5h-5M15 15l6 6M4 4l5 5",
+    description: "Smart agent selection via keyword scoring",
+  },
+  {
+    id: "plan",
+    label: "Plan",
+    icon: "M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4",
+    description: "TaskGraph decomposition with dependency wiring",
+  },
+  {
+    id: "generate",
+    label: "Generate",
+    icon: "M13 10V3L4 14h7v7l9-11h-7z",
+    description: "LLM generates configs with structured output",
+  },
+  {
+    id: "validate",
+    label: "Validate",
+    icon: "M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z",
+    description: "Zod schemas + external tool verification",
+  },
+  {
+    id: "scan",
+    label: "Scan",
+    icon: "M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z",
+    description: "10 security scanners run automatically",
+  },
+  {
+    id: "approve",
+    label: "Approve",
+    icon: "M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z",
+    description: "Interactive diff preview + approval gate",
+  },
+  {
+    id: "execute",
+    label: "Execute",
+    icon: "M5 3l14 9-14 9V3z",
+    description: "Sandboxed atomic writes with policy checks",
+  },
+  {
+    id: "audit",
+    label: "Audit",
+    icon: "M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z",
+    description: "Hash-chained JSONL with tamper detection",
   },
 ];
 

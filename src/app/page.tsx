@@ -1,6 +1,7 @@
 import FloatingIconsBg from "@/components/FloatingIconsBg";
 import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
+import PipelineFlow from "@/components/PipelineFlow";
 import InstallSection from "@/components/InstallSection";
 import HighlightStats from "@/components/HighlightStats";
 import HowItWorks from "@/components/HowItWorks";
@@ -16,6 +17,7 @@ export default function Home() {
       <Navbar />
       <main>
         <Hero />
+        <PipelineFlow />
         <InstallSection />
         <HighlightStats />
         <HowItWorks />

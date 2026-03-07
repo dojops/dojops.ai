@@ -35,10 +35,10 @@ src/
 │   ├── Hero.tsx              # Logo, headline, CTA buttons, terminal demo
 │   ├── TerminalDemo.tsx      # CSS-animated terminal showing dojops plan
 │   ├── InstallSection.tsx    # Tabbed install (npm / curl / Docker) with terminal UI
-│   ├── HighlightStats.tsx    # Stats bar (12 tools, 16 agents, 9 scanners, etc.)
+│   ├── HighlightStats.tsx    # Stats bar (13 tools, 16 agents, 10 scanners, etc.)
 │   ├── HowItWorks.tsx        # 3-step flow: Describe → Review → Apply
 │   ├── Features.tsx          # 6 feature cards with glow hover
-│   ├── ToolsGrid.tsx         # 12 DevOps tools + 6 LLM providers
+│   ├── ToolsGrid.tsx         # 13 DevOps tools + 6 LLM providers
 │   ├── Security.tsx          # 8 security layers grid
 │   ├── Footer.tsx            # Final CTA + links
 │   ├── FloatingIconsBg.tsx   # Atmospheric floating DevOps tool icons background
@@ -54,10 +54,10 @@ src/
 
 1. **Hero** — Animated 3D logo, headline, CTA buttons, terminal demo
 2. **Get Started** — Tabbed install commands (npm/curl/Docker) + "What's next" steps
-3. **Stats Bar** — Key numbers (12 tools, 16 agents, 9 scanners, 6 providers, 8 security layers, 19 endpoints)
+3. **Stats Bar** — Key numbers (13 tools, 16 agents, 10 scanners, 6 providers, 8 security layers, 20 endpoints)
 4. **How It Works** — Three steps: Describe → Review → Apply
 5. **Features** — 6 capability cards (agents, planning, validation, sandboxing, scanning, custom tools)
-6. **Tools & Models** — 12 DevOps tools grid + 6 LLM providers
+6. **Tools & Models** — 13 DevOps tools grid + 6 LLM providers
 7. **Security** — 8 layers of defense grid
 8. **Footer** — Final CTA + links
 

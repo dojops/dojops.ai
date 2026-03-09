@@ -88,7 +88,6 @@ export const DEVOPS_TOOLS: Tool[] = [
   { name: "GitLab CI", icon: "gitLab.svg" },
   { name: "Prometheus", icon: "prometheus.svg" },
   { name: "Systemd", icon: "systemd.svg" },
-  { name: "Jenkinsfile", icon: "jenkins.svg" },
 ];
 
 export interface Provider {

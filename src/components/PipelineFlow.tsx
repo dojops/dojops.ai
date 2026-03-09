@@ -22,7 +22,11 @@ import ScrollReveal from "./ScrollReveal";
 
 /* ═══════════════════════════════════════════════════════════════
    DATA — 11-stage pipeline: 4-3-4 S-curve layout
+   Base coordinate space: 900 × 540 (scaled to fit container)
    ═══════════════════════════════════════════════════════════════ */
+
+const BASE_W = 900;
+const BASE_H = 540;
 
 type Category = "input" | "ai" | "check" | "action";
 
@@ -615,10 +619,10 @@ function AICore({ active }: { active: boolean }) {
 }
 
 /* ═══════════════════════════════════════════════════════════════
-   STAGE DESCRIPTION — shows active stage info with transition
+   STAGE DESCRIPTION — responsive status bar below pipeline
    ═══════════════════════════════════════════════════════════════ */
 
-function StageDescription({ activeIndex }: { activeIndex: number }) {
+function StageDescription({ activeIndex, compact }: { activeIndex: number; compact: boolean }) {
   const total = PIPELINE_STAGES.length;
   const done = activeIndex >= total - 1;
   const stage = activeIndex >= 0 ? PIPELINE_STAGES[activeIndex] : null;
@@ -626,29 +630,33 @@ function StageDescription({ activeIndex }: { activeIndex: number }) {
   const color = node ? CATEGORY_COLORS[node.category] : "#4a6a7a";
 
   return (
-    <div className="flex justify-center mt-6 z-20">
+    <div className="flex justify-center mt-4 sm:mt-6 px-2 z-20 relative">
       <div
         style={{
           display: "inline-flex",
+          flexWrap: "wrap",
           alignItems: "center",
-          gap: 12,
-          padding: "8px 20px",
+          justifyContent: "center",
+          gap: compact ? 6 : 12,
+          padding: compact ? "6px 12px" : "8px 20px",
           background: "rgba(8,14,24,0.75)",
           backdropFilter: "blur(12px)",
+          WebkitBackdropFilter: "blur(12px)",
           border: "1px solid rgba(0,229,255,0.06)",
-          borderRadius: 20,
-          minHeight: 38,
+          borderRadius: compact ? 14 : 20,
+          minHeight: compact ? 32 : 38,
           transition: "all 0.4s",
+          maxWidth: "100%",
         }}
       >
         {/* Progress dots */}
-        <div style={{ display: "flex", gap: 3 }}>
+        <div style={{ display: "flex", gap: compact ? 2 : 3 }}>
           {PIPELINE_STAGES.map((_, i) => (
             <div
               key={i}
               style={{
-                width: 4,
-                height: 4,
+                width: compact ? 3 : 4,
+                height: compact ? 3 : 4,
                 borderRadius: "50%",
                 background:
                   i <= activeIndex ? (done ? "#34d399" : "#00e5ff") : "rgba(255,255,255,0.06)",
@@ -663,7 +671,7 @@ function StageDescription({ activeIndex }: { activeIndex: number }) {
         <div
           style={{
             width: 1,
-            height: 14,
+            height: compact ? 10 : 14,
             background: "rgba(0,229,255,0.08)",
           }}
         />
@@ -673,37 +681,36 @@ function StageDescription({ activeIndex }: { activeIndex: number }) {
           style={{
             display: "flex",
             alignItems: "center",
-            gap: 8,
-            minWidth: 200,
+            gap: compact ? 4 : 8,
           }}
         >
           {activeIndex < 0 ? (
             <span
               style={{
-                fontSize: 10,
+                fontSize: compact ? 8 : 10,
                 fontFamily: "var(--font-mono), monospace",
                 color: "#3a4a5a",
                 letterSpacing: "0.5px",
               }}
             >
-              Initializing pipeline...
+              {compact ? "Initializing..." : "Initializing pipeline..."}
             </span>
           ) : done ? (
             <span
               style={{
-                fontSize: 10,
+                fontSize: compact ? 8 : 10,
                 fontFamily: "var(--font-mono), monospace",
                 color: "#34d399",
                 letterSpacing: "0.5px",
               }}
             >
-              All 11 stages complete
+              {compact ? "Complete" : "All 11 stages complete"}
             </span>
           ) : (
             <>
               <span
                 style={{
-                  fontSize: 10,
+                  fontSize: compact ? 8 : 10,
                   fontWeight: 700,
                   fontFamily: "var(--font-mono), monospace",
                   color,
@@ -714,16 +721,18 @@ function StageDescription({ activeIndex }: { activeIndex: number }) {
               >
                 {stage?.label}
               </span>
-              <span
-                style={{
-                  fontSize: 10,
-                  fontFamily: "var(--font-mono), monospace",
-                  color: "#5a6a7a",
-                  letterSpacing: "0.3px",
-                }}
-              >
-                {stage?.description}
-              </span>
+              {!compact && (
+                <span
+                  style={{
+                    fontSize: 10,
+                    fontFamily: "var(--font-mono), monospace",
+                    color: "#5a6a7a",
+                    letterSpacing: "0.3px",
+                  }}
+                >
+                  {stage?.description}
+                </span>
+              )}
             </>
           )}
         </div>
@@ -733,7 +742,7 @@ function StageDescription({ activeIndex }: { activeIndex: number }) {
 }
 
 /* ═══════════════════════════════════════════════════════════════
-   MAIN COMPONENT
+   MAIN COMPONENT — responsive via CSS scale transform
    ═══════════════════════════════════════════════════════════════ */
 
 function getNodeState(nodeIndex: number, activeIndex: number): NodeState {
@@ -747,6 +756,20 @@ export default function PipelineFlow() {
   const containerRef = useRef<HTMLDivElement>(null);
   const [activeIndex, setActiveIndex] = useState(-1);
   const [started, setStarted] = useState(false);
+  const [scale, setScale] = useState(1);
+
+  // Responsive: measure container and compute scale factor
+  useEffect(() => {
+    const el = containerRef.current;
+    if (!el) return;
+    const update = () => {
+      setScale(Math.min(1, el.clientWidth / BASE_W));
+    };
+    update();
+    const ro = new ResizeObserver(update);
+    ro.observe(el);
+    return () => ro.disconnect();
+  }, []);
 
   // Start animation when visible
   useEffect(() => {
@@ -793,8 +816,10 @@ export default function PipelineFlow() {
     };
   }, [started]);
 
+  const compact = scale < 0.65;
+
   return (
-    <section className="py-16 sm:py-24 px-5 relative overflow-hidden" data-pipeline>
+    <section className="py-16 sm:py-24 px-4 sm:px-5 relative overflow-hidden" data-pipeline>
       <div className="absolute inset-0 pointer-events-none">
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[300px] bg-neon-cyan/[0.015] rounded-full blur-[120px]" />
       </div>
@@ -807,28 +832,40 @@ export default function PipelineFlow() {
         />
       </ScrollReveal>
 
-      {/* Pipeline container */}
-      <div
-        ref={containerRef}
-        className="relative max-w-[900px] mx-auto"
-        style={{ aspectRatio: "5 / 3" }}
-      >
-        <PipelineBackground />
-        <PipelineSVG activeIndex={activeIndex} />
-        <AICore active={activeIndex >= 0} />
+      {/* Pipeline container — scales proportionally to fit any width */}
+      <div ref={containerRef} className="relative max-w-[900px] mx-auto overflow-hidden">
+        {/* Aspect-ratio spacer: maintains height as container scales */}
+        <div style={{ paddingTop: `${(BASE_H / BASE_W) * 100}%` }} />
 
-        {NODES.map((node, i) => (
-          <NodeCard
-            key={PIPELINE_STAGES[i].id}
-            node={node}
-            stage={PIPELINE_STAGES[i]}
-            index={i}
-            state={getNodeState(i, activeIndex)}
-          />
-        ))}
+        {/* Fixed-size inner layer, CSS-scaled to fit container */}
+        <div
+          style={{
+            position: "absolute",
+            top: 0,
+            left: 0,
+            width: BASE_W,
+            height: BASE_H,
+            transform: `scale(${scale})`,
+            transformOrigin: "top left",
+          }}
+        >
+          <PipelineBackground />
+          <PipelineSVG activeIndex={activeIndex} />
+          <AICore active={activeIndex >= 0} />
+
+          {NODES.map((node, i) => (
+            <NodeCard
+              key={PIPELINE_STAGES[i].id}
+              node={node}
+              stage={PIPELINE_STAGES[i]}
+              index={i}
+              state={getNodeState(i, activeIndex)}
+            />
+          ))}
+        </div>
       </div>
 
-      <StageDescription activeIndex={activeIndex} />
+      <StageDescription activeIndex={activeIndex} compact={compact} />
     </section>
   );
 }

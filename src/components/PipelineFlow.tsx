@@ -2,24 +2,28 @@
 
 import { useState, useEffect, useRef, type ReactNode } from "react";
 import {
-  Pencil,
+  Target,
   GitBranch,
-  ClipboardList,
+  Network,
+  Cpu,
   Zap,
   ShieldCheck,
-  Search,
-  Lock,
+  Eye,
+  RotateCcw,
   Play,
+  Pause,
+  SkipForward,
+  RefreshCw,
   FileText,
+  Database,
   Check,
-  Sparkles,
 } from "lucide-react";
 import { PIPELINE_STAGES } from "@/lib/constants";
 import SectionHeading from "./SectionHeading";
 import ScrollReveal from "./ScrollReveal";
 
 /* ═══════════════════════════════════════════════════════════════
-   DATA
+   DATA — 11-stage pipeline: 4-3-4 S-curve layout
    ═══════════════════════════════════════════════════════════════ */
 
 type Category = "input" | "ai" | "check" | "action";
@@ -35,15 +39,16 @@ interface NodeDef {
   icon: ReactNode;
   iconAnim: string;
   category: Category;
-  x: number; // % of container
-  y: number; // % of container
-  sx: number; // SVG viewBox x
-  sy: number; // SVG viewBox y
+  x: number;
+  y: number;
+  sx: number;
+  sy: number;
 }
 
 const NODES: NodeDef[] = [
+  // Row 1 (L→R): Goal, Planner, Graph, Executor
   {
-    icon: <Pencil size={18} strokeWidth={1.5} />,
+    icon: <Target size={16} strokeWidth={1.5} />,
     iconAnim: "icon-wiggle",
     category: "input",
     x: 11,
@@ -52,25 +57,35 @@ const NODES: NodeDef[] = [
     sy: 78,
   },
   {
-    icon: <GitBranch size={18} strokeWidth={1.5} />,
+    icon: <GitBranch size={16} strokeWidth={1.5} />,
     iconAnim: "icon-pulse-scale",
     category: "ai",
-    x: 44,
+    x: 33,
     y: 13,
-    sx: 440,
+    sx: 330,
     sy: 78,
   },
   {
-    icon: <ClipboardList size={18} strokeWidth={1.5} />,
+    icon: <Network size={16} strokeWidth={1.5} />,
     iconAnim: "icon-pulse-scale",
     category: "ai",
+    x: 55,
+    y: 13,
+    sx: 550,
+    sy: 78,
+  },
+  {
+    icon: <Cpu size={16} strokeWidth={1.5} />,
+    iconAnim: "icon-flash",
+    category: "check",
     x: 77,
     y: 13,
     sx: 770,
     sy: 78,
   },
+  // Row 2 (R→L): Generate, Verify, Critic
   {
-    icon: <Zap size={18} strokeWidth={1.5} />,
+    icon: <Zap size={16} strokeWidth={1.5} />,
     iconAnim: "icon-flash",
     category: "ai",
     x: 77,
@@ -79,7 +94,7 @@ const NODES: NodeDef[] = [
     sy: 300,
   },
   {
-    icon: <ShieldCheck size={18} strokeWidth={1.5} />,
+    icon: <ShieldCheck size={16} strokeWidth={1.5} />,
     iconAnim: "icon-pulse-scale",
     category: "check",
     x: 44,
@@ -88,34 +103,44 @@ const NODES: NodeDef[] = [
     sy: 300,
   },
   {
-    icon: <Search size={18} strokeWidth={1.5} />,
+    icon: <Eye size={16} strokeWidth={1.5} />,
     iconAnim: "icon-wiggle",
-    category: "check",
+    category: "ai",
     x: 11,
     y: 50,
     sx: 110,
     sy: 300,
   },
+  // Row 3 (L→R): Repair, Execute, Audit, Memory
   {
-    icon: <Lock size={18} strokeWidth={1.5} />,
+    icon: <RotateCcw size={16} strokeWidth={1.5} />,
     iconAnim: "icon-pulse-scale",
-    category: "action",
+    category: "ai",
     x: 11,
     y: 87,
     sx: 110,
     sy: 522,
   },
   {
-    icon: <Play size={18} strokeWidth={1.5} />,
+    icon: <Play size={16} strokeWidth={1.5} />,
     iconAnim: "icon-bounce",
     category: "action",
-    x: 44,
+    x: 33,
     y: 87,
-    sx: 440,
+    sx: 330,
     sy: 522,
   },
   {
-    icon: <FileText size={18} strokeWidth={1.5} />,
+    icon: <FileText size={16} strokeWidth={1.5} />,
+    iconAnim: "icon-pulse-scale",
+    category: "action",
+    x: 55,
+    y: 87,
+    sx: 550,
+    sy: 522,
+  },
+  {
+    icon: <Database size={16} strokeWidth={1.5} />,
     iconAnim: "icon-pulse-scale",
     category: "action",
     x: 77,
@@ -127,29 +152,56 @@ const NODES: NodeDef[] = [
 
 // SVG path data for each pipe segment (viewBox 0 0 1000 600)
 const SEGMENTS = [
-  "M 110 78 L 440 78",
-  "M 440 78 L 770 78",
+  "M 110 78 L 330 78",
+  "M 330 78 L 550 78",
+  "M 550 78 L 770 78",
   "M 770 78 C 885 78 885 300 770 300",
   "M 770 300 L 440 300",
   "M 440 300 L 110 300",
-  "M 110 300 C 5 300 5 522 110 522",
-  "M 110 522 L 440 522",
-  "M 440 522 L 770 522",
+  "M 110 300 C -5 300 -5 522 110 522",
+  "M 110 522 L 330 522",
+  "M 330 522 L 550 522",
+  "M 550 522 L 770 522",
 ];
 
 // Direction arrows: position + rotation
 const ARROWS: { x: number; y: number; r: number }[] = [
-  { x: 275, y: 78, r: 0 },
-  { x: 605, y: 78, r: 0 },
+  { x: 220, y: 78, r: 0 },
+  { x: 440, y: 78, r: 0 },
+  { x: 660, y: 78, r: 0 },
   { x: 850, y: 189, r: 90 },
   { x: 605, y: 300, r: 180 },
   { x: 275, y: 300, r: 180 },
-  { x: 40, y: 411, r: 90 },
-  { x: 275, y: 522, r: 0 },
-  { x: 605, y: 522, r: 0 },
+  { x: 30, y: 411, r: 90 },
+  { x: 220, y: 522, r: 0 },
+  { x: 440, y: 522, r: 0 },
+  { x: 660, y: 522, r: 0 },
 ];
 
-const STAGE_INTERVAL = 600;
+// Repair loop visual path (Repair → back to Generate)
+const REPAIR_LOOP_PATH = "M 130 510 C 60 420 60 260 140 290 Q 300 260 770 300";
+
+interface LogMsg {
+  label: string;
+  text: string;
+  detail?: string;
+}
+
+const LOG_MESSAGES: LogMsg[] = [
+  { label: "Goal", text: "Parsing infrastructure prompt..." },
+  { label: "Planner", text: "Decomposing goal into tasks", detail: "risk: LOW" },
+  { label: "Graph", text: "3 tasks wired", detail: "topological order" },
+  { label: "Executor", text: "Policy checks passed \u2014 executing" },
+  { label: "Generate", text: "LLM output validated via Zod schema" },
+  { label: "Verify", text: "terraform validate \u2713  hadolint \u2713" },
+  { label: "Critic", text: "Output passes best-practice review" },
+  { label: "Repair", text: "No issues \u2014 skipping repair loop" },
+  { label: "Execute", text: "3 files written", detail: "sandboxed, atomic" },
+  { label: "Audit", text: "Hash-chained entry logged" },
+  { label: "Memory", text: "Execution persisted for future context" },
+];
+
+const STAGE_INTERVAL = 700;
 
 /* ═══════════════════════════════════════════════════════════════
    NODE CARD
@@ -182,10 +234,10 @@ function NodeCard({ node, stage, index, state }: NodeCardProps) {
     >
       <div
         style={{
-          width: 88,
-          padding: "12px 8px 10px",
+          width: 82,
+          padding: "10px 6px 8px",
           background: isActive
-            ? `linear-gradient(160deg, rgba(0,229,255,0.1) 0%, rgba(0,229,255,0.02) 100%)`
+            ? "linear-gradient(160deg, rgba(0,229,255,0.1) 0%, rgba(0,229,255,0.02) 100%)"
             : isDone
               ? "rgba(0,229,255,0.03)"
               : "rgba(8,14,24,0.75)",
@@ -199,7 +251,7 @@ function NodeCard({ node, stage, index, state }: NodeCardProps) {
           display: "flex",
           flexDirection: "column" as const,
           alignItems: "center",
-          gap: 6,
+          gap: 5,
           transition: "all 0.5s cubic-bezier(0.16,1,0.3,1)",
           boxShadow: isActive
             ? "0 0 40px rgba(0,229,255,0.15), 0 0 80px rgba(0,229,255,0.05), inset 0 1px 0 rgba(255,255,255,0.04)"
@@ -213,8 +265,8 @@ function NodeCard({ node, stage, index, state }: NodeCardProps) {
         <div
           style={{
             position: "absolute",
-            top: -9,
-            right: -9,
+            top: -8,
+            right: -8,
             width: 20,
             height: 20,
             borderRadius: "50%",
@@ -227,7 +279,7 @@ function NodeCard({ node, stage, index, state }: NodeCardProps) {
             display: "flex",
             alignItems: "center",
             justifyContent: "center",
-            fontSize: 9,
+            fontSize: index >= 9 ? 7.5 : 9,
             fontWeight: 700,
             color: isActive ? "#050508" : isDone ? "#34d399" : "#2a3a50",
             fontFamily: "var(--font-mono), monospace",
@@ -254,9 +306,9 @@ function NodeCard({ node, stage, index, state }: NodeCardProps) {
         {/* Icon container with micro-animation */}
         <div
           style={{
-            width: 34,
-            height: 34,
-            borderRadius: 9,
+            width: 30,
+            height: 30,
+            borderRadius: 8,
             background: isActive
               ? "rgba(0,229,255,0.1)"
               : isDone
@@ -278,9 +330,9 @@ function NodeCard({ node, stage, index, state }: NodeCardProps) {
         {/* Label */}
         <span
           style={{
-            fontSize: 9,
+            fontSize: 8,
             fontWeight: 600,
-            letterSpacing: "0.8px",
+            letterSpacing: "0.7px",
             textTransform: "uppercase",
             color: isActive ? "#c0f0ff" : isDone ? "rgba(0,229,255,0.55)" : "#1e2d40",
             transition: "color 0.5s",
@@ -293,7 +345,14 @@ function NodeCard({ node, stage, index, state }: NodeCardProps) {
 
         {/* Active indicator */}
         {isActive && (
-          <div style={{ display: "flex", alignItems: "center", gap: 3, marginTop: -2 }}>
+          <div
+            style={{
+              display: "flex",
+              alignItems: "center",
+              gap: 3,
+              marginTop: -2,
+            }}
+          >
             <div
               style={{
                 width: 4,
@@ -306,7 +365,7 @@ function NodeCard({ node, stage, index, state }: NodeCardProps) {
             />
             <span
               style={{
-                fontSize: 7,
+                fontSize: 6,
                 color: "#00e5ff",
                 fontFamily: "var(--font-mono), monospace",
                 letterSpacing: "0.5px",
@@ -322,7 +381,7 @@ function NodeCard({ node, stage, index, state }: NodeCardProps) {
 }
 
 /* ═══════════════════════════════════════════════════════════════
-   SVG PIPES + PARTICLES + ARROWS
+   SVG PIPES + PARTICLES + ARROWS + REPAIR LOOP
    ═══════════════════════════════════════════════════════════════ */
 
 function PipelineSVG({ activeIndex }: { activeIndex: number }) {
@@ -334,7 +393,6 @@ function PipelineSVG({ activeIndex }: { activeIndex: number }) {
       style={{ overflow: "visible" }}
     >
       <defs>
-        {/* Glow filters */}
         <filter id="pipe-glow-soft" x="-50%" y="-50%" width="200%" height="200%">
           <feGaussianBlur stdDeviation="8" result="blur" />
           <feMerge>
@@ -364,7 +422,7 @@ function PipelineSVG({ activeIndex }: { activeIndex: number }) {
 
         return (
           <g key={`seg-${i}`}>
-            {/* Layer 1: Outer halo (always visible, very dim) */}
+            {/* Layer 1: Outer halo */}
             <path
               d={path}
               fill="none"
@@ -375,7 +433,7 @@ function PipelineSVG({ activeIndex }: { activeIndex: number }) {
               style={{ transition: "stroke 0.6s, stroke-width 0.6s" }}
             />
 
-            {/* Layer 2: Track line (always visible) */}
+            {/* Layer 2: Track line */}
             <path
               d={path}
               fill="none"
@@ -426,59 +484,42 @@ function PipelineSVG({ activeIndex }: { activeIndex: number }) {
           </g>
         );
       })}
+
+      {/* Repair loop indicator — shows when Repair step (index 7) is active */}
+      {activeIndex === 7 && (
+        <g>
+          <path
+            d={REPAIR_LOOP_PATH}
+            fill="none"
+            stroke="#00e5ff"
+            strokeWidth={1.2}
+            strokeDasharray="5 4"
+            strokeLinecap="round"
+            filter="url(#pipe-glow-medium)"
+          >
+            <animate
+              attributeName="stroke-opacity"
+              values="0;0.35;0.35;0"
+              dur="1.5s"
+              repeatCount="1"
+              fill="freeze"
+            />
+          </path>
+          {/* Small arrow at the end pointing to Generate */}
+          <g transform="translate(750, 300) rotate(0)">
+            <polygon points="-3,-3 4,0 -3,3" fill="#00e5ff">
+              <animate
+                attributeName="opacity"
+                values="0;0.5;0.5;0"
+                dur="1.5s"
+                repeatCount="1"
+                fill="freeze"
+              />
+            </polygon>
+          </g>
+        </g>
+      )}
     </svg>
-  );
-}
-
-/* ═══════════════════════════════════════════════════════════════
-   AI CORE — central decorative element
-   ═══════════════════════════════════════════════════════════════ */
-
-function AICore({ active }: { active: boolean }) {
-  return (
-    <div
-      className="absolute z-[2]"
-      style={{
-        left: "50%",
-        top: "50%",
-        transform: "translate(-50%, -50%)",
-        width: 140,
-        height: 140,
-        borderRadius: "50%",
-        background: "radial-gradient(circle, rgba(0,229,255,0.06) 0%, transparent 70%)",
-        border: `1px solid ${active ? "rgba(0,229,255,0.08)" : "rgba(0,229,255,0.02)"}`,
-        animation: active ? "ai-core-breathe 4s ease-in-out infinite" : "none",
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "center",
-        justifyContent: "center",
-        gap: 4,
-        transition: "all 1s",
-        pointerEvents: "none",
-      }}
-    >
-      <Sparkles
-        size={20}
-        strokeWidth={1.2}
-        style={{
-          color: active ? "rgba(0,229,255,0.4)" : "rgba(0,229,255,0.08)",
-          transition: "color 1s",
-          filter: active ? "drop-shadow(0 0 8px rgba(0,229,255,0.3))" : "none",
-        }}
-      />
-      <span
-        style={{
-          fontSize: 7,
-          fontWeight: 700,
-          letterSpacing: "2px",
-          color: active ? "rgba(0,229,255,0.3)" : "rgba(0,229,255,0.06)",
-          fontFamily: "var(--font-mono), monospace",
-          transition: "color 1s",
-        }}
-      >
-        AI CORE
-      </span>
-    </div>
   );
 }
 
@@ -486,13 +527,11 @@ function AICore({ active }: { active: boolean }) {
    BACKGROUND — faint grid + floating particles
    ═══════════════════════════════════════════════════════════════ */
 
-// Deterministic pseudo-random from seed to avoid hydration mismatch
 function seededRandom(seed: number): number {
   const x = Math.sin(seed * 9301 + 49297) * 49297;
   return x - Math.floor(x);
 }
 
-// Pre-computed particle positions (deterministic, safe for SSR)
 const BG_PARTICLES = Array.from({ length: 20 }).map((_, i) => ({
   left: Math.round((8 + seededRandom(i * 3 + 1) * 84) * 100) / 100,
   top: Math.round((5 + seededRandom(i * 3 + 2) * 90) * 100) / 100,
@@ -503,7 +542,6 @@ const BG_PARTICLES = Array.from({ length: 20 }).map((_, i) => ({
 function PipelineBackground() {
   return (
     <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
-      {/* Faint grid */}
       <svg className="absolute inset-0 w-full h-full" style={{ opacity: 0.025 }}>
         <defs>
           <pattern id="pipeline-grid" width="40" height="40" patternUnits="userSpaceOnUse">
@@ -513,7 +551,6 @@ function PipelineBackground() {
         <rect width="100%" height="100%" fill="url(#pipeline-grid)" />
       </svg>
 
-      {/* Floating particles */}
       {BG_PARTICLES.map((p, i) => (
         <div
           key={i}
@@ -532,7 +569,6 @@ function PipelineBackground() {
         />
       ))}
 
-      {/* Central radial glow */}
       <div
         className="absolute"
         style={{
@@ -550,6 +586,138 @@ function PipelineBackground() {
 }
 
 /* ═══════════════════════════════════════════════════════════════
+   CONTROLS — Auto / Step / Reset (inspired by ICM)
+   ═══════════════════════════════════════════════════════════════ */
+
+function PipelineControls({
+  playing,
+  onAuto,
+  onStep,
+  onReset,
+}: {
+  playing: boolean;
+  onAuto: () => void;
+  onStep: () => void;
+  onReset: () => void;
+}) {
+  const btnStyle: React.CSSProperties = {
+    display: "inline-flex",
+    alignItems: "center",
+    gap: 5,
+    padding: "6px 14px",
+    borderRadius: 8,
+    border: "1px solid rgba(0,229,255,0.1)",
+    background: "rgba(8,14,24,0.75)",
+    backdropFilter: "blur(12px)",
+    color: "#5a6a7a",
+    fontSize: 11,
+    fontWeight: 600,
+    fontFamily: "var(--font-mono), monospace",
+    letterSpacing: "0.3px",
+    cursor: "pointer",
+    transition: "all 0.2s",
+  };
+
+  const activeBtnStyle: React.CSSProperties = {
+    ...btnStyle,
+    background: "rgba(0,229,255,0.08)",
+    borderColor: "rgba(0,229,255,0.25)",
+    color: "#00e5ff",
+  };
+
+  return (
+    <div
+      style={{
+        display: "flex",
+        justifyContent: "center",
+        gap: 8,
+        marginTop: 14,
+        marginBottom: 10,
+      }}
+    >
+      <button onClick={onAuto} style={playing ? activeBtnStyle : btnStyle}>
+        {playing ? <Pause size={12} strokeWidth={2.5} /> : <Play size={12} strokeWidth={2.5} />}
+        {playing ? "Pause" : "Auto"}
+      </button>
+      <button onClick={onStep} style={btnStyle}>
+        <SkipForward size={12} strokeWidth={2.5} />
+        Step
+      </button>
+      <button onClick={onReset} style={btnStyle}>
+        <RefreshCw size={12} strokeWidth={2.5} />
+        Reset
+      </button>
+    </div>
+  );
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   LOG PANEL — step-by-step action log (inspired by ICM)
+   ═══════════════════════════════════════════════════════════════ */
+
+function PipelineLog({ activeIndex }: { activeIndex: number }) {
+  const logRef = useRef<HTMLDivElement>(null);
+  const entries = activeIndex >= 0 ? LOG_MESSAGES.slice(0, activeIndex + 1) : [];
+
+  useEffect(() => {
+    if (logRef.current) logRef.current.scrollTop = logRef.current.scrollHeight;
+  }, [activeIndex]);
+
+  return (
+    <div
+      ref={logRef}
+      style={{
+        maxHeight: 120,
+        overflowY: "auto",
+        background: "rgba(5,5,8,0.8)",
+        border: "1px solid rgba(0,229,255,0.06)",
+        borderRadius: 10,
+        padding: "10px 14px",
+        fontFamily: "var(--font-mono), monospace",
+        fontSize: 11,
+        lineHeight: 1.8,
+      }}
+    >
+      {entries.length === 0 ? (
+        <div style={{ color: "#2a3a4a" }}>
+          Pipeline ready. Click <strong style={{ color: "#4a5a6a" }}>Auto</strong> to watch or{" "}
+          <strong style={{ color: "#4a5a6a" }}>Step</strong> to advance.
+        </div>
+      ) : (
+        entries.map((entry, i) => {
+          const node = NODES[i];
+          const color = CATEGORY_COLORS[node.category];
+          return (
+            <div
+              key={`log-${i}`}
+              style={{
+                padding: "1px 0",
+                borderTop: i > 0 ? "1px solid rgba(0,229,255,0.03)" : "none",
+                animation: i === entries.length - 1 ? "fadeIn 0.3s ease-out" : "none",
+              }}
+            >
+              <span style={{ color: "#2a3a4a" }}>{"\u2192"} </span>
+              <span
+                style={{
+                  color,
+                  fontWeight: 700,
+                  fontSize: 10,
+                  letterSpacing: "0.3px",
+                }}
+              >
+                {entry.label}
+              </span>
+              <span style={{ color: "#7b8ba3", marginLeft: 6 }}>{entry.text}</span>
+              {entry.detail && <span style={{ color: "#3a4a5a" }}> ({entry.detail})</span>}
+            </div>
+          );
+        })
+      )}
+    </div>
+  );
+}
+
+/* ═══════════════════════════════════════════════════════════════
    STATUS BAR
    ═══════════════════════════════════════════════════════════════ */
 
@@ -558,7 +726,7 @@ function PipelineStatus({ activeIndex }: { activeIndex: number }) {
   const done = activeIndex >= total - 1;
 
   return (
-    <div className="flex justify-center mt-6 z-20">
+    <div className="flex justify-center mt-4 z-20">
       <div
         style={{
           display: "inline-flex",
@@ -576,8 +744,8 @@ function PipelineStatus({ activeIndex }: { activeIndex: number }) {
             <div
               key={i}
               style={{
-                width: 5,
-                height: 5,
+                width: 4,
+                height: 4,
                 borderRadius: "50%",
                 background:
                   i <= activeIndex ? (done ? "#34d399" : "#00e5ff") : "rgba(255,255,255,0.06)",
@@ -621,16 +789,20 @@ function getNodeState(nodeIndex: number, activeIndex: number): NodeState {
 export default function PipelineFlow() {
   const containerRef = useRef<HTMLDivElement>(null);
   const [activeIndex, setActiveIndex] = useState(-1);
-  const [started, setStarted] = useState(false);
+  const [playing, setPlaying] = useState(false);
+  const [visible, setVisible] = useState(false);
+  const stepRef = useRef(0);
 
-  // Start animation when visible
+  const total = PIPELINE_STAGES.length;
+
+  // Detect when section scrolls into view
   useEffect(() => {
     const el = containerRef.current;
     if (!el) return;
     const observer = new IntersectionObserver(
       ([entry]) => {
-        if (entry.isIntersecting && !started) {
-          setStarted(true);
+        if (entry.isIntersecting && !visible) {
+          setVisible(true);
           observer.disconnect();
         }
       },
@@ -638,35 +810,77 @@ export default function PipelineFlow() {
     );
     observer.observe(el);
     return () => observer.disconnect();
-  }, [started]);
+  }, [visible]);
 
-  // Sequential activation loop
+  // Auto-start on scroll into view
   useEffect(() => {
-    if (!started) return;
-    const total = PIPELINE_STAGES.length;
-    let timer: ReturnType<typeof setTimeout>;
-    let cancelled = false;
+    if (visible && !playing) {
+      setPlaying(true);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [visible]);
 
-    function step(i: number) {
+  // Auto-play loop
+  useEffect(() => {
+    if (!playing) return;
+    let cancelled = false;
+    let timer: ReturnType<typeof setTimeout>;
+
+    function tick(i: number) {
       if (cancelled) return;
       if (i >= total) {
         timer = setTimeout(() => {
           if (cancelled) return;
           setActiveIndex(-1);
-          timer = setTimeout(() => step(0), 1200);
+          stepRef.current = 0;
+          timer = setTimeout(() => tick(0), 1200);
         }, 3500);
         return;
       }
       setActiveIndex(i);
-      timer = setTimeout(() => step(i + 1), STAGE_INTERVAL);
+      stepRef.current = i + 1;
+      timer = setTimeout(() => tick(i + 1), STAGE_INTERVAL);
     }
 
-    timer = setTimeout(() => step(0), 400);
+    const start = stepRef.current;
+    timer = setTimeout(() => tick(start), start === 0 ? 400 : STAGE_INTERVAL);
+
     return () => {
       cancelled = true;
       clearTimeout(timer);
     };
-  }, [started]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [playing]);
+
+  const handleAuto = () => {
+    if (playing) {
+      setPlaying(false);
+    } else {
+      if (activeIndex >= total - 1) {
+        setActiveIndex(-1);
+        stepRef.current = 0;
+      }
+      setPlaying(true);
+    }
+  };
+
+  const handleStep = () => {
+    setPlaying(false);
+    const next = activeIndex + 1;
+    if (next >= total) {
+      setActiveIndex(-1);
+      stepRef.current = 0;
+    } else {
+      setActiveIndex(next);
+      stepRef.current = next + 1;
+    }
+  };
+
+  const handleReset = () => {
+    setPlaying(false);
+    setActiveIndex(-1);
+    stepRef.current = 0;
+  };
 
   return (
     <section className="py-16 sm:py-24 px-5 relative overflow-hidden" data-pipeline>
@@ -678,29 +892,35 @@ export default function PipelineFlow() {
         <SectionHeading
           id="pipeline"
           title="How DojOps Works"
-          subtitle="From prompt to production in nine automated stages"
+          subtitle="From prompt to production in eleven automated stages"
         />
       </ScrollReveal>
 
       {/* Pipeline container */}
-      <div
-        ref={containerRef}
-        className="relative max-w-[900px] mx-auto"
-        style={{ aspectRatio: "5 / 3" }}
-      >
-        <PipelineBackground />
-        <PipelineSVG activeIndex={activeIndex} />
-        <AICore active={activeIndex >= 0} />
+      <div className="max-w-[900px] mx-auto">
+        <div ref={containerRef} className="relative" style={{ aspectRatio: "5 / 3" }}>
+          <PipelineBackground />
+          <PipelineSVG activeIndex={activeIndex} />
 
-        {NODES.map((node, i) => (
-          <NodeCard
-            key={PIPELINE_STAGES[i].id}
-            node={node}
-            stage={PIPELINE_STAGES[i]}
-            index={i}
-            state={getNodeState(i, activeIndex)}
-          />
-        ))}
+          {NODES.map((node, i) => (
+            <NodeCard
+              key={PIPELINE_STAGES[i].id}
+              node={node}
+              stage={PIPELINE_STAGES[i]}
+              index={i}
+              state={getNodeState(i, activeIndex)}
+            />
+          ))}
+        </div>
+
+        <PipelineControls
+          playing={playing}
+          onAuto={handleAuto}
+          onStep={handleStep}
+          onReset={handleReset}
+        />
+
+        <PipelineLog activeIndex={activeIndex} />
       </div>
 
       <PipelineStatus activeIndex={activeIndex} />

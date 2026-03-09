@@ -204,78 +204,27 @@ export const SECURITY_FEATURES: SecurityFeature[] = [
 export interface PipelineStage {
   id: string;
   label: string;
-  icon: string;
   description: string;
 }
 
-export const PIPELINE_STAGES: PipelineStage[] = [
-  {
-    id: "goal",
-    label: "Goal",
-    icon: "M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z",
-    description: "Describe your infrastructure goal in plain English",
-  },
-  {
-    id: "planner",
-    label: "Planner",
-    icon: "M16 3h5v5M4 20L21 3M21 16v5h-5M15 15l6 6M4 4l5 5",
-    description: "LLM decomposes goal into tasks with risk classification",
-  },
-  {
-    id: "graph",
-    label: "Graph",
-    icon: "M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2",
-    description: "Dependency-aware topological execution graph",
-  },
-  {
-    id: "executor",
-    label: "Executor",
-    icon: "M22 12h-4l-3 9L9 3l-3 9H2",
-    description: "SafeExecutor applies policy engine and timeout checks",
-  },
-  {
-    id: "generate",
-    label: "Generate",
-    icon: "M13 10V3L4 14h7v7l9-11h-7z",
-    description: "LLM generates configs with structured Zod output",
-  },
-  {
-    id: "verify",
-    label: "Verify",
-    icon: "M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z",
-    description: "External tool validation (terraform, hadolint, ansible)",
-  },
-  {
-    id: "critic",
-    label: "Critic",
-    icon: "M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7z",
-    description: "CriticAgent reviews against best practices",
-  },
-  {
-    id: "repair",
-    label: "Repair",
-    icon: "M1 4v6h6M23 20v-6h-6",
-    description: "Auto-fix failures and re-generate via repair loop",
-  },
-  {
-    id: "execute",
-    label: "Execute",
-    icon: "M5 3l14 9-14 9V3z",
-    description: "Sandboxed atomic writes with approval gate",
-  },
-  {
-    id: "audit",
-    label: "Audit",
-    icon: "M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z",
-    description: "Hash-chained JSONL with tamper detection",
-  },
-  {
-    id: "memory",
-    label: "Memory",
-    icon: "M4 7v10c0 2.21 3.582 4 8 4s8-1.79 8-4V7",
-    description: "Persist execution results for future context",
-  },
+// Tuple format [id, label, description] breaks CPD structural repetition
+const PIPELINE_STAGE_DEFS: [string, string, string][] = [
+  ["goal", "Goal", "Describe your infrastructure goal in plain English"],
+  ["planner", "Planner", "LLM decomposes goal into tasks with risk classification"],
+  ["graph", "Graph", "Dependency-aware topological execution graph"],
+  ["executor", "Executor", "SafeExecutor applies policy engine and timeout checks"],
+  ["generate", "Generate", "LLM generates configs with structured Zod output"],
+  ["verify", "Verify", "External tool validation (terraform, hadolint, ansible)"],
+  ["critic", "Critic", "CriticAgent reviews against best practices"],
+  ["repair", "Repair", "Auto-fix failures and re-generate via repair loop"],
+  ["execute", "Execute", "Sandboxed atomic writes with approval gate"],
+  ["audit", "Audit", "Hash-chained JSONL with tamper detection"],
+  ["memory", "Memory", "Persist execution results for future context"],
 ];
+
+export const PIPELINE_STAGES: PipelineStage[] = PIPELINE_STAGE_DEFS.map(
+  ([id, label, description]) => ({ id, label, description }),
+);
 
 export interface HighlightStat {
   value: string;

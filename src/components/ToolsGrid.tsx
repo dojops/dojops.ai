@@ -10,7 +10,7 @@ export default function ToolsGrid() {
         <SectionHeading
           id="tools"
           title="Your tools. Your models."
-          subtitle="12 built-in DevOps modules and 6 LLM providers, ready out of the box"
+          subtitle="13 built-in DevOps modules and 6 LLM providers, ready out of the box"
         />
       </ScrollReveal>
       <div className="max-w-5xl mx-auto space-y-20">

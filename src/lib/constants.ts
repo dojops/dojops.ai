@@ -33,9 +33,9 @@ export interface Feature {
 
 export const FEATURES: Feature[] = [
   {
-    title: "16 Specialist Agents",
+    title: "17 Specialist Agents",
     description:
-      "One prompt, sixteen experts. DojOps routes your request to the right specialist \u2014 Terraform, Kubernetes, CI/CD, security, and more. Create custom agents with a single README.",
+      "One prompt, seventeen experts. DojOps routes your request to the right specialist \u2014 Terraform, Kubernetes, CI/CD, security, and more. Create custom agents with a single README.",
     icon: "agents",
   },
   {
@@ -57,15 +57,15 @@ export const FEATURES: Feature[] = [
     icon: "shield",
   },
   {
-    title: "9 Scanners. Automated.",
+    title: "10 Scanners. Automated.",
     description:
-      "Trivy, Gitleaks, Checkov, Semgrep, Hadolint, ShellCheck, npm/pip audit, and SBOM generation \u2014 all run before configs go live. Auto-fix critical findings with AI-powered remediation.",
+      "Trivy, Gitleaks, Checkov, Semgrep, Hadolint, ShellCheck, npm/pip audit, SBOM generation, and license scanning \u2014 all run before configs go live. Auto-fix critical findings with AI-powered remediation.",
     icon: "scan",
   },
   {
     title: "Build & Share Modules",
     description:
-      "12 built-in modules cover the essentials. Need more? Create custom modules with a declarative DOPS manifest, publish them to the DojOps Hub, and install community modules with SHA-256 integrity verification.",
+      "13 built-in modules cover the essentials. Need more? Create custom modules with a declarative DOPS manifest, publish them to the DojOps Hub, and install community modules with SHA-256 integrity verification.",
     icon: "plugin",
   },
 ];
@@ -88,6 +88,7 @@ export const DEVOPS_TOOLS: Tool[] = [
   { name: "GitLab CI", icon: "gitLab.svg" },
   { name: "Prometheus", icon: "prometheus.svg" },
   { name: "Systemd", icon: "systemd.svg" },
+  { name: "Jenkinsfile", icon: "jenkins.svg" },
 ];
 
 export interface Provider {
@@ -271,10 +272,10 @@ export interface HighlightStat {
 }
 
 export const HIGHLIGHT_STATS: HighlightStat[] = [
-  { value: "12", label: "DevOps Modules" },
-  { value: "16", label: "Specialist Agents" },
-  { value: "9", label: "Security Scanners" },
+  { value: "13", label: "DevOps Modules" },
+  { value: "17", label: "Specialist Agents" },
+  { value: "10", label: "Security Scanners" },
   { value: "6", label: "LLM Providers" },
   { value: "8", label: "Security Layers" },
-  { value: "19", label: "API Endpoints" },
+  { value: "21", label: "API Endpoints" },
 ];

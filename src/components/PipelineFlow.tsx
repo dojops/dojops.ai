@@ -38,13 +38,13 @@ const CATEGORY_COLORS: Record<Category, string> = {
 };
 
 interface NodeDef {
-  icon: ReactNode;
-  iconAnim: string;
-  category: Category;
-  x: number;
-  y: number;
-  sx: number;
-  sy: number;
+  readonly icon: ReactNode;
+  readonly iconAnim: string;
+  readonly category: Category;
+  readonly x: number;
+  readonly y: number;
+  readonly sx: number;
+  readonly sy: number;
 }
 
 const NODES: NodeDef[] = [
@@ -186,23 +186,90 @@ const REPAIR_LOOP_PATH = "M 130 510 C 60 420 60 260 140 290 Q 300 260 770 300";
 const STAGE_INTERVAL = 600;
 
 /* ═══════════════════════════════════════════════════════════════
-   NODE CARD
+   NODE CARD — style computation extracted to reduce complexity
    ═══════════════════════════════════════════════════════════════ */
 
 type NodeState = "inactive" | "active" | "done";
 
 interface NodeCardProps {
-  node: NodeDef;
-  stage: (typeof PIPELINE_STAGES)[number];
-  index: number;
-  state: NodeState;
+  readonly node: NodeDef;
+  readonly stage: (typeof PIPELINE_STAGES)[number];
+  readonly index: number;
+  readonly state: NodeState;
 }
 
-function NodeCard({ node, stage, index, state }: NodeCardProps) {
-  const catColor = CATEGORY_COLORS[node.category];
+interface NodeStyles {
+  readonly cardBg: string;
+  readonly topBorder: string;
+  readonly sideBorder: string;
+  readonly boxShadow: string;
+  readonly badgeBg: string;
+  readonly badgeBorder: string;
+  readonly badgeColor: string;
+  readonly iconBg: string;
+  readonly iconBorder: string;
+  readonly iconColor: string;
+  readonly labelColor: string;
+}
+
+function computeActiveStyles(catColor: string): NodeStyles {
+  return {
+    cardBg: "linear-gradient(160deg, rgba(0,229,255,0.1) 0%, rgba(0,229,255,0.02) 100%)",
+    topBorder: `2px solid ${catColor}`,
+    sideBorder: "1px solid rgba(0,229,255,0.3)",
+    boxShadow:
+      "0 0 40px rgba(0,229,255,0.15), 0 0 80px rgba(0,229,255,0.05), inset 0 1px 0 rgba(255,255,255,0.04)",
+    badgeBg: catColor,
+    badgeBorder: "1px solid rgba(255,255,255,0.15)",
+    badgeColor: "#050508",
+    iconBg: "rgba(0,229,255,0.1)",
+    iconBorder: "1px solid rgba(0,229,255,0.2)",
+    iconColor: "#00e5ff",
+    labelColor: "#c0f0ff",
+  };
+}
+
+function computeDoneStyles(catColor: string): NodeStyles {
+  return {
+    cardBg: "rgba(0,229,255,0.03)",
+    topBorder: `2px solid ${catColor}`,
+    sideBorder: "1px solid rgba(0,229,255,0.12)",
+    boxShadow: "0 0 15px rgba(0,229,255,0.06), 0 4px 20px rgba(0,0,0,0.3)",
+    badgeBg: "rgba(52,211,153,0.3)",
+    badgeBorder: "1px solid rgba(255,255,255,0.15)",
+    badgeColor: "#34d399",
+    iconBg: "rgba(52,211,153,0.06)",
+    iconBorder: "1px solid rgba(52,211,153,0.1)",
+    iconColor: "rgba(0,229,255,0.55)",
+    labelColor: "rgba(0,229,255,0.55)",
+  };
+}
+
+const INACTIVE_STYLES: NodeStyles = {
+  cardBg: "rgba(8,14,24,0.75)",
+  topBorder: "2px solid rgba(255,255,255,0.03)",
+  sideBorder: "1px solid rgba(255,255,255,0.04)",
+  boxShadow: "0 2px 12px rgba(0,0,0,0.3)",
+  badgeBg: "rgba(15,25,40,0.9)",
+  badgeBorder: "1px solid rgba(255,255,255,0.05)",
+  badgeColor: "#2a3a50",
+  iconBg: "rgba(255,255,255,0.02)",
+  iconBorder: "1px solid rgba(255,255,255,0.03)",
+  iconColor: "#1e2d40",
+  labelColor: "#1e2d40",
+};
+
+function computeNodeStyles(state: NodeState, category: Category): NodeStyles {
+  const catColor = CATEGORY_COLORS[category];
+  if (state === "active") return computeActiveStyles(catColor);
+  if (state === "done") return computeDoneStyles(catColor);
+  return INACTIVE_STYLES;
+}
+
+function NodeCard({ node, stage, index, state }: Readonly<NodeCardProps>) {
+  const s = computeNodeStyles(state, node.category);
   const isActive = state === "active";
   const isDone = state === "done";
-  const isLit = isActive || isDone;
 
   return (
     <div
@@ -218,28 +285,20 @@ function NodeCard({ node, stage, index, state }: NodeCardProps) {
         style={{
           width: 82,
           padding: "10px 6px 8px",
-          background: isActive
-            ? "linear-gradient(160deg, rgba(0,229,255,0.1) 0%, rgba(0,229,255,0.02) 100%)"
-            : isDone
-              ? "rgba(0,229,255,0.03)"
-              : "rgba(8,14,24,0.75)",
+          background: s.cardBg,
           backdropFilter: "blur(20px)",
           WebkitBackdropFilter: "blur(20px)",
-          borderTop: `2px solid ${isLit ? catColor : "rgba(255,255,255,0.03)"}`,
-          borderLeft: `1px solid ${isActive ? "rgba(0,229,255,0.3)" : isDone ? "rgba(0,229,255,0.12)" : "rgba(255,255,255,0.04)"}`,
-          borderRight: `1px solid ${isActive ? "rgba(0,229,255,0.3)" : isDone ? "rgba(0,229,255,0.12)" : "rgba(255,255,255,0.04)"}`,
-          borderBottom: `1px solid ${isActive ? "rgba(0,229,255,0.3)" : isDone ? "rgba(0,229,255,0.12)" : "rgba(255,255,255,0.04)"}`,
+          borderTop: s.topBorder,
+          borderLeft: s.sideBorder,
+          borderRight: s.sideBorder,
+          borderBottom: s.sideBorder,
           borderRadius: 14,
           display: "flex",
           flexDirection: "column" as const,
           alignItems: "center",
           gap: 5,
           transition: "all 0.5s cubic-bezier(0.16,1,0.3,1)",
-          boxShadow: isActive
-            ? "0 0 40px rgba(0,229,255,0.15), 0 0 80px rgba(0,229,255,0.05), inset 0 1px 0 rgba(255,255,255,0.04)"
-            : isDone
-              ? "0 0 15px rgba(0,229,255,0.06), 0 4px 20px rgba(0,0,0,0.3)"
-              : "0 2px 12px rgba(0,0,0,0.3)",
+          boxShadow: s.boxShadow,
           position: "relative" as const,
         }}
       >
@@ -252,18 +311,14 @@ function NodeCard({ node, stage, index, state }: NodeCardProps) {
             width: 20,
             height: 20,
             borderRadius: "50%",
-            background: isActive
-              ? catColor
-              : isDone
-                ? "rgba(52,211,153,0.3)"
-                : "rgba(15,25,40,0.9)",
-            border: `1px solid ${isLit ? "rgba(255,255,255,0.15)" : "rgba(255,255,255,0.05)"}`,
+            background: s.badgeBg,
+            border: s.badgeBorder,
             display: "flex",
             alignItems: "center",
             justifyContent: "center",
             fontSize: index >= 9 ? 7.5 : 9,
             fontWeight: 700,
-            color: isActive ? "#050508" : isDone ? "#34d399" : "#2a3a50",
+            color: s.badgeColor,
             fontFamily: "var(--font-mono), monospace",
             transition: "all 0.4s",
           }}
@@ -291,16 +346,12 @@ function NodeCard({ node, stage, index, state }: NodeCardProps) {
             width: 30,
             height: 30,
             borderRadius: 8,
-            background: isActive
-              ? "rgba(0,229,255,0.1)"
-              : isDone
-                ? "rgba(52,211,153,0.06)"
-                : "rgba(255,255,255,0.02)",
-            border: `1px solid ${isActive ? "rgba(0,229,255,0.2)" : isDone ? "rgba(52,211,153,0.1)" : "rgba(255,255,255,0.03)"}`,
+            background: s.iconBg,
+            border: s.iconBorder,
             display: "flex",
             alignItems: "center",
             justifyContent: "center",
-            color: isActive ? "#00e5ff" : isDone ? "rgba(0,229,255,0.55)" : "#1e2d40",
+            color: s.iconColor,
             transition: "all 0.5s",
             animation: isActive ? `${node.iconAnim} 0.6s ease-in-out infinite` : "none",
             filter: isActive ? "drop-shadow(0 0 6px rgba(0,229,255,0.4))" : "none",
@@ -316,7 +367,7 @@ function NodeCard({ node, stage, index, state }: NodeCardProps) {
             fontWeight: 600,
             letterSpacing: "0.7px",
             textTransform: "uppercase",
-            color: isActive ? "#c0f0ff" : isDone ? "rgba(0,229,255,0.55)" : "#1e2d40",
+            color: s.labelColor,
             transition: "color 0.5s",
             fontFamily: "var(--font-mono), monospace",
             lineHeight: 1,
@@ -366,7 +417,7 @@ function NodeCard({ node, stage, index, state }: NodeCardProps) {
    SVG PIPES + PARTICLES + ARROWS + REPAIR LOOP
    ═══════════════════════════════════════════════════════════════ */
 
-function PipelineSVG({ activeIndex }: { activeIndex: number }) {
+function PipelineSVG({ activeIndex }: Readonly<{ activeIndex: number }>) {
   return (
     <svg
       viewBox="-10 0 1020 600"
@@ -403,7 +454,7 @@ function PipelineSVG({ activeIndex }: { activeIndex: number }) {
         const segCurrent = i === activeIndex - 1;
 
         return (
-          <g key={`seg-${i}`}>
+          <g key={path}>
             {/* Layer 1: Outer halo */}
             <path
               d={path}
@@ -514,6 +565,7 @@ function seededRandom(seed: number): number {
 }
 
 const BG_PARTICLES = Array.from({ length: 20 }).map((_, i) => ({
+  id: `bp-${Math.round(seededRandom(i * 3 + 1) * 1e4)}-${Math.round(seededRandom(i * 3 + 2) * 1e4)}`,
   left: Math.round((8 + seededRandom(i * 3 + 1) * 84) * 100) / 100,
   top: Math.round((5 + seededRandom(i * 3 + 2) * 90) * 100) / 100,
   dur: Math.round((6 + seededRandom(i * 3 + 3) * 8) * 100) / 100,
@@ -532,9 +584,9 @@ function PipelineBackground() {
         <rect width="100%" height="100%" fill="url(#pipeline-grid)" />
       </svg>
 
-      {BG_PARTICLES.map((p, i) => (
+      {BG_PARTICLES.map((p) => (
         <div
-          key={i}
+          key={p.id}
           style={{
             position: "absolute",
             left: `${p.left}%`,
@@ -570,7 +622,7 @@ function PipelineBackground() {
    AI CORE — central decorative element
    ═══════════════════════════════════════════════════════════════ */
 
-function AICore({ active }: { active: boolean }) {
+function AICore({ active }: Readonly<{ active: boolean }>) {
   return (
     <div
       className="absolute z-[2]"
@@ -622,7 +674,99 @@ function AICore({ active }: { active: boolean }) {
    STAGE DESCRIPTION — responsive status bar below pipeline
    ═══════════════════════════════════════════════════════════════ */
 
-function StageDescription({ activeIndex, compact }: { activeIndex: number; compact: boolean }) {
+const MONO_FONT = "var(--font-mono), monospace";
+
+function StageInfoContent({
+  activeIndex,
+  done,
+  compact,
+  color,
+  stage,
+}: Readonly<{
+  activeIndex: number;
+  done: boolean;
+  compact: boolean;
+  color: string;
+  stage: (typeof PIPELINE_STAGES)[number] | null;
+}>) {
+  const fontSize = compact ? 8 : 10;
+
+  if (activeIndex < 0) {
+    return (
+      <span style={{ fontSize, fontFamily: MONO_FONT, color: "#3a4a5a", letterSpacing: "0.5px" }}>
+        {compact ? "Initializing..." : "Initializing pipeline..."}
+      </span>
+    );
+  }
+
+  if (done) {
+    return (
+      <span style={{ fontSize, fontFamily: MONO_FONT, color: "#34d399", letterSpacing: "0.5px" }}>
+        {compact ? "Complete" : "All 11 stages complete"}
+      </span>
+    );
+  }
+
+  return (
+    <>
+      <span
+        style={{
+          fontSize,
+          fontWeight: 700,
+          fontFamily: MONO_FONT,
+          color,
+          letterSpacing: "0.5px",
+          textTransform: "uppercase",
+          whiteSpace: "nowrap",
+        }}
+      >
+        {stage?.label}
+      </span>
+      {!compact && (
+        <span
+          style={{ fontSize: 10, fontFamily: MONO_FONT, color: "#5a6a7a", letterSpacing: "0.3px" }}
+        >
+          {stage?.description}
+        </span>
+      )}
+    </>
+  );
+}
+
+function ProgressDots({
+  activeIndex,
+  done,
+  compact,
+}: Readonly<{ activeIndex: number; done: boolean; compact: boolean }>) {
+  const dotSize = compact ? 3 : 4;
+  return (
+    <div style={{ display: "flex", gap: compact ? 2 : 3 }}>
+      {PIPELINE_STAGES.map((s, i) => {
+        const filled = i <= activeIndex;
+        const isCurrent = i === activeIndex && !done;
+        const bg = filled ? (done ? "#34d399" : "#00e5ff") : "rgba(255,255,255,0.06)";
+        return (
+          <div
+            key={s.id}
+            style={{
+              width: dotSize,
+              height: dotSize,
+              borderRadius: "50%",
+              background: bg,
+              boxShadow: isCurrent ? "0 0 6px #00e5ff" : "none",
+              transition: "all 0.3s",
+            }}
+          />
+        );
+      })}
+    </div>
+  );
+}
+
+function StageDescription({
+  activeIndex,
+  compact,
+}: Readonly<{ activeIndex: number; compact: boolean }>) {
   const total = PIPELINE_STAGES.length;
   const done = activeIndex >= total - 1;
   const stage = activeIndex >= 0 ? PIPELINE_STAGES[activeIndex] : null;
@@ -649,23 +793,7 @@ function StageDescription({ activeIndex, compact }: { activeIndex: number; compa
           maxWidth: "100%",
         }}
       >
-        {/* Progress dots */}
-        <div style={{ display: "flex", gap: compact ? 2 : 3 }}>
-          {PIPELINE_STAGES.map((_, i) => (
-            <div
-              key={i}
-              style={{
-                width: compact ? 3 : 4,
-                height: compact ? 3 : 4,
-                borderRadius: "50%",
-                background:
-                  i <= activeIndex ? (done ? "#34d399" : "#00e5ff") : "rgba(255,255,255,0.06)",
-                boxShadow: i === activeIndex && !done ? "0 0 6px #00e5ff" : "none",
-                transition: "all 0.3s",
-              }}
-            />
-          ))}
-        </div>
+        <ProgressDots activeIndex={activeIndex} done={done} compact={compact} />
 
         {/* Divider */}
         <div
@@ -677,64 +805,14 @@ function StageDescription({ activeIndex, compact }: { activeIndex: number; compa
         />
 
         {/* Stage info */}
-        <div
-          style={{
-            display: "flex",
-            alignItems: "center",
-            gap: compact ? 4 : 8,
-          }}
-        >
-          {activeIndex < 0 ? (
-            <span
-              style={{
-                fontSize: compact ? 8 : 10,
-                fontFamily: "var(--font-mono), monospace",
-                color: "#3a4a5a",
-                letterSpacing: "0.5px",
-              }}
-            >
-              {compact ? "Initializing..." : "Initializing pipeline..."}
-            </span>
-          ) : done ? (
-            <span
-              style={{
-                fontSize: compact ? 8 : 10,
-                fontFamily: "var(--font-mono), monospace",
-                color: "#34d399",
-                letterSpacing: "0.5px",
-              }}
-            >
-              {compact ? "Complete" : "All 11 stages complete"}
-            </span>
-          ) : (
-            <>
-              <span
-                style={{
-                  fontSize: compact ? 8 : 10,
-                  fontWeight: 700,
-                  fontFamily: "var(--font-mono), monospace",
-                  color,
-                  letterSpacing: "0.5px",
-                  textTransform: "uppercase",
-                  whiteSpace: "nowrap",
-                }}
-              >
-                {stage?.label}
-              </span>
-              {!compact && (
-                <span
-                  style={{
-                    fontSize: 10,
-                    fontFamily: "var(--font-mono), monospace",
-                    color: "#5a6a7a",
-                    letterSpacing: "0.3px",
-                  }}
-                >
-                  {stage?.description}
-                </span>
-              )}
-            </>
-          )}
+        <div style={{ display: "flex", alignItems: "center", gap: compact ? 4 : 8 }}>
+          <StageInfoContent
+            activeIndex={activeIndex}
+            done={done}
+            compact={compact}
+            color={color}
+            stage={stage}
+          />
         </div>
       </div>
     </div>
@@ -788,28 +866,33 @@ export default function PipelineFlow() {
     return () => observer.disconnect();
   }, [started]);
 
-  // Sequential activation loop
+  // Sequential activation loop (flattened to avoid deep nesting)
   useEffect(() => {
     if (!started) return;
     const total = PIPELINE_STAGES.length;
     let timer: ReturnType<typeof setTimeout>;
     let cancelled = false;
+    let current = 0;
 
-    function step(i: number) {
+    function tick() {
       if (cancelled) return;
-      if (i >= total) {
-        timer = setTimeout(() => {
-          if (cancelled) return;
-          setActiveIndex(-1);
-          timer = setTimeout(() => step(0), 1200);
-        }, 3500);
+      if (current === total) {
+        timer = setTimeout(reset, 3500);
         return;
       }
-      setActiveIndex(i);
-      timer = setTimeout(() => step(i + 1), STAGE_INTERVAL);
+      setActiveIndex(current);
+      current += 1;
+      timer = setTimeout(tick, STAGE_INTERVAL);
     }
 
-    timer = setTimeout(() => step(0), 400);
+    function reset() {
+      if (cancelled) return;
+      setActiveIndex(-1);
+      current = 0;
+      timer = setTimeout(tick, 1200);
+    }
+
+    timer = setTimeout(tick, 400);
     return () => {
       cancelled = true;
       clearTimeout(timer);

@@ -11,12 +11,10 @@ import {
   Eye,
   RotateCcw,
   Play,
-  Pause,
-  SkipForward,
-  RefreshCw,
   FileText,
   Database,
   Check,
+  Sparkles,
 } from "lucide-react";
 import { PIPELINE_STAGES } from "@/lib/constants";
 import SectionHeading from "./SectionHeading";
@@ -181,27 +179,7 @@ const ARROWS: { x: number; y: number; r: number }[] = [
 // Repair loop visual path (Repair → back to Generate)
 const REPAIR_LOOP_PATH = "M 130 510 C 60 420 60 260 140 290 Q 300 260 770 300";
 
-interface LogMsg {
-  label: string;
-  text: string;
-  detail?: string;
-}
-
-const LOG_MESSAGES: LogMsg[] = [
-  { label: "Goal", text: "Parsing infrastructure prompt..." },
-  { label: "Planner", text: "Decomposing goal into tasks", detail: "risk: LOW" },
-  { label: "Graph", text: "3 tasks wired", detail: "topological order" },
-  { label: "Executor", text: "Policy checks passed \u2014 executing" },
-  { label: "Generate", text: "LLM output validated via Zod schema" },
-  { label: "Verify", text: "terraform validate \u2713  hadolint \u2713" },
-  { label: "Critic", text: "Output passes best-practice review" },
-  { label: "Repair", text: "No issues \u2014 skipping repair loop" },
-  { label: "Execute", text: "3 files written", detail: "sandboxed, atomic" },
-  { label: "Audit", text: "Hash-chained entry logged" },
-  { label: "Memory", text: "Execution persisted for future context" },
-];
-
-const STAGE_INTERVAL = 700;
+const STAGE_INTERVAL = 600;
 
 /* ═══════════════════════════════════════════════════════════════
    NODE CARD
@@ -505,7 +483,6 @@ function PipelineSVG({ activeIndex }: { activeIndex: number }) {
               fill="freeze"
             />
           </path>
-          {/* Small arrow at the end pointing to Generate */}
           <g transform="translate(750, 300) rotate(0)">
             <polygon points="-3,-3 4,0 -3,3" fill="#00e5ff">
               <animate
@@ -586,159 +563,85 @@ function PipelineBackground() {
 }
 
 /* ═══════════════════════════════════════════════════════════════
-   CONTROLS — Auto / Step / Reset (inspired by ICM)
+   AI CORE — central decorative element
    ═══════════════════════════════════════════════════════════════ */
 
-function PipelineControls({
-  playing,
-  onAuto,
-  onStep,
-  onReset,
-}: {
-  playing: boolean;
-  onAuto: () => void;
-  onStep: () => void;
-  onReset: () => void;
-}) {
-  const btnStyle: React.CSSProperties = {
-    display: "inline-flex",
-    alignItems: "center",
-    gap: 5,
-    padding: "6px 14px",
-    borderRadius: 8,
-    border: "1px solid rgba(0,229,255,0.1)",
-    background: "rgba(8,14,24,0.75)",
-    backdropFilter: "blur(12px)",
-    color: "#5a6a7a",
-    fontSize: 11,
-    fontWeight: 600,
-    fontFamily: "var(--font-mono), monospace",
-    letterSpacing: "0.3px",
-    cursor: "pointer",
-    transition: "all 0.2s",
-  };
-
-  const activeBtnStyle: React.CSSProperties = {
-    ...btnStyle,
-    background: "rgba(0,229,255,0.08)",
-    borderColor: "rgba(0,229,255,0.25)",
-    color: "#00e5ff",
-  };
-
+function AICore({ active }: { active: boolean }) {
   return (
     <div
+      className="absolute z-[2]"
       style={{
+        left: "50%",
+        top: "50%",
+        transform: "translate(-50%, -50%)",
+        width: 100,
+        height: 100,
+        borderRadius: "50%",
+        background: "radial-gradient(circle, rgba(0,229,255,0.06) 0%, transparent 70%)",
+        border: `1px solid ${active ? "rgba(0,229,255,0.08)" : "rgba(0,229,255,0.02)"}`,
+        animation: active ? "ai-core-breathe 4s ease-in-out infinite" : "none",
         display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
         justifyContent: "center",
-        gap: 8,
-        marginTop: 14,
-        marginBottom: 10,
+        gap: 4,
+        transition: "all 1s",
+        pointerEvents: "none",
       }}
     >
-      <button onClick={onAuto} style={playing ? activeBtnStyle : btnStyle}>
-        {playing ? <Pause size={12} strokeWidth={2.5} /> : <Play size={12} strokeWidth={2.5} />}
-        {playing ? "Pause" : "Auto"}
-      </button>
-      <button onClick={onStep} style={btnStyle}>
-        <SkipForward size={12} strokeWidth={2.5} />
-        Step
-      </button>
-      <button onClick={onReset} style={btnStyle}>
-        <RefreshCw size={12} strokeWidth={2.5} />
-        Reset
-      </button>
+      <Sparkles
+        size={16}
+        strokeWidth={1.2}
+        style={{
+          color: active ? "rgba(0,229,255,0.4)" : "rgba(0,229,255,0.08)",
+          transition: "color 1s",
+          filter: active ? "drop-shadow(0 0 8px rgba(0,229,255,0.3))" : "none",
+        }}
+      />
+      <span
+        style={{
+          fontSize: 6,
+          fontWeight: 700,
+          letterSpacing: "1.5px",
+          color: active ? "rgba(0,229,255,0.3)" : "rgba(0,229,255,0.06)",
+          fontFamily: "var(--font-mono), monospace",
+          transition: "color 1s",
+        }}
+      >
+        LLM
+      </span>
     </div>
   );
 }
 
 /* ═══════════════════════════════════════════════════════════════
-   LOG PANEL — step-by-step action log (inspired by ICM)
+   STAGE DESCRIPTION — shows active stage info with transition
    ═══════════════════════════════════════════════════════════════ */
 
-function PipelineLog({ activeIndex }: { activeIndex: number }) {
-  const logRef = useRef<HTMLDivElement>(null);
-  const entries = activeIndex >= 0 ? LOG_MESSAGES.slice(0, activeIndex + 1) : [];
-
-  useEffect(() => {
-    if (logRef.current) logRef.current.scrollTop = logRef.current.scrollHeight;
-  }, [activeIndex]);
-
-  return (
-    <div
-      ref={logRef}
-      style={{
-        maxHeight: 120,
-        overflowY: "auto",
-        background: "rgba(5,5,8,0.8)",
-        border: "1px solid rgba(0,229,255,0.06)",
-        borderRadius: 10,
-        padding: "10px 14px",
-        fontFamily: "var(--font-mono), monospace",
-        fontSize: 11,
-        lineHeight: 1.8,
-      }}
-    >
-      {entries.length === 0 ? (
-        <div style={{ color: "#2a3a4a" }}>
-          Pipeline ready. Click <strong style={{ color: "#4a5a6a" }}>Auto</strong> to watch or{" "}
-          <strong style={{ color: "#4a5a6a" }}>Step</strong> to advance.
-        </div>
-      ) : (
-        entries.map((entry, i) => {
-          const node = NODES[i];
-          const color = CATEGORY_COLORS[node.category];
-          return (
-            <div
-              key={`log-${i}`}
-              style={{
-                padding: "1px 0",
-                borderTop: i > 0 ? "1px solid rgba(0,229,255,0.03)" : "none",
-                animation: i === entries.length - 1 ? "fadeIn 0.3s ease-out" : "none",
-              }}
-            >
-              <span style={{ color: "#2a3a4a" }}>{"\u2192"} </span>
-              <span
-                style={{
-                  color,
-                  fontWeight: 700,
-                  fontSize: 10,
-                  letterSpacing: "0.3px",
-                }}
-              >
-                {entry.label}
-              </span>
-              <span style={{ color: "#7b8ba3", marginLeft: 6 }}>{entry.text}</span>
-              {entry.detail && <span style={{ color: "#3a4a5a" }}> ({entry.detail})</span>}
-            </div>
-          );
-        })
-      )}
-    </div>
-  );
-}
-
-/* ═══════════════════════════════════════════════════════════════
-   STATUS BAR
-   ═══════════════════════════════════════════════════════════════ */
-
-function PipelineStatus({ activeIndex }: { activeIndex: number }) {
+function StageDescription({ activeIndex }: { activeIndex: number }) {
   const total = PIPELINE_STAGES.length;
   const done = activeIndex >= total - 1;
+  const stage = activeIndex >= 0 ? PIPELINE_STAGES[activeIndex] : null;
+  const node = activeIndex >= 0 ? NODES[activeIndex] : null;
+  const color = node ? CATEGORY_COLORS[node.category] : "#4a6a7a";
 
   return (
-    <div className="flex justify-center mt-4 z-20">
+    <div className="flex justify-center mt-6 z-20">
       <div
         style={{
           display: "inline-flex",
           alignItems: "center",
-          gap: 10,
-          padding: "6px 14px",
+          gap: 12,
+          padding: "8px 20px",
           background: "rgba(8,14,24,0.75)",
           backdropFilter: "blur(12px)",
           border: "1px solid rgba(0,229,255,0.06)",
-          borderRadius: 16,
+          borderRadius: 20,
+          minHeight: 38,
+          transition: "all 0.4s",
         }}
       >
+        {/* Progress dots */}
         <div style={{ display: "flex", gap: 3 }}>
           {PIPELINE_STAGES.map((_, i) => (
             <div
@@ -755,21 +658,75 @@ function PipelineStatus({ activeIndex }: { activeIndex: number }) {
             />
           ))}
         </div>
-        <span
+
+        {/* Divider */}
+        <div
           style={{
-            fontSize: 9,
-            fontFamily: "var(--font-mono), monospace",
-            color: "#4a6a7a",
-            letterSpacing: "0.5px",
-            whiteSpace: "nowrap",
+            width: 1,
+            height: 14,
+            background: "rgba(0,229,255,0.08)",
+          }}
+        />
+
+        {/* Stage info */}
+        <div
+          style={{
+            display: "flex",
+            alignItems: "center",
+            gap: 8,
+            minWidth: 200,
           }}
         >
-          {activeIndex < 0
-            ? "Initializing..."
-            : done
-              ? "All stages complete"
-              : PIPELINE_STAGES[activeIndex].label}
-        </span>
+          {activeIndex < 0 ? (
+            <span
+              style={{
+                fontSize: 10,
+                fontFamily: "var(--font-mono), monospace",
+                color: "#3a4a5a",
+                letterSpacing: "0.5px",
+              }}
+            >
+              Initializing pipeline...
+            </span>
+          ) : done ? (
+            <span
+              style={{
+                fontSize: 10,
+                fontFamily: "var(--font-mono), monospace",
+                color: "#34d399",
+                letterSpacing: "0.5px",
+              }}
+            >
+              All 11 stages complete
+            </span>
+          ) : (
+            <>
+              <span
+                style={{
+                  fontSize: 10,
+                  fontWeight: 700,
+                  fontFamily: "var(--font-mono), monospace",
+                  color,
+                  letterSpacing: "0.5px",
+                  textTransform: "uppercase",
+                  whiteSpace: "nowrap",
+                }}
+              >
+                {stage?.label}
+              </span>
+              <span
+                style={{
+                  fontSize: 10,
+                  fontFamily: "var(--font-mono), monospace",
+                  color: "#5a6a7a",
+                  letterSpacing: "0.3px",
+                }}
+              >
+                {stage?.description}
+              </span>
+            </>
+          )}
+        </div>
       </div>
     </div>
   );
@@ -789,20 +746,16 @@ function getNodeState(nodeIndex: number, activeIndex: number): NodeState {
 export default function PipelineFlow() {
   const containerRef = useRef<HTMLDivElement>(null);
   const [activeIndex, setActiveIndex] = useState(-1);
-  const [playing, setPlaying] = useState(false);
-  const [visible, setVisible] = useState(false);
-  const stepRef = useRef(0);
+  const [started, setStarted] = useState(false);
 
-  const total = PIPELINE_STAGES.length;
-
-  // Detect when section scrolls into view
+  // Start animation when visible
   useEffect(() => {
     const el = containerRef.current;
     if (!el) return;
     const observer = new IntersectionObserver(
       ([entry]) => {
-        if (entry.isIntersecting && !visible) {
-          setVisible(true);
+        if (entry.isIntersecting && !started) {
+          setStarted(true);
           observer.disconnect();
         }
       },
@@ -810,77 +763,35 @@ export default function PipelineFlow() {
     );
     observer.observe(el);
     return () => observer.disconnect();
-  }, [visible]);
+  }, [started]);
 
-  // Auto-start on scroll into view
+  // Sequential activation loop
   useEffect(() => {
-    if (visible && !playing) {
-      setPlaying(true);
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [visible]);
-
-  // Auto-play loop
-  useEffect(() => {
-    if (!playing) return;
-    let cancelled = false;
+    if (!started) return;
+    const total = PIPELINE_STAGES.length;
     let timer: ReturnType<typeof setTimeout>;
+    let cancelled = false;
 
-    function tick(i: number) {
+    function step(i: number) {
       if (cancelled) return;
       if (i >= total) {
         timer = setTimeout(() => {
           if (cancelled) return;
           setActiveIndex(-1);
-          stepRef.current = 0;
-          timer = setTimeout(() => tick(0), 1200);
+          timer = setTimeout(() => step(0), 1200);
         }, 3500);
         return;
       }
       setActiveIndex(i);
-      stepRef.current = i + 1;
-      timer = setTimeout(() => tick(i + 1), STAGE_INTERVAL);
+      timer = setTimeout(() => step(i + 1), STAGE_INTERVAL);
     }
 
-    const start = stepRef.current;
-    timer = setTimeout(() => tick(start), start === 0 ? 400 : STAGE_INTERVAL);
-
+    timer = setTimeout(() => step(0), 400);
     return () => {
       cancelled = true;
       clearTimeout(timer);
     };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [playing]);
-
-  const handleAuto = () => {
-    if (playing) {
-      setPlaying(false);
-    } else {
-      if (activeIndex >= total - 1) {
-        setActiveIndex(-1);
-        stepRef.current = 0;
-      }
-      setPlaying(true);
-    }
-  };
-
-  const handleStep = () => {
-    setPlaying(false);
-    const next = activeIndex + 1;
-    if (next >= total) {
-      setActiveIndex(-1);
-      stepRef.current = 0;
-    } else {
-      setActiveIndex(next);
-      stepRef.current = next + 1;
-    }
-  };
-
-  const handleReset = () => {
-    setPlaying(false);
-    setActiveIndex(-1);
-    stepRef.current = 0;
-  };
+  }, [started]);
 
   return (
     <section className="py-16 sm:py-24 px-5 relative overflow-hidden" data-pipeline>
@@ -897,33 +808,27 @@ export default function PipelineFlow() {
       </ScrollReveal>
 
       {/* Pipeline container */}
-      <div className="max-w-[900px] mx-auto">
-        <div ref={containerRef} className="relative" style={{ aspectRatio: "5 / 3" }}>
-          <PipelineBackground />
-          <PipelineSVG activeIndex={activeIndex} />
+      <div
+        ref={containerRef}
+        className="relative max-w-[900px] mx-auto"
+        style={{ aspectRatio: "5 / 3" }}
+      >
+        <PipelineBackground />
+        <PipelineSVG activeIndex={activeIndex} />
+        <AICore active={activeIndex >= 0} />
 
-          {NODES.map((node, i) => (
-            <NodeCard
-              key={PIPELINE_STAGES[i].id}
-              node={node}
-              stage={PIPELINE_STAGES[i]}
-              index={i}
-              state={getNodeState(i, activeIndex)}
-            />
-          ))}
-        </div>
-
-        <PipelineControls
-          playing={playing}
-          onAuto={handleAuto}
-          onStep={handleStep}
-          onReset={handleReset}
-        />
-
-        <PipelineLog activeIndex={activeIndex} />
+        {NODES.map((node, i) => (
+          <NodeCard
+            key={PIPELINE_STAGES[i].id}
+            node={node}
+            stage={PIPELINE_STAGES[i]}
+            index={i}
+            state={getNodeState(i, activeIndex)}
+          />
+        ))}
       </div>
 
-      <PipelineStatus activeIndex={activeIndex} />
+      <StageDescription activeIndex={activeIndex} />
     </section>
   );
 }

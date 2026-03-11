@@ -379,21 +379,6 @@ a:active {
   -webkit-text-fill-color: transparent;
 }
 
-/* ======== CHART DRAW-IN ======== */
-
-@keyframes drawLine {
-  from {
-    stroke-dashoffset: 2000;
-  }
-  to {
-    stroke-dashoffset: 0;
-  }
-}
-
-.chart-draw-line {
-  animation: drawLine 1.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-}
-
 /* ======== PIPELINE ======== */
 
 @keyframes pipeline-card-pulse {
@@ -515,10 +500,6 @@ a:active {
   .mobile-drawer-enter {
     animation: none !important;
     opacity: 1 !important;
-  }
-  .chart-draw-line {
-    animation: none !important;
-    stroke-dashoffset: 0 !important;
   }
   [data-pipeline] * {
     animation: none !important;

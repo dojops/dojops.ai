@@ -266,7 +266,13 @@ function computeNodeStyles(state: NodeState, category: Category): NodeStyles {
   return INACTIVE_STYLES;
 }
 
-function NodeCard({ node, stage, index, state }: Readonly<NodeCardProps>) {
+function NodeCard({
+  node,
+  stage,
+  index,
+  state,
+  lite,
+}: Readonly<NodeCardProps & { lite: boolean }>) {
   const s = computeNodeStyles(state, node.category);
   const isActive = state === "active";
   const isDone = state === "done";
@@ -286,8 +292,8 @@ function NodeCard({ node, stage, index, state }: Readonly<NodeCardProps>) {
           width: 82,
           padding: "10px 6px 8px",
           background: s.cardBg,
-          backdropFilter: "blur(20px)",
-          WebkitBackdropFilter: "blur(20px)",
+          backdropFilter: lite ? "none" : "blur(20px)",
+          WebkitBackdropFilter: lite ? "none" : "blur(20px)",
           borderTop: s.topBorder,
           borderLeft: s.sideBorder,
           borderRight: s.sideBorder,
@@ -354,7 +360,7 @@ function NodeCard({ node, stage, index, state }: Readonly<NodeCardProps>) {
             color: s.iconColor,
             transition: "all 0.5s",
             animation: isActive ? `${node.iconAnim} 0.6s ease-in-out infinite` : "none",
-            filter: isActive ? "drop-shadow(0 0 6px rgba(0,229,255,0.4))" : "none",
+            filter: isActive && !lite ? "drop-shadow(0 0 6px rgba(0,229,255,0.4))" : "none",
           }}
         >
           {node.icon}
@@ -417,7 +423,7 @@ function NodeCard({ node, stage, index, state }: Readonly<NodeCardProps>) {
    SVG PIPES + PARTICLES + ARROWS + REPAIR LOOP
    ═══════════════════════════════════════════════════════════════ */
 
-function PipelineSVG({ activeIndex }: Readonly<{ activeIndex: number }>) {
+function PipelineSVG({ activeIndex, lite }: Readonly<{ activeIndex: number; lite: boolean }>) {
   return (
     <svg
       viewBox="-10 0 1020 600"
@@ -425,29 +431,32 @@ function PipelineSVG({ activeIndex }: Readonly<{ activeIndex: number }>) {
       preserveAspectRatio="xMidYMid meet"
       style={{ overflow: "visible" }}
     >
-      <defs>
-        <filter id="pipe-glow-soft" x="-50%" y="-50%" width="200%" height="200%">
-          <feGaussianBlur stdDeviation="8" result="blur" />
-          <feMerge>
-            <feMergeNode in="blur" />
-            <feMergeNode in="SourceGraphic" />
-          </feMerge>
-        </filter>
-        <filter id="pipe-glow-medium" x="-50%" y="-50%" width="200%" height="200%">
-          <feGaussianBlur stdDeviation="3" result="blur" />
-          <feMerge>
-            <feMergeNode in="blur" />
-            <feMergeNode in="SourceGraphic" />
-          </feMerge>
-        </filter>
-        <filter id="particle-glow" x="-100%" y="-100%" width="300%" height="300%">
-          <feGaussianBlur stdDeviation="4" result="blur" />
-          <feMerge>
-            <feMergeNode in="blur" />
-            <feMergeNode in="SourceGraphic" />
-          </feMerge>
-        </filter>
-      </defs>
+      {/* SVG filters are expensive on mobile GPUs — skip them in lite mode */}
+      {!lite && (
+        <defs>
+          <filter id="pipe-glow-soft" x="-50%" y="-50%" width="200%" height="200%">
+            <feGaussianBlur stdDeviation="8" result="blur" />
+            <feMerge>
+              <feMergeNode in="blur" />
+              <feMergeNode in="SourceGraphic" />
+            </feMerge>
+          </filter>
+          <filter id="pipe-glow-medium" x="-50%" y="-50%" width="200%" height="200%">
+            <feGaussianBlur stdDeviation="3" result="blur" />
+            <feMerge>
+              <feMergeNode in="blur" />
+              <feMergeNode in="SourceGraphic" />
+            </feMerge>
+          </filter>
+          <filter id="particle-glow" x="-100%" y="-100%" width="300%" height="300%">
+            <feGaussianBlur stdDeviation="4" result="blur" />
+            <feMerge>
+              <feMergeNode in="blur" />
+              <feMergeNode in="SourceGraphic" />
+            </feMerge>
+          </filter>
+        </defs>
+      )}
 
       {SEGMENTS.map((path, i) => {
         const segActive = i < activeIndex;
@@ -455,16 +464,18 @@ function PipelineSVG({ activeIndex }: Readonly<{ activeIndex: number }>) {
 
         return (
           <g key={path}>
-            {/* Layer 1: Outer halo */}
-            <path
-              d={path}
-              fill="none"
-              stroke={segActive ? "rgba(0,229,255,0.06)" : "rgba(0,229,255,0.015)"}
-              strokeWidth={segActive ? 14 : 10}
-              strokeLinecap="round"
-              filter="url(#pipe-glow-soft)"
-              style={{ transition: "stroke 0.6s, stroke-width 0.6s" }}
-            />
+            {/* Layer 1: Outer halo — skip on mobile */}
+            {!lite && (
+              <path
+                d={path}
+                fill="none"
+                stroke={segActive ? "rgba(0,229,255,0.06)" : "rgba(0,229,255,0.015)"}
+                strokeWidth={segActive ? 14 : 10}
+                strokeLinecap="round"
+                filter="url(#pipe-glow-soft)"
+                style={{ transition: "stroke 0.6s, stroke-width 0.6s" }}
+              />
+            )}
 
             {/* Layer 2: Track line */}
             <path
@@ -476,7 +487,7 @@ function PipelineSVG({ activeIndex }: Readonly<{ activeIndex: number }>) {
               style={{ transition: "stroke 0.6s, stroke-width 0.6s" }}
             />
 
-            {/* Layer 3: Core glow (active only) */}
+            {/* Layer 3: Core glow (active only) — no filter on mobile */}
             {segActive && (
               <path
                 d={path}
@@ -484,7 +495,7 @@ function PipelineSVG({ activeIndex }: Readonly<{ activeIndex: number }>) {
                 stroke="#00e5ff"
                 strokeWidth={1.5}
                 strokeLinecap="round"
-                filter="url(#pipe-glow-medium)"
+                filter={lite ? undefined : "url(#pipe-glow-medium)"}
                 style={{ opacity: segCurrent ? 1 : 0.6 }}
               />
             )}
@@ -500,8 +511,8 @@ function PipelineSVG({ activeIndex }: Readonly<{ activeIndex: number }>) {
               <polygon points="-4,-4 5,0 -4,4" fill={segActive ? "#00e5ff" : "#2a3a50"} />
             </g>
 
-            {/* Flow particles (only when segment is active) */}
-            {segActive && (
+            {/* Flow particles — 1 particle on mobile, 3 on desktop */}
+            {segActive && !lite && (
               <>
                 <circle r="4" fill="white" filter="url(#particle-glow)" opacity="0.9">
                   <animateMotion dur="2s" repeatCount="indefinite" path={path} />
@@ -513,6 +524,11 @@ function PipelineSVG({ activeIndex }: Readonly<{ activeIndex: number }>) {
                   <animateMotion dur="3s" begin="0.4s" repeatCount="indefinite" path={path} />
                 </circle>
               </>
+            )}
+            {segActive && lite && (
+              <circle r="3" fill="#00e5ff" opacity="0.7">
+                <animateMotion dur="2s" repeatCount="indefinite" path={path} />
+              </circle>
             )}
           </g>
         );
@@ -528,7 +544,7 @@ function PipelineSVG({ activeIndex }: Readonly<{ activeIndex: number }>) {
             strokeWidth={1.2}
             strokeDasharray="5 4"
             strokeLinecap="round"
-            filter="url(#pipe-glow-medium)"
+            filter={lite ? undefined : "url(#pipe-glow-medium)"}
           >
             <animate
               attributeName="stroke-opacity"
@@ -572,19 +588,24 @@ const BG_PARTICLES = Array.from({ length: 20 }).map((_, i) => ({
   delay: Math.round(seededRandom(i * 3 + 4) * 10 * 100) / 100,
 }));
 
-function PipelineBackground() {
+function PipelineBackground({ lite }: Readonly<{ lite: boolean }>) {
+  // On mobile: fewer particles (6 instead of 20), no grid
+  const particles = lite ? BG_PARTICLES.slice(0, 6) : BG_PARTICLES;
+
   return (
     <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
-      <svg className="absolute inset-0 w-full h-full" style={{ opacity: 0.025 }}>
-        <defs>
-          <pattern id="pipeline-grid" width="40" height="40" patternUnits="userSpaceOnUse">
-            <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#00e5ff" strokeWidth="0.5" />
-          </pattern>
-        </defs>
-        <rect width="100%" height="100%" fill="url(#pipeline-grid)" />
-      </svg>
+      {!lite && (
+        <svg className="absolute inset-0 w-full h-full" style={{ opacity: 0.025 }}>
+          <defs>
+            <pattern id="pipeline-grid" width="40" height="40" patternUnits="userSpaceOnUse">
+              <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#00e5ff" strokeWidth="0.5" />
+            </pattern>
+          </defs>
+          <rect width="100%" height="100%" fill="url(#pipeline-grid)" />
+        </svg>
+      )}
 
-      {BG_PARTICLES.map((p) => (
+      {particles.map((p) => (
         <div
           key={p.id}
           style={{
@@ -835,13 +856,16 @@ export default function PipelineFlow() {
   const [activeIndex, setActiveIndex] = useState(-1);
   const [started, setStarted] = useState(false);
   const [scale, setScale] = useState(1);
+  const [isMobile, setIsMobile] = useState(false);
 
   // Responsive: measure container and compute scale factor
   useEffect(() => {
     const el = containerRef.current;
     if (!el) return;
     const update = () => {
-      setScale(Math.min(1, el.clientWidth / BASE_W));
+      const w = el.clientWidth;
+      setScale(Math.min(1, w / BASE_W));
+      setIsMobile(w < 600);
     };
     update();
     const ro = new ResizeObserver(update);
@@ -932,8 +956,8 @@ export default function PipelineFlow() {
             transformOrigin: "top left",
           }}
         >
-          <PipelineBackground />
-          <PipelineSVG activeIndex={activeIndex} />
+          <PipelineBackground lite={isMobile} />
+          <PipelineSVG activeIndex={activeIndex} lite={isMobile} />
           <AICore active={activeIndex >= 0} />
 
           {NODES.map((node, i) => (
@@ -943,6 +967,7 @@ export default function PipelineFlow() {
               stage={PIPELINE_STAGES[i]}
               index={i}
               state={getNodeState(i, activeIndex)}
+              lite={isMobile}
             />
           ))}
         </div>

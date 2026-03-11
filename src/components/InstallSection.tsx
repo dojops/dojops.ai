@@ -6,6 +6,7 @@ import CopyButton from "./CopyButton";
 
 const tabs = [
   { key: "npm" as const, label: "npm", comment: "# Install globally via npm" },
+  { key: "brew" as const, label: "Homebrew", comment: "# macOS / Linux via Homebrew" },
   { key: "curl" as const, label: "curl", comment: "# One-liner. Works everywhere." },
   {
     key: "docker" as const,

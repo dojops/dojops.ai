@@ -21,6 +21,7 @@ export const NAV_ITEMS: NavItem[] = [
 
 export const INSTALL_COMMANDS = {
   npm: "npm i -g @dojops/cli",
+  brew: "brew tap dojops/tap && brew install dojops",
   curl: "curl -fsSL https://raw.githubusercontent.com/dojops/dojops/main/install.sh | sh",
   docker: "docker run --rm -it -v $PWD:/work -v ~/.dojops:/root/.dojops ghcr.io/dojops/dojops",
 } as const;

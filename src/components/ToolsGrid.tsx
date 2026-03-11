@@ -3,9 +3,12 @@ import { DEVOPS_TOOLS, LLM_PROVIDERS } from "@/lib/constants";
 import SectionHeading from "./SectionHeading";
 import ScrollReveal from "./ScrollReveal";
 
+// Icons that render as solid dark color (need inversion in dark mode)
+const MONO_ICONS = new Set(["openai.svg", "anthropic.svg", "ollama.svg", "github-copilot.svg"]);
+
 export default function ToolsGrid() {
   return (
-    <section className="py-24 sm:py-32 px-5">
+    <section className="py-16 sm:py-24 lg:py-32 px-5 bg-bg-primary">
       <ScrollReveal>
         <SectionHeading
           id="tools"
@@ -17,22 +20,22 @@ export default function ToolsGrid() {
         {/* DevOps Tools */}
         <div>
           <ScrollReveal>
-            <p className="text-xs font-medium text-text-secondary/70 uppercase tracking-[0.15em] text-center mb-8">
+            <p className="text-xs font-medium text-text-secondary uppercase tracking-[0.15em] text-center mb-8">
               DevOps Modules
             </p>
           </ScrollReveal>
           <div className="grid grid-cols-3 sm:grid-cols-4 lg:grid-cols-6 gap-3">
             {DEVOPS_TOOLS.map((tool, i) => (
               <ScrollReveal key={tool.name} delay={i * 50}>
-                <div className="group flex flex-col items-center gap-3 p-4 rounded-xl border border-glass-border bg-surface/40 hover:border-glass-border-hover hover:bg-surface/70 transition-all duration-300 cursor-default">
+                <div className="group flex flex-col items-center gap-3 p-4 rounded-xl border border-border-primary bg-bg-card hover:border-border-secondary hover:bg-bg-card-hover transition-all duration-300 cursor-default">
                   <Image
                     src={`/icons/tools/${tool.icon}`}
                     alt={tool.name}
                     width={28}
                     height={28}
-                    className="icon-tool"
+                    className="opacity-70 dark:opacity-90 group-hover:opacity-100 transition-opacity"
                   />
-                  <span className="text-xs text-text-secondary/70 group-hover:text-text-primary transition-colors text-center leading-tight">
+                  <span className="text-xs text-text-secondary group-hover:text-text-primary transition-colors text-center leading-tight">
                     {tool.name}
                   </span>
                 </div>
@@ -44,7 +47,7 @@ export default function ToolsGrid() {
         {/* LLM Providers */}
         <div>
           <ScrollReveal>
-            <p className="text-xs font-medium text-text-secondary/70 uppercase tracking-[0.15em] text-center mb-8">
+            <p className="text-xs font-medium text-text-secondary uppercase tracking-[0.15em] text-center mb-8">
               LLM Providers
             </p>
           </ScrollReveal>
@@ -61,10 +64,10 @@ export default function ToolsGrid() {
                       alt={provider.name}
                       width={36}
                       height={36}
-                      className="object-contain w-9 h-9 icon-provider"
+                      className={`object-contain w-9 h-9 opacity-70 dark:opacity-90 group-hover:opacity-100 transition-opacity ${MONO_ICONS.has(provider.icon) ? "dark:invert" : ""}`}
                     />
                   </div>
-                  <span className="text-xs text-text-secondary/70 group-hover:text-text-primary transition-colors">
+                  <span className="text-xs text-text-secondary group-hover:text-text-primary transition-colors">
                     {provider.name}
                   </span>
                 </div>
@@ -72,7 +75,7 @@ export default function ToolsGrid() {
             </div>
           </ScrollReveal>
           <ScrollReveal delay={200}>
-            <p className="text-center text-text-secondary/70 text-xs mt-8">
+            <p className="text-center text-text-secondary text-xs mt-8">
               Bring your own model. No vendor lock-in. Run fully local with Ollama.
             </p>
           </ScrollReveal>

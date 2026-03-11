@@ -32,7 +32,7 @@ export default function NpmDownloadCount() {
 
   return (
     <div className="flex flex-col items-center gap-1 group cursor-default">
-      <span className="text-2xl sm:text-3xl font-bold text-gradient-cyan group-hover:scale-110 transition-transform duration-300">
+      <span className="text-2xl sm:text-3xl font-bold text-text-primary group-hover:scale-110 transition-transform duration-300">
         {total !== null ? formatCount(total) : "—"}
       </span>
       <span className="text-xs text-text-secondary/80 tracking-wide uppercase">npm Downloads</span>

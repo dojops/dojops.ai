@@ -87,7 +87,7 @@ function FeatureIcon({ icon }: Readonly<{ icon: string }>) {
   };
 
   return (
-    <div className="w-10 h-10 rounded-xl bg-neon-cyan/[0.06] border border-neon-cyan/10 flex items-center justify-center text-neon-cyan mb-5">
+    <div className="w-10 h-10 rounded-xl bg-accent-subtle border border-accent-border flex items-center justify-center text-accent mb-5">
       {iconMap[icon] || null}
     </div>
   );
@@ -95,7 +95,7 @@ function FeatureIcon({ icon }: Readonly<{ icon: string }>) {
 
 export default function Features() {
   return (
-    <section className="py-24 sm:py-32 px-5">
+    <section className="py-16 sm:py-24 lg:py-32 px-5">
       <ScrollReveal>
         <SectionHeading
           id="features"
@@ -105,13 +105,15 @@ export default function Features() {
       </ScrollReveal>
       <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
         {FEATURES.map((feature, i) => (
-          <ScrollReveal key={feature.title} delay={i * 100}>
-            <GlowCard>
+          <ScrollReveal key={feature.title} delay={i * 100} className="flex">
+            <GlowCard className="flex-1 flex flex-col">
               <FeatureIcon icon={feature.icon} />
               <h3 className="text-base font-semibold text-text-primary mb-2 tracking-tight">
                 {feature.title}
               </h3>
-              <p className="text-text-secondary text-sm leading-relaxed">{feature.description}</p>
+              <p className="text-text-secondary text-sm leading-relaxed flex-1">
+                {feature.description}
+              </p>
             </GlowCard>
           </ScrollReveal>
         ))}

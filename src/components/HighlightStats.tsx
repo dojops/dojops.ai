@@ -4,26 +4,27 @@ import NpmDownloadCount from "./NpmDownloadCount";
 
 export default function HighlightStats() {
   return (
-    <section className="py-16 sm:py-20 px-5">
-      <div className="max-w-4xl mx-auto">
+    <section className="py-16 sm:py-20 px-5 bg-bg-secondary">
+      <div className="max-w-5xl mx-auto">
         <div className="section-divider mb-12" />
-        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-7 gap-y-8">
-          <ScrollReveal delay={0}>
+        <ScrollReveal>
+          <div className="grid grid-cols-7 gap-2">
             <NpmDownloadCount />
-          </ScrollReveal>
-          {HIGHLIGHT_STATS.map((stat, i) => (
-            <ScrollReveal key={stat.label} delay={(i + 1) * 80}>
-              <div className="flex flex-col items-center gap-1 group cursor-default">
-                <span className="text-2xl sm:text-3xl font-bold text-gradient-cyan group-hover:scale-110 transition-transform duration-300">
+            {HIGHLIGHT_STATS.map((stat) => (
+              <div
+                key={stat.label}
+                className="flex flex-col items-center gap-1 group cursor-default"
+              >
+                <span className="text-2xl sm:text-3xl font-bold text-text-primary group-hover:scale-110 transition-transform duration-300">
                   {stat.value}
                 </span>
-                <span className="text-xs text-text-secondary/80 tracking-wide uppercase">
+                <span className="text-[10px] sm:text-xs text-text-secondary tracking-wide uppercase text-center">
                   {stat.label}
                 </span>
               </div>
-            </ScrollReveal>
-          ))}
-        </div>
+            ))}
+          </div>
+        </ScrollReveal>
         <div className="section-divider mt-12" />
       </div>
     </section>

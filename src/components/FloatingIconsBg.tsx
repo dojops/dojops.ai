@@ -58,7 +58,6 @@ export default function FloatingIconsBg() {
             left: `${icon.left}%`,
             width: icon.size,
             height: icon.size,
-            opacity: icon.o,
             ["--r" as string]: `${icon.r}deg`,
             transform: `rotate(${icon.r}deg)`,
             animationName: `drift-${icon.anim}`,

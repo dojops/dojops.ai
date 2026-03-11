@@ -14,7 +14,6 @@ import {
   FileText,
   Database,
   Check,
-  Sparkles,
 } from "lucide-react";
 import { PIPELINE_STAGES } from "@/lib/constants";
 import SectionHeading from "./SectionHeading";
@@ -32,9 +31,9 @@ type Category = "input" | "ai" | "check" | "action";
 
 const CATEGORY_COLORS: Record<Category, string> = {
   input: "#60a5fa",
-  ai: "#00e5ff",
-  check: "#eab308",
-  action: "#34d399",
+  ai: "var(--accent)",
+  check: "var(--warning-fg)",
+  action: "var(--success-fg)",
 };
 
 interface NodeDef {
@@ -214,49 +213,48 @@ interface NodeStyles {
 
 function computeActiveStyles(catColor: string): NodeStyles {
   return {
-    cardBg: "linear-gradient(160deg, rgba(0,229,255,0.1) 0%, rgba(0,229,255,0.02) 100%)",
+    cardBg: "var(--accent-subtle)",
     topBorder: `2px solid ${catColor}`,
-    sideBorder: "1px solid rgba(0,229,255,0.3)",
-    boxShadow:
-      "0 0 40px rgba(0,229,255,0.15), 0 0 80px rgba(0,229,255,0.05), inset 0 1px 0 rgba(255,255,255,0.04)",
+    sideBorder: "1px solid var(--accent-border)",
+    boxShadow: "var(--shadow-md)",
     badgeBg: catColor,
-    badgeBorder: "1px solid rgba(255,255,255,0.15)",
-    badgeColor: "#050508",
-    iconBg: "rgba(0,229,255,0.1)",
-    iconBorder: "1px solid rgba(0,229,255,0.2)",
-    iconColor: "#00e5ff",
-    labelColor: "#c0f0ff",
+    badgeBorder: "1px solid var(--border-primary)",
+    badgeColor: "var(--bg-card)",
+    iconBg: "var(--accent-subtle)",
+    iconBorder: "1px solid var(--accent-border)",
+    iconColor: "var(--accent)",
+    labelColor: "var(--accent-text)",
   };
 }
 
 function computeDoneStyles(catColor: string): NodeStyles {
   return {
-    cardBg: "rgba(0,229,255,0.03)",
+    cardBg: "var(--success-bg)",
     topBorder: `2px solid ${catColor}`,
-    sideBorder: "1px solid rgba(0,229,255,0.12)",
-    boxShadow: "0 0 15px rgba(0,229,255,0.06), 0 4px 20px rgba(0,0,0,0.3)",
-    badgeBg: "rgba(52,211,153,0.3)",
-    badgeBorder: "1px solid rgba(255,255,255,0.15)",
-    badgeColor: "#34d399",
-    iconBg: "rgba(52,211,153,0.06)",
-    iconBorder: "1px solid rgba(52,211,153,0.1)",
-    iconColor: "rgba(0,229,255,0.55)",
-    labelColor: "rgba(0,229,255,0.55)",
+    sideBorder: "1px solid var(--border-primary)",
+    boxShadow: "var(--shadow-sm)",
+    badgeBg: "var(--success-bg)",
+    badgeBorder: "1px solid var(--border-primary)",
+    badgeColor: "var(--success-fg)",
+    iconBg: "var(--success-bg)",
+    iconBorder: "1px solid var(--border-secondary)",
+    iconColor: "var(--success-fg)",
+    labelColor: "var(--text-secondary)",
   };
 }
 
 const INACTIVE_STYLES: NodeStyles = {
-  cardBg: "rgba(8,14,24,0.75)",
-  topBorder: "2px solid rgba(255,255,255,0.03)",
-  sideBorder: "1px solid rgba(255,255,255,0.04)",
-  boxShadow: "0 2px 12px rgba(0,0,0,0.3)",
-  badgeBg: "rgba(15,25,40,0.9)",
-  badgeBorder: "1px solid rgba(255,255,255,0.05)",
-  badgeColor: "#2a3a50",
-  iconBg: "rgba(255,255,255,0.02)",
-  iconBorder: "1px solid rgba(255,255,255,0.03)",
-  iconColor: "#1e2d40",
-  labelColor: "#1e2d40",
+  cardBg: "var(--bg-card)",
+  topBorder: "2px solid var(--border-primary)",
+  sideBorder: "1px solid var(--border-primary)",
+  boxShadow: "var(--shadow-sm)",
+  badgeBg: "var(--bg-secondary)",
+  badgeBorder: "1px solid var(--border-primary)",
+  badgeColor: "var(--text-tertiary)",
+  iconBg: "var(--bg-secondary)",
+  iconBorder: "1px solid var(--border-primary)",
+  iconColor: "var(--text-tertiary)",
+  labelColor: "var(--text-tertiary)",
 };
 
 function computeNodeStyles(state: NodeState, category: Category): NodeStyles {
@@ -339,7 +337,7 @@ function NodeCard({
               position: "absolute",
               inset: -4,
               borderRadius: 18,
-              border: "1px solid rgba(0,229,255,0.25)",
+              border: "1px solid var(--accent-border)",
               animation: "pipeline-card-pulse 2s ease-in-out infinite",
               pointerEvents: "none",
             }}
@@ -360,7 +358,6 @@ function NodeCard({
             color: s.iconColor,
             transition: "all 0.5s",
             animation: isActive ? `${node.iconAnim} 0.6s ease-in-out infinite` : "none",
-            filter: isActive && !lite ? "drop-shadow(0 0 6px rgba(0,229,255,0.4))" : "none",
           }}
         >
           {node.icon}
@@ -397,15 +394,14 @@ function NodeCard({
                 width: 4,
                 height: 4,
                 borderRadius: "50%",
-                background: "#00e5ff",
-                boxShadow: "0 0 6px #00e5ff",
+                background: "var(--accent)",
                 animation: "pipeline-card-pulse 1s ease-in-out infinite",
               }}
             />
             <span
               style={{
                 fontSize: 6,
-                color: "#00e5ff",
+                color: "var(--accent-text)",
                 fontFamily: "var(--font-mono), monospace",
                 letterSpacing: "0.5px",
               }}
@@ -431,71 +427,30 @@ function PipelineSVG({ activeIndex, lite }: Readonly<{ activeIndex: number; lite
       preserveAspectRatio="xMidYMid meet"
       style={{ overflow: "visible" }}
     >
-      {/* SVG filters are expensive on mobile GPUs — skip them in lite mode */}
-      {!lite && (
-        <defs>
-          <filter id="pipe-glow-soft" x="-50%" y="-50%" width="200%" height="200%">
-            <feGaussianBlur stdDeviation="8" result="blur" />
-            <feMerge>
-              <feMergeNode in="blur" />
-              <feMergeNode in="SourceGraphic" />
-            </feMerge>
-          </filter>
-          <filter id="pipe-glow-medium" x="-50%" y="-50%" width="200%" height="200%">
-            <feGaussianBlur stdDeviation="3" result="blur" />
-            <feMerge>
-              <feMergeNode in="blur" />
-              <feMergeNode in="SourceGraphic" />
-            </feMerge>
-          </filter>
-          <filter id="particle-glow" x="-100%" y="-100%" width="300%" height="300%">
-            <feGaussianBlur stdDeviation="4" result="blur" />
-            <feMerge>
-              <feMergeNode in="blur" />
-              <feMergeNode in="SourceGraphic" />
-            </feMerge>
-          </filter>
-        </defs>
-      )}
-
       {SEGMENTS.map((path, i) => {
         const segActive = i < activeIndex;
         const segCurrent = i === activeIndex - 1;
 
         return (
           <g key={path}>
-            {/* Layer 1: Outer halo — skip on mobile */}
-            {!lite && (
-              <path
-                d={path}
-                fill="none"
-                stroke={segActive ? "rgba(0,229,255,0.06)" : "rgba(0,229,255,0.015)"}
-                strokeWidth={segActive ? 14 : 10}
-                strokeLinecap="round"
-                filter="url(#pipe-glow-soft)"
-                style={{ transition: "stroke 0.6s, stroke-width 0.6s" }}
-              />
-            )}
-
             {/* Layer 2: Track line */}
             <path
               d={path}
               fill="none"
-              stroke={segActive ? "rgba(0,229,255,0.2)" : "rgba(255,255,255,0.04)"}
-              strokeWidth={segActive ? 3 : 1.5}
+              stroke={segActive ? "var(--accent-border)" : "var(--border-secondary)"}
+              strokeWidth={segActive ? 2 : 1.5}
               strokeLinecap="round"
               style={{ transition: "stroke 0.6s, stroke-width 0.6s" }}
             />
 
-            {/* Layer 3: Core glow (active only) — no filter on mobile */}
+            {/* Layer 3: Active core line */}
             {segActive && (
               <path
                 d={path}
                 fill="none"
-                stroke="#00e5ff"
+                stroke="var(--accent)"
                 strokeWidth={1.5}
                 strokeLinecap="round"
-                filter={lite ? undefined : "url(#pipe-glow-medium)"}
                 style={{ opacity: segCurrent ? 1 : 0.6 }}
               />
             )}
@@ -504,29 +459,32 @@ function PipelineSVG({ activeIndex, lite }: Readonly<{ activeIndex: number; lite
             <g
               transform={`translate(${ARROWS[i].x}, ${ARROWS[i].y}) rotate(${ARROWS[i].r})`}
               style={{
-                opacity: segActive ? 0.5 : 0.08,
+                opacity: segActive ? 0.6 : 0.15,
                 transition: "opacity 0.6s",
               }}
             >
-              <polygon points="-4,-4 5,0 -4,4" fill={segActive ? "#00e5ff" : "#2a3a50"} />
+              <polygon
+                points="-4,-4 5,0 -4,4"
+                fill={segActive ? "var(--accent)" : "var(--text-tertiary)"}
+              />
             </g>
 
-            {/* Flow particles — 1 particle on mobile, 3 on desktop */}
+            {/* Flow particles */}
             {segActive && !lite && (
               <>
-                <circle r="4" fill="white" filter="url(#particle-glow)" opacity="0.9">
+                <circle r="3" fill="var(--accent)" opacity="0.8">
                   <animateMotion dur="2s" repeatCount="indefinite" path={path} />
                 </circle>
-                <circle r="3" fill="#00e5ff" filter="url(#particle-glow)" opacity="0.6">
+                <circle r="2" fill="var(--accent)" opacity="0.5">
                   <animateMotion dur="2.5s" begin="0.8s" repeatCount="indefinite" path={path} />
                 </circle>
-                <circle r="2" fill="#00e5ff" opacity="0.35">
+                <circle r="1.5" fill="var(--accent)" opacity="0.3">
                   <animateMotion dur="3s" begin="0.4s" repeatCount="indefinite" path={path} />
                 </circle>
               </>
             )}
             {segActive && lite && (
-              <circle r="3" fill="#00e5ff" opacity="0.7">
+              <circle r="3" fill="var(--accent)" opacity="0.7">
                 <animateMotion dur="2s" repeatCount="indefinite" path={path} />
               </circle>
             )}
@@ -540,11 +498,10 @@ function PipelineSVG({ activeIndex, lite }: Readonly<{ activeIndex: number; lite
           <path
             d={REPAIR_LOOP_PATH}
             fill="none"
-            stroke="#00e5ff"
+            stroke="var(--accent)"
             strokeWidth={1.2}
             strokeDasharray="5 4"
             strokeLinecap="round"
-            filter={lite ? undefined : "url(#pipe-glow-medium)"}
           >
             <animate
               attributeName="stroke-opacity"
@@ -555,7 +512,7 @@ function PipelineSVG({ activeIndex, lite }: Readonly<{ activeIndex: number; lite
             />
           </path>
           <g transform="translate(750, 300) rotate(0)">
-            <polygon points="-3,-3 4,0 -3,3" fill="#00e5ff">
+            <polygon points="-3,-3 4,0 -3,3" fill="var(--accent)">
               <animate
                 attributeName="opacity"
                 values="0;0.5;0.5;0"
@@ -595,10 +552,15 @@ function PipelineBackground({ lite }: Readonly<{ lite: boolean }>) {
   return (
     <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
       {!lite && (
-        <svg className="absolute inset-0 w-full h-full" style={{ opacity: 0.025 }}>
+        <svg className="absolute inset-0 w-full h-full" style={{ opacity: 0.04 }}>
           <defs>
             <pattern id="pipeline-grid" width="40" height="40" patternUnits="userSpaceOnUse">
-              <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#00e5ff" strokeWidth="0.5" />
+              <path
+                d="M 40 0 L 0 0 0 40"
+                fill="none"
+                stroke="var(--border-secondary)"
+                strokeWidth="0.5"
+              />
             </pattern>
           </defs>
           <rect width="100%" height="100%" fill="url(#pipeline-grid)" />
@@ -615,78 +577,13 @@ function PipelineBackground({ lite }: Readonly<{ lite: boolean }>) {
             width: 2,
             height: 2,
             borderRadius: "50%",
-            background: "#00e5ff",
+            background: "var(--accent)",
             opacity: 0,
             animation: `bg-particle-drift ${p.dur}s ease-in-out infinite`,
             animationDelay: `${p.delay}s`,
           }}
         />
       ))}
-
-      <div
-        className="absolute"
-        style={{
-          left: "50%",
-          top: "50%",
-          transform: "translate(-50%, -50%)",
-          width: "80%",
-          height: "80%",
-          background: "radial-gradient(ellipse, rgba(0,229,255,0.02) 0%, transparent 70%)",
-          borderRadius: "50%",
-        }}
-      />
-    </div>
-  );
-}
-
-/* ═══════════════════════════════════════════════════════════════
-   AI CORE — central decorative element
-   ═══════════════════════════════════════════════════════════════ */
-
-function AICore({ active }: Readonly<{ active: boolean }>) {
-  return (
-    <div
-      className="absolute z-[2]"
-      style={{
-        left: "50%",
-        top: "50%",
-        transform: "translate(-50%, -50%)",
-        width: 100,
-        height: 100,
-        borderRadius: "50%",
-        background: "radial-gradient(circle, rgba(0,229,255,0.06) 0%, transparent 70%)",
-        border: `1px solid ${active ? "rgba(0,229,255,0.08)" : "rgba(0,229,255,0.02)"}`,
-        animation: active ? "ai-core-breathe 4s ease-in-out infinite" : "none",
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "center",
-        justifyContent: "center",
-        gap: 4,
-        transition: "all 1s",
-        pointerEvents: "none",
-      }}
-    >
-      <Sparkles
-        size={16}
-        strokeWidth={1.2}
-        style={{
-          color: active ? "rgba(0,229,255,0.4)" : "rgba(0,229,255,0.08)",
-          transition: "color 1s",
-          filter: active ? "drop-shadow(0 0 8px rgba(0,229,255,0.3))" : "none",
-        }}
-      />
-      <span
-        style={{
-          fontSize: 6,
-          fontWeight: 700,
-          letterSpacing: "1.5px",
-          color: active ? "rgba(0,229,255,0.3)" : "rgba(0,229,255,0.06)",
-          fontFamily: "var(--font-mono), monospace",
-          transition: "color 1s",
-        }}
-      >
-        LLM
-      </span>
     </div>
   );
 }
@@ -714,7 +611,14 @@ function StageInfoContent({
 
   if (activeIndex < 0) {
     return (
-      <span style={{ fontSize, fontFamily: MONO_FONT, color: "#3a4a5a", letterSpacing: "0.5px" }}>
+      <span
+        style={{
+          fontSize,
+          fontFamily: MONO_FONT,
+          color: "var(--text-tertiary)",
+          letterSpacing: "0.5px",
+        }}
+      >
         {compact ? "Initializing..." : "Initializing pipeline..."}
       </span>
     );
@@ -722,7 +626,14 @@ function StageInfoContent({
 
   if (done) {
     return (
-      <span style={{ fontSize, fontFamily: MONO_FONT, color: "#34d399", letterSpacing: "0.5px" }}>
+      <span
+        style={{
+          fontSize,
+          fontFamily: MONO_FONT,
+          color: "var(--success-fg)",
+          letterSpacing: "0.5px",
+        }}
+      >
         {compact ? "Complete" : "All 11 stages complete"}
       </span>
     );
@@ -745,7 +656,12 @@ function StageInfoContent({
       </span>
       {!compact && (
         <span
-          style={{ fontSize: 10, fontFamily: MONO_FONT, color: "#5a6a7a", letterSpacing: "0.3px" }}
+          style={{
+            fontSize: 10,
+            fontFamily: MONO_FONT,
+            color: "var(--text-secondary)",
+            letterSpacing: "0.3px",
+          }}
         >
           {stage?.description}
         </span>
@@ -765,7 +681,11 @@ function ProgressDots({
       {PIPELINE_STAGES.map((s, i) => {
         const filled = i <= activeIndex;
         const isCurrent = i === activeIndex && !done;
-        const bg = filled ? (done ? "#34d399" : "#00e5ff") : "rgba(255,255,255,0.06)";
+        const bg = filled
+          ? done
+            ? "var(--success-fg)"
+            : "var(--accent)"
+          : "var(--border-secondary)";
         return (
           <div
             key={s.id}
@@ -774,7 +694,7 @@ function ProgressDots({
               height: dotSize,
               borderRadius: "50%",
               background: bg,
-              boxShadow: isCurrent ? "0 0 6px #00e5ff" : "none",
+              opacity: isCurrent ? 1 : filled ? 0.8 : 0.4,
               transition: "all 0.3s",
             }}
           />
@@ -804,14 +724,13 @@ function StageDescription({
           justifyContent: "center",
           gap: compact ? 6 : 12,
           padding: compact ? "6px 12px" : "8px 20px",
-          background: "rgba(8,14,24,0.75)",
-          backdropFilter: "blur(12px)",
-          WebkitBackdropFilter: "blur(12px)",
-          border: "1px solid rgba(0,229,255,0.06)",
+          background: "var(--bg-card)",
+          border: "1px solid var(--border-primary)",
           borderRadius: compact ? 14 : 20,
           minHeight: compact ? 32 : 38,
           transition: "all 0.4s",
           maxWidth: "100%",
+          boxShadow: "var(--shadow-sm)",
         }}
       >
         <ProgressDots activeIndex={activeIndex} done={done} compact={compact} />
@@ -821,7 +740,7 @@ function StageDescription({
           style={{
             width: 1,
             height: compact ? 10 : 14,
-            background: "rgba(0,229,255,0.08)",
+            background: "var(--border-primary)",
           }}
         />
 
@@ -840,16 +759,50 @@ function StageDescription({
   );
 }
 
-/* ═══════════════════════════════════════════════════════════════
-   MAIN COMPONENT — responsive via CSS scale transform
-   ═══════════════════════════════════════════════════════════════ */
-
 function getNodeState(nodeIndex: number, activeIndex: number): NodeState {
   if (activeIndex < 0) return "inactive";
   if (nodeIndex === activeIndex) return "active";
   if (nodeIndex < activeIndex) return "done";
   return "inactive";
 }
+
+/* ═══════════════════════════════════════════════════════════════
+   MOBILE — simplified vertical timeline (replaces diagram < sm)
+   ═══════════════════════════════════════════════════════════════ */
+
+function MobilePipeline() {
+  return (
+    <div className="sm:hidden max-w-sm mx-auto px-2">
+      <div className="relative">
+        {/* Vertical connecting line */}
+        <div className="absolute left-[13px] top-5 bottom-5 w-px bg-border-secondary" />
+        <div className="space-y-1">
+          {PIPELINE_STAGES.map((stage, i) => (
+            <div key={stage.id} className="flex items-start gap-3 py-2 relative">
+              <div className="w-7 h-7 rounded-lg bg-accent-subtle border border-accent-border flex items-center justify-center shrink-0 z-10">
+                <span className="text-[10px] font-bold text-accent-text font-mono">
+                  {String(i + 1).padStart(2, "0")}
+                </span>
+              </div>
+              <div className="min-w-0 pt-0.5">
+                <p className="text-sm font-semibold text-text-primary leading-tight">
+                  {stage.label}
+                </p>
+                <p className="text-xs text-text-secondary leading-relaxed mt-0.5">
+                  {stage.description}
+                </p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   MAIN COMPONENT — responsive via CSS scale transform
+   ═══════════════════════════════════════════════════════════════ */
 
 export default function PipelineFlow() {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -927,10 +880,6 @@ export default function PipelineFlow() {
 
   return (
     <section className="py-16 sm:py-24 px-4 sm:px-5 relative overflow-hidden" data-pipeline>
-      <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[300px] bg-neon-cyan/[0.015] rounded-full blur-[120px]" />
-      </div>
-
       <ScrollReveal>
         <SectionHeading
           id="pipeline"
@@ -939,8 +888,14 @@ export default function PipelineFlow() {
         />
       </ScrollReveal>
 
-      {/* Pipeline container — scales proportionally to fit any width */}
-      <div ref={containerRef} className="relative max-w-[900px] mx-auto overflow-hidden">
+      {/* Mobile: simplified vertical timeline */}
+      <MobilePipeline />
+
+      {/* Desktop/Tablet: animated pipeline diagram */}
+      <div
+        ref={containerRef}
+        className="hidden sm:block relative max-w-[900px] mx-auto overflow-hidden"
+      >
         {/* Aspect-ratio spacer: maintains height as container scales */}
         <div style={{ paddingTop: `${(BASE_H / BASE_W) * 100}%` }} />
 
@@ -958,7 +913,6 @@ export default function PipelineFlow() {
         >
           <PipelineBackground lite={isMobile} />
           <PipelineSVG activeIndex={activeIndex} lite={isMobile} />
-          <AICore active={activeIndex >= 0} />
 
           {NODES.map((node, i) => (
             <NodeCard
@@ -973,7 +927,9 @@ export default function PipelineFlow() {
         </div>
       </div>
 
-      <StageDescription activeIndex={activeIndex} compact={compact} />
+      <div className="hidden sm:block">
+        <StageDescription activeIndex={activeIndex} compact={compact} />
+      </div>
     </section>
   );
 }

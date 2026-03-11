@@ -6,7 +6,7 @@ interface GlowCardProps {
 export default function GlowCard({ children, className = "" }: Readonly<GlowCardProps>) {
   return (
     <div
-      className={`glow-card rounded-2xl border border-glass-border bg-surface/60 backdrop-blur-sm p-7 ${className}`}
+      className={`bg-bg-card border border-border-primary rounded-[14px] shadow-[var(--shadow-sm)] hover:shadow-[var(--shadow-md)] hover:bg-bg-card-hover transition-all duration-200 p-7 ${className}`}
     >
       {children}
     </div>

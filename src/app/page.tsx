@@ -1,13 +1,14 @@
 import FloatingIconsBg from "@/components/FloatingIconsBg";
 import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
-import PipelineFlow from "@/components/PipelineFlow";
-import InstallSection from "@/components/InstallSection";
 import HighlightStats from "@/components/HighlightStats";
 import HowItWorks from "@/components/HowItWorks";
 import Features from "@/components/Features";
+import PipelineFlow from "@/components/PipelineFlow";
 import ToolsGrid from "@/components/ToolsGrid";
 import Security from "@/components/Security";
+import InstallSection from "@/components/InstallSection";
+import CTASection from "@/components/CTASection";
 import Footer from "@/components/Footer";
 
 export default function Home() {
@@ -17,13 +18,14 @@ export default function Home() {
       <Navbar />
       <main>
         <Hero />
-        <PipelineFlow />
-        <InstallSection />
         <HighlightStats />
         <HowItWorks />
         <Features />
+        <PipelineFlow />
         <ToolsGrid />
         <Security />
+        <InstallSection />
+        <CTASection />
       </main>
       <Footer />
     </>

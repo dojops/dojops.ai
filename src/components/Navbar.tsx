@@ -1,39 +1,53 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useSyncExternalStore } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { Sun, Moon } from "lucide-react";
 import { NAV_ITEMS, LINKS } from "@/lib/constants";
 
-export default function Navbar() {
-  const [scrolled, setScrolled] = useState(false);
-  const [mobileOpen, setMobileOpen] = useState(false);
+function ThemeToggle() {
+  const dark = useSyncExternalStore(
+    (cb) => {
+      const obs = new MutationObserver(cb);
+      obs.observe(document.documentElement, { attributes: true, attributeFilter: ["class"] });
+      return () => obs.disconnect();
+    },
+    () => document.documentElement.classList.contains("dark"),
+    () => false,
+  );
 
-  useEffect(() => {
-    const handleScroll = () => setScrolled(window.scrollY > 20);
-    window.addEventListener("scroll", handleScroll, { passive: true });
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+  function toggle() {
+    if (dark) {
+      document.documentElement.classList.remove("dark");
+      localStorage.setItem("theme", "light");
+    } else {
+      document.documentElement.classList.add("dark");
+      localStorage.setItem("theme", "dark");
+    }
+  }
 
   return (
-    <nav
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
-        scrolled
-          ? "bg-bg-deep/70 backdrop-blur-2xl border-b border-glass-border shadow-[0_1px_40px_rgba(0,229,255,0.03)]"
-          : "bg-transparent"
-      }`}
+    <button
+      onClick={toggle}
+      aria-label={dark ? "Switch to light mode" : "Switch to dark mode"}
+      className="p-2 rounded-md text-text-secondary hover:text-text-primary hover:bg-bg-card-hover transition-colors"
     >
+      {dark ? <Sun size={16} /> : <Moon size={16} />}
+    </button>
+  );
+}
+
+export default function Navbar() {
+  const [mobileOpen, setMobileOpen] = useState(false);
+
+  return (
+    <nav className="bg-bg-card border-b border-border-primary sticky top-0 z-50 dark:backdrop-blur-sm dark:bg-bg-card/95">
       <div className="max-w-6xl mx-auto px-5 sm:px-8 h-16 flex items-center justify-between">
         {/* Logo */}
-        <Link href="/" className="flex items-center gap-2.5 group">
-          <Image
-            src="/icons/official-dojops-icon.png"
-            alt="DojOps"
-            width={28}
-            height={28}
-            className="group-hover:drop-shadow-[0_0_10px_rgba(0,229,255,0.6)] transition-all duration-300"
-          />
-          <span className="font-semibold text-text-primary tracking-tight">DojOps</span>
+        <Link href="/" className="flex items-center gap-2.5">
+          <Image src="/icons/dojops-new-logo-sm.png" alt="DojOps" width={28} height={28} />
+          <span className="font-bold text-text-primary tracking-tight">DojOps</span>
         </Link>
 
         {/* Desktop nav */}
@@ -50,42 +64,46 @@ export default function Navbar() {
           ))}
           <a
             href="#install"
-            className="text-[13px] font-medium px-4 py-1.5 rounded-lg border border-neon-cyan/20 text-neon-cyan hover:bg-neon-cyan/8 hover:border-neon-cyan/40 transition-all duration-300"
+            className="text-[13px] font-medium px-4 py-1.5 rounded-lg bg-accent text-white hover:bg-accent-hover transition-all duration-200"
           >
             Get Started
           </a>
+          <ThemeToggle />
         </div>
 
-        {/* Mobile hamburger */}
-        <button
-          className="md:hidden p-2 -mr-2 rounded-lg text-text-secondary hover:text-neon-cyan hover:bg-neon-cyan/5 transition-all"
-          onClick={() => setMobileOpen(!mobileOpen)}
-          aria-label="Toggle menu"
-        >
-          <svg
-            width="22"
-            height="22"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="1.5"
+        {/* Mobile controls */}
+        <div className="md:hidden flex items-center gap-1">
+          <ThemeToggle />
+          <button
+            className="p-2 -mr-2 rounded-lg text-text-secondary hover:text-text-primary hover:bg-bg-card-hover transition-all"
+            onClick={() => setMobileOpen(!mobileOpen)}
+            aria-label="Toggle menu"
           >
-            {mobileOpen ? (
-              <path d="M18 6L6 18M6 6l12 12" />
-            ) : (
-              <>
-                <line x1="4" y1="7" x2="20" y2="7" />
-                <line x1="4" y1="12" x2="20" y2="12" />
-                <line x1="4" y1="17" x2="20" y2="17" />
-              </>
-            )}
-          </svg>
-        </button>
+            <svg
+              width="22"
+              height="22"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="1.5"
+            >
+              {mobileOpen ? (
+                <path d="M18 6L6 18M6 6l12 12" />
+              ) : (
+                <>
+                  <line x1="4" y1="7" x2="20" y2="7" />
+                  <line x1="4" y1="12" x2="20" y2="12" />
+                  <line x1="4" y1="17" x2="20" y2="17" />
+                </>
+              )}
+            </svg>
+          </button>
+        </div>
       </div>
 
       {/* Mobile drawer */}
       {mobileOpen && (
-        <div className="md:hidden mobile-drawer-enter bg-bg-deep/95 backdrop-blur-2xl border-b border-glass-border">
+        <div className="md:hidden animate-slide-down bg-bg-card border-b border-border-primary">
           <div className="px-5 py-5 flex flex-col gap-1">
             {NAV_ITEMS.map((item) => (
               <a
@@ -98,10 +116,10 @@ export default function Navbar() {
                 {item.label}
               </a>
             ))}
-            <div className="mt-3 pt-3 border-t border-glass-border flex flex-col gap-2">
+            <div className="mt-3 pt-3 border-t border-border-primary flex flex-col gap-2">
               <a
                 href="#install"
-                className="text-sm font-medium px-4 py-2.5 rounded-lg border border-neon-cyan/20 text-neon-cyan text-center hover:bg-neon-cyan/8 transition-all"
+                className="text-sm font-medium px-4 py-2.5 rounded-lg bg-accent text-white text-center hover:bg-accent-hover transition-all"
                 onClick={() => setMobileOpen(false)}
               >
                 Get Started
@@ -110,7 +128,7 @@ export default function Navbar() {
                 href={LINKS.github}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-sm text-text-secondary text-center py-2"
+                className="text-sm text-text-secondary text-center py-2 hover:text-text-primary transition-colors"
                 onClick={() => setMobileOpen(false)}
               >
                 Star on GitHub

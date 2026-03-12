@@ -30,43 +30,46 @@ export interface Feature {
   title: string;
   description: string;
   icon: string;
+  featured?: boolean;
 }
 
 export const FEATURES: Feature[] = [
   {
     title: "17 Specialist Agents",
     description:
-      "One prompt, seventeen experts. DojOps routes your request to the right specialist \u2014 Terraform, Kubernetes, CI/CD, security, and more. Create custom agents with a single README.",
+      "You describe the goal, DojOps picks the right agent. Terraform, Kubernetes, CI/CD, security, and more. You can also create your own agents with a single README.",
     icon: "agents",
+    featured: true,
   },
   {
     title: "Plan Before You Ship",
     description:
-      "Complex goals become structured task graphs with risk classification. Review the full plan before a single file is touched. If something fails, resume where you left off.",
+      "Big goals get broken into a task graph with risk levels. You review the full plan before any file is touched. If something fails, pick up where you left off.",
     icon: "plan",
   },
   {
     title: "Zero Hallucinated YAML",
     description:
-      "Every LLM response is locked to Zod schemas via provider-native JSON modes. Then validated again with terraform validate, hadolint, and kubectl --dry-run.",
+      "LLM responses are locked to Zod schemas using provider-native JSON modes. Then validated again with terraform validate, hadolint, and kubectl --dry-run.",
     icon: "brain",
   },
   {
     title: "Every Write is Sandboxed",
     description:
-      "File writes are atomic, restricted to infrastructure paths, and gated by policy. One command rolls everything back. Every action lands in a tamper-proof audit log.",
+      "File writes are atomic and restricted to infrastructure paths. One command rolls everything back. Every action is recorded in a tamper-proof audit log.",
     icon: "shield",
+    featured: true,
   },
   {
     title: "10 Scanners. Automated.",
     description:
-      "Trivy, Gitleaks, Checkov, Semgrep, Hadolint, ShellCheck, npm/pip audit, SBOM generation, and license scanning \u2014 all run before configs go live. Auto-fix critical findings with AI-powered remediation.",
+      "Trivy, Gitleaks, Checkov, Semgrep, Hadolint, ShellCheck, npm/pip audit, SBOM generation, and license scanning. All run before configs go live. Critical findings get auto-fixed.",
     icon: "scan",
   },
   {
     title: "Build & Share Modules",
     description:
-      "13 built-in modules cover the essentials. Need more? Create custom modules with a declarative DOPS manifest, publish them to the DojOps Hub, and install community modules with SHA-256 integrity verification.",
+      "13 built-in modules for the common stuff. Need something specific? Write a DOPS manifest, publish to the Hub, or grab community modules. All verified with SHA-256 checksums.",
     icon: "plugin",
   },
 ];
@@ -82,7 +85,7 @@ export const DEVOPS_TOOLS: Tool[] = [
   { name: "Kubernetes", icon: "kubernetes.svg" },
   { name: "Helm", icon: "helm.svg" },
   { name: "Ansible", icon: "ansible.svg" },
-  { name: "Docker Compose", icon: "docker-compose.png" },
+  { name: "Compose", icon: "docker-compose.png" },
   { name: "Dockerfile", icon: "docker.svg" },
   { name: "Nginx", icon: "nginx.svg" },
   { name: "Makefile", icon: "makefile.svg" },
@@ -116,22 +119,37 @@ export const HOW_IT_WORKS_STEPS: HowItWorksStep[] = [
   {
     step: 1,
     title: "Describe",
-    description:
-      "Tell DojOps what you need in plain English. It selects the right specialist agent and the best tools for the job.",
+    description: "Tell DojOps what you need in plain English. It picks the right agent and tools.",
     command: 'dojops "Create a CI pipeline for Node.js with Docker deploy"',
   },
   {
     step: 2,
     title: "Review",
     description:
-      "DojOps builds a dependency-aware task graph, classifies risk, and validates every output against Zod schemas \u2014 before anything is written.",
+      "DojOps builds a task graph, classifies risk, and validates all output against Zod schemas. Nothing is written yet.",
   },
   {
     step: 3,
     title: "Apply",
     description:
-      "Execute through sandboxed file operations with approval workflows. Atomic writes, automatic backups, and a hash-chained audit trail.",
+      "Sandboxed file writes with approval gates. Automatic backups and a hash-chained audit trail.",
   },
+];
+
+export interface PipelineOverviewStep {
+  label: string;
+  description: string;
+  icon: string; // lucide-react icon name
+}
+
+export const PIPELINE_OVERVIEW_STEPS: PipelineOverviewStep[] = [
+  { label: "Prompt", description: "Describe your goal in plain English", icon: "MessageSquare" },
+  { label: "Route", description: "Agent router picks the right specialist", icon: "GitBranch" },
+  { label: "Plan", description: "LLM decomposes into a task graph", icon: "LayoutList" },
+  { label: "Generate", description: "Structured output with Zod schemas", icon: "Code" },
+  { label: "Scan", description: "10 security scanners validate output", icon: "ShieldCheck" },
+  { label: "Apply", description: "Sandboxed writes with approval gate", icon: "Play" },
+  { label: "Audit", description: "Hash-chained tamper-proof log entry", icon: "FileCheck" },
 ];
 
 export const TERMINAL_LINES = [
@@ -163,12 +181,12 @@ export const SECURITY_FEATURES: SecurityFeature[] = [
   {
     title: "Structured output enforcement",
     description:
-      "Provider-native JSON modes ensure LLM output is always valid and parseable. No guessing, no fixing.",
+      "Provider-native JSON modes so LLM output is always valid and parseable. No guessing, no fixing.",
   },
   {
     title: "Schema validation",
     description:
-      "Every response validated against Zod schemas via safeParse(). Markdown stripping, JSON parsing, and type checks before any output is used.",
+      "Every response goes through Zod safeParse(). Markdown stripping, JSON parsing, type checks. Nothing gets used without passing.",
   },
   {
     title: "Deep verification",
@@ -178,17 +196,17 @@ export const SECURITY_FEATURES: SecurityFeature[] = [
   {
     title: "Policy engine",
     description:
-      "ExecutionPolicy controls allowed paths, denied paths, environment variables, timeouts, and file size limits. Write allowlist restricts output to infrastructure paths.",
+      "ExecutionPolicy controls which paths are allowed, which are denied, env vars, timeouts, and file size limits. Writes are restricted to infrastructure paths only.",
   },
   {
     title: "Approval workflows",
     description:
-      "Interactive diff preview before every write. Auto-approve, auto-deny, or custom callbacks for CI/CD. HIGH-risk plans require explicit confirmation.",
+      "You see a diff preview before every write. Auto-approve, auto-deny, or wire up custom callbacks for CI/CD. High-risk plans need explicit confirmation.",
   },
   {
     title: "Sandboxed execution",
     description:
-      "Path restriction, size limits, atomic writes via temp + rename, .bak backups, and per-file audit logging. PID-based locking prevents concurrent mutations.",
+      "Path restrictions, size limits, atomic writes via temp + rename, .bak backups, per-file audit logging. PID-based locking prevents concurrent mutations.",
   },
   {
     title: "Immutable audit trail",

@@ -43,83 +43,155 @@ export default function CTASection() {
 
   return (
     <section className="py-20 sm:py-28 px-5 bg-bg-primary relative overflow-hidden">
+      {/* Background ambient glow */}
+      <div
+        className="absolute inset-0 pointer-events-none"
+        style={{
+          background:
+            "radial-gradient(ellipse 50% 60% at 50% 50%, color-mix(in srgb, var(--accent) 4%, transparent), transparent 70%)",
+        }}
+      />
+
       <div className="max-w-3xl mx-auto relative z-10">
-        <div className="relative rounded-2xl bg-[#0d1117] p-8 sm:p-12 lg:p-16 text-center overflow-hidden">
-          {/* Gradient glow border */}
-          <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-[#06b6d4]/20 via-[#3b82f6]/10 to-[#d946ef]/20 pointer-events-none" />
-          <div className="absolute inset-px rounded-[15px] bg-[#0d1117] pointer-events-none" />
+        {/* Card with gradient border effect */}
+        <div className="relative rounded-2xl p-px overflow-hidden">
+          {/* Gradient border layer — the 1px padding on parent reveals this behind the inner card */}
+          <div
+            className="absolute inset-0 rounded-2xl"
+            style={{
+              background:
+                "linear-gradient(135deg, #06b6d4 0%, #3b82f6 40%, #d946ef 70%, #06b6d4 100%)",
+              opacity: 0.4,
+            }}
+          />
 
-          <div className="relative z-10">
-            {/* Badge */}
-            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-gradient-brand text-white text-[10px] sm:text-xs font-medium tracking-wide uppercase mb-6">
-              Stay in the loop
-            </div>
+          {/* Inner card */}
+          <div
+            className="relative rounded-[15px] p-8 sm:p-12 lg:p-16 text-center overflow-hidden"
+            style={{ background: "#0d1117" }}
+          >
+            {/* Interior glow effects */}
+            <div
+              className="absolute top-0 left-1/2 -translate-x-1/2 w-[70%] h-px"
+              style={{
+                background: "linear-gradient(90deg, transparent, #38bdf8, transparent)",
+                opacity: 0.5,
+              }}
+            />
+            <div
+              className="absolute top-0 left-1/2 -translate-x-1/2 w-[40%] h-24 pointer-events-none"
+              style={{
+                background:
+                  "radial-gradient(ellipse at 50% 0%, color-mix(in srgb, #38bdf8 8%, transparent), transparent 70%)",
+              }}
+            />
 
-            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-white mb-4 tracking-tight">
-              Get updates on DojOps
-            </h2>
-            <p className="text-[#8b95a8] text-sm sm:text-base leading-relaxed mb-10 max-w-lg mx-auto">
-              New modules, provider integrations, and releases — straight to your inbox. No spam,
-              unsubscribe anytime.
-            </p>
-
-            {status === "success" || status === "already" ? (
-              <div className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-emerald-500/10 border border-emerald-500/20">
-                <svg
-                  width="16"
-                  height="16"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                  className="text-emerald-400"
-                >
-                  <path d="M20 6L9 17l-5-5" />
-                </svg>
-                <span className="text-sm font-medium text-emerald-400">
-                  {status === "success"
-                    ? "Welcome aboard! Check your inbox."
-                    : "You\u2019re already subscribed!"}
-                </span>
+            <div className="relative z-10">
+              {/* Badge */}
+              <div
+                className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-[10px] sm:text-xs font-semibold tracking-[0.1em] uppercase mb-6"
+                style={{
+                  background:
+                    "linear-gradient(135deg, rgba(6, 182, 212, 0.15), rgba(59, 130, 246, 0.15))",
+                  border: "1px solid rgba(56, 189, 248, 0.25)",
+                  color: "#7dd3fc",
+                }}
+              >
+                <span className="w-1.5 h-1.5 rounded-full" style={{ background: "#38bdf8" }} />
+                Stay in the loop
               </div>
-            ) : (
-              <form
-                onSubmit={handleSubmit}
-                className="flex flex-col sm:flex-row items-stretch gap-3 max-w-xl mx-auto"
-              >
-                <input
-                  type="email"
-                  required
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  placeholder="you@company.com"
-                  disabled={status === "loading"}
-                  className="flex-1 px-5 py-3.5 rounded-xl border border-[#2a2d37] bg-[#161921] text-white text-sm placeholder:text-[#5a6478] focus:border-[#38bdf8] focus:outline-none transition-colors disabled:opacity-50"
-                />
-                <button
-                  type="submit"
-                  disabled={status === "loading"}
-                  className="px-8 py-3.5 rounded-xl bg-gradient-brand text-white text-sm font-semibold hover:opacity-90 transition-opacity shrink-0 disabled:opacity-50"
-                >
-                  {status === "loading" ? "Subscribing..." : "Subscribe"}
-                </button>
-                {status === "error" && (
-                  <p className="text-red-400 text-xs mt-1 sm:mt-0 sm:absolute sm:top-full sm:left-0 sm:right-0 sm:text-center sm:pt-2">
-                    {errorMsg}
-                  </p>
-                )}
-              </form>
-            )}
 
-            <p className="text-[#5a6478] text-xs mt-6">
-              Or reach us at{" "}
-              <a
-                href="mailto:contact@dojops.ai"
-                className="text-[#38bdf8] hover:text-white transition-colors"
+              <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-white mb-4 tracking-tight">
+                Get updates on DojOps
+              </h2>
+              <p
+                className="text-sm sm:text-base leading-relaxed mb-10 max-w-lg mx-auto"
+                style={{ color: "#8b95a8" }}
               >
-                contact@dojops.ai
-              </a>
-            </p>
+                New modules, provider integrations, and releases. Straight to your inbox. No spam,
+                unsubscribe anytime.
+              </p>
+
+              {status === "success" || status === "already" ? (
+                <div
+                  className="inline-flex items-center gap-2 px-6 py-3 rounded-xl"
+                  style={{
+                    background: "rgba(16, 185, 129, 0.1)",
+                    border: "1px solid rgba(16, 185, 129, 0.2)",
+                  }}
+                >
+                  <svg
+                    width="16"
+                    height="16"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="#34d399"
+                    strokeWidth="2"
+                  >
+                    <path d="M20 6L9 17l-5-5" />
+                  </svg>
+                  <span className="text-sm font-medium" style={{ color: "#34d399" }}>
+                    {status === "success"
+                      ? "Welcome aboard! Check your inbox."
+                      : "You\u2019re already subscribed!"}
+                  </span>
+                </div>
+              ) : (
+                <form
+                  onSubmit={handleSubmit}
+                  className="flex flex-col sm:flex-row items-stretch gap-3 max-w-xl mx-auto relative"
+                >
+                  <input
+                    type="email"
+                    required
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    placeholder="you@company.com"
+                    disabled={status === "loading"}
+                    className="flex-1 px-5 py-3.5 rounded-xl text-sm transition-all duration-200 disabled:opacity-50"
+                    style={{
+                      border: "1px solid #2a2d37",
+                      background: "#161921",
+                      color: "#e8edf5",
+                    }}
+                    onFocus={(e) => {
+                      e.currentTarget.style.borderColor = "#38bdf8";
+                      e.currentTarget.style.boxShadow = "0 0 0 3px rgba(56, 189, 248, 0.1)";
+                    }}
+                    onBlur={(e) => {
+                      e.currentTarget.style.borderColor = "#2a2d37";
+                      e.currentTarget.style.boxShadow = "none";
+                    }}
+                  />
+                  <button
+                    type="submit"
+                    disabled={status === "loading"}
+                    className="px-8 py-3.5 rounded-xl bg-gradient-brand text-white text-sm font-semibold hover:opacity-90 transition-opacity shrink-0 disabled:opacity-50"
+                  >
+                    {status === "loading" ? "Subscribing..." : "Subscribe"}
+                  </button>
+                  {status === "error" && (
+                    <p
+                      className="text-xs mt-2 text-center sm:text-left"
+                      style={{ color: "#f87171" }}
+                    >
+                      {errorMsg}
+                    </p>
+                  )}
+                </form>
+              )}
+
+              <p className="text-xs mt-6" style={{ color: "#5a6478" }}>
+                Or reach us at{" "}
+                <a
+                  href="mailto:contact@dojops.ai"
+                  className="hover:text-white transition-colors"
+                  style={{ color: "#38bdf8" }}
+                >
+                  contact@dojops.ai
+                </a>
+              </p>
+            </div>
           </div>
         </div>
       </div>

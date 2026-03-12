@@ -1,29 +1,67 @@
+"use client";
+
 import { HIGHLIGHT_STATS } from "@/lib/constants";
-import ScrollReveal from "./ScrollReveal";
+
+function StatItem({ value, label }: Readonly<{ value: string; label: string }>) {
+  return (
+    <div className="flex items-center gap-3 sm:gap-4 px-4 sm:px-6 shrink-0 cursor-default group">
+      <span className="text-2xl sm:text-3xl font-bold font-mono tabular-nums text-accent-text transition-colors duration-300 group-hover:text-accent">
+        {value}
+      </span>
+      <span className="text-[10px] sm:text-xs text-text-secondary uppercase tracking-[0.12em] whitespace-nowrap leading-tight">
+        {label}
+      </span>
+    </div>
+  );
+}
 
 export default function HighlightStats() {
+  // Build items with separators between them, then duplicate for seamless loop
+  const items = HIGHLIGHT_STATS.flatMap((stat, i) => {
+    const el = <StatItem key={`stat-${stat.label}`} value={stat.value} label={stat.label} />;
+    if (i < HIGHLIGHT_STATS.length - 1) {
+      return [el, <div key={`sep-${i}`} className="stat-separator" />];
+    }
+    return [el];
+  });
+
+  // Full separator before the duplicate set
+  const fullSet = [
+    ...items,
+    <div key="sep-loop" className="stat-separator" />,
+    ...HIGHLIGHT_STATS.flatMap((stat, i) => {
+      const el = <StatItem key={`stat-dup-${stat.label}`} value={stat.value} label={stat.label} />;
+      if (i < HIGHLIGHT_STATS.length - 1) {
+        return [el, <div key={`sep-dup-${i}`} className="stat-separator" />];
+      }
+      return [el];
+    }),
+  ];
+
   return (
-    <section className="py-16 sm:py-20 px-5 bg-bg-secondary">
-      <div className="max-w-4xl mx-auto">
-        <div className="section-divider mb-12" />
-        <ScrollReveal>
-          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-8 sm:gap-6">
-            {HIGHLIGHT_STATS.map((stat) => (
-              <div
-                key={stat.label}
-                className="flex flex-col items-center gap-1 group cursor-default"
-              >
-                <span className="text-2xl sm:text-3xl font-bold text-text-primary group-hover:scale-110 transition-transform duration-300">
-                  {stat.value}
-                </span>
-                <span className="text-[10px] sm:text-xs text-text-secondary tracking-wide uppercase text-center">
-                  {stat.label}
-                </span>
-              </div>
-            ))}
-          </div>
-        </ScrollReveal>
-        <div className="section-divider mt-12" />
+    <section className="py-14 sm:py-18 px-5 bg-bg-secondary">
+      <div className="max-w-5xl mx-auto">
+        <div className="section-divider mb-10" />
+
+        <div className="relative overflow-hidden">
+          {/* Gradient fade edges */}
+          <div
+            className="pointer-events-none absolute inset-y-0 left-0 w-20 sm:w-32 z-10"
+            style={{
+              background: "linear-gradient(to right, var(--bg-secondary), transparent)",
+            }}
+          />
+          <div
+            className="pointer-events-none absolute inset-y-0 right-0 w-20 sm:w-32 z-10"
+            style={{
+              background: "linear-gradient(to left, var(--bg-secondary), transparent)",
+            }}
+          />
+
+          <div className="marquee-track py-2">{fullSet}</div>
+        </div>
+
+        <div className="section-divider mt-10" />
       </div>
     </section>
   );

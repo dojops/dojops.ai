@@ -883,8 +883,8 @@ export default function PipelineFlow() {
       <ScrollReveal>
         <SectionHeading
           id="pipeline"
-          title="How DojOps Works"
-          subtitle="From prompt to production in eleven automated stages"
+          title="From Prompt to Production"
+          subtitle="Eleven stages between your request and a deployed config. Here's what happens."
         />
       </ScrollReveal>
 

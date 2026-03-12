@@ -13,7 +13,7 @@ export default function ToolsGrid() {
         <SectionHeading
           id="tools"
           title="Your tools. Your models."
-          subtitle="13 built-in DevOps modules and 6 LLM providers, ready out of the box"
+          subtitle="13 built-in DevOps modules, 6 LLM providers. Works out of the box."
         />
       </ScrollReveal>
       <div className="max-w-5xl mx-auto space-y-20">
@@ -27,14 +27,16 @@ export default function ToolsGrid() {
           <div className="grid grid-cols-3 sm:grid-cols-4 lg:grid-cols-6 gap-3">
             {DEVOPS_TOOLS.map((tool, i) => (
               <ScrollReveal key={tool.name} delay={i * 50}>
-                <div className="group flex flex-col items-center gap-3 p-4 rounded-xl border border-border-primary bg-bg-card hover:border-border-secondary hover:bg-bg-card-hover transition-all duration-300 cursor-default">
-                  <Image
-                    src={`/icons/tools/${tool.icon}`}
-                    alt={tool.name}
-                    width={28}
-                    height={28}
-                    className="opacity-70 dark:opacity-90 group-hover:opacity-100 transition-opacity"
-                  />
+                <div className="group tool-card flex flex-col items-center justify-center gap-3 p-4 rounded-xl border border-border-primary bg-bg-card cursor-default aspect-square">
+                  <div className="relative">
+                    <Image
+                      src={`/icons/tools/${tool.icon}`}
+                      alt={tool.name}
+                      width={28}
+                      height={28}
+                      className="icon-grayscale"
+                    />
+                  </div>
                   <span className="text-xs text-text-secondary group-hover:text-text-primary transition-colors text-center leading-tight">
                     {tool.name}
                   </span>
@@ -58,13 +60,13 @@ export default function ToolsGrid() {
                   key={provider.name}
                   className="group flex flex-col items-center gap-3 cursor-default"
                 >
-                  <div className="w-10 h-10 flex items-center justify-center">
+                  <div className="w-11 h-11 flex items-center justify-center rounded-xl border border-transparent group-hover:border-border-secondary transition-all duration-300">
                     <Image
                       src={`/icons/providers/${provider.icon}`}
                       alt={provider.name}
                       width={36}
                       height={36}
-                      className={`object-contain w-9 h-9 opacity-80 group-hover:opacity-100 transition-opacity ${MONO_ICONS.has(provider.icon) ? "icon-mono" : ""}`}
+                      className={`object-contain w-9 h-9 ${MONO_ICONS.has(provider.icon) ? "icon-mono-grayscale" : "icon-grayscale"}`}
                     />
                   </div>
                   <span className="text-xs text-text-secondary group-hover:text-text-primary transition-colors">

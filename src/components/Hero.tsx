@@ -1,6 +1,7 @@
 import Image from "next/image";
 import TerminalDemo from "./TerminalDemo";
 import NpmDownloadCount from "./NpmDownloadCount";
+import TypingHeadline from "./TypingHeadline";
 import { LINKS } from "@/lib/constants";
 
 export default function Hero() {
@@ -44,17 +45,11 @@ export default function Hero() {
         </div>
 
         {/* Headline */}
-        <h1
-          className="font-bold mb-6 tracking-tight leading-[1.15] px-2"
-          style={{ fontSize: "clamp(1.75rem, 5vw, 3.5rem)" }}
-        >
-          <span className="text-text-primary">From prompt to </span>
-          <span className="text-gradient-brand">production</span>
-        </h1>
+        <TypingHeadline />
 
         {/* Subheadline */}
         <p className="text-sm sm:text-base lg:text-lg text-text-secondary max-w-lg mb-10 leading-relaxed px-2">
-          Generate. Verify. Secure. Apply. All sandboxed. All auditable
+          Generate configs, verify them, scan for issues, apply with approval. Everything sandboxed.
         </p>
 
         {/* CTA buttons */}

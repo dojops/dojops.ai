@@ -9,7 +9,7 @@ export default function Security() {
         <SectionHeading
           id="security"
           title="8 layers of defense"
-          subtitle="Enterprise-grade security so compliance teams sign off on AI-generated infrastructure"
+          subtitle="Enough security layers that your compliance team won't flinch at AI-generated configs"
         />
       </ScrollReveal>
       <ScrollReveal delay={150}>

@@ -1,15 +1,13 @@
 import { HIGHLIGHT_STATS } from "@/lib/constants";
 import ScrollReveal from "./ScrollReveal";
-import NpmDownloadCount from "./NpmDownloadCount";
 
 export default function HighlightStats() {
   return (
     <section className="py-16 sm:py-20 px-5 bg-bg-secondary">
-      <div className="max-w-5xl mx-auto">
+      <div className="max-w-4xl mx-auto">
         <div className="section-divider mb-12" />
         <ScrollReveal>
-          <div className="grid grid-cols-7 gap-2">
-            <NpmDownloadCount />
+          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-8 sm:gap-6">
             {HIGHLIGHT_STATS.map((stat) => (
               <div
                 key={stat.label}

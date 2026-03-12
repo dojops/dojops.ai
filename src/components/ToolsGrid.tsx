@@ -64,7 +64,7 @@ export default function ToolsGrid() {
                       alt={provider.name}
                       width={36}
                       height={36}
-                      className={`object-contain w-9 h-9 opacity-70 dark:opacity-90 group-hover:opacity-100 transition-opacity ${MONO_ICONS.has(provider.icon) ? "dark:invert" : ""}`}
+                      className={`object-contain w-9 h-9 opacity-80 group-hover:opacity-100 transition-opacity ${MONO_ICONS.has(provider.icon) ? "icon-mono" : ""}`}
                     />
                   </div>
                   <span className="text-xs text-text-secondary group-hover:text-text-primary transition-colors">

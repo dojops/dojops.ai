@@ -321,6 +321,14 @@ body {
   background: linear-gradient(135deg, #06b6d4, #3b82f6, #d946ef);
 }
 
+/* Mono icon: force black in light mode, force white in dark mode */
+.icon-mono {
+  filter: brightness(0);
+}
+.dark .icon-mono {
+  filter: brightness(0) invert(1);
+}
+
 .border-gradient-brand {
   border-image: linear-gradient(135deg, #06b6d4, #3b82f6, #d946ef) 1;
 }

@@ -1,4 +1,7 @@
+"use client";
+
 import { FEATURES } from "@/lib/constants";
+import { useTranslation } from "@/i18n";
 import SectionHeading from "./SectionHeading";
 import GlowCard from "./GlowCard";
 import ScrollReveal from "./ScrollReveal";
@@ -83,39 +86,42 @@ const GRID_CLASSES: string[] = [
 ];
 
 export default function Features() {
+  const { t } = useTranslation();
+
   return (
     <section className="py-16 sm:py-24 lg:py-32 px-5">
       <ScrollReveal>
-        <SectionHeading
-          id="features"
-          title="Built for real infrastructure"
-          subtitle="Every step is validated, sandboxed, and logged before anything touches your repo"
-        />
+        <SectionHeading id="features" title={t.features.title} subtitle={t.features.subtitle} />
       </ScrollReveal>
       <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5">
-        {FEATURES.map((feature, i) => (
-          <ScrollReveal
-            key={feature.title}
-            delay={i * 80}
-            className={`flex ${GRID_CLASSES[i] || ""}`}
-          >
-            <GlowCard
-              className={`flex-1 flex ${
-                feature.featured
-                  ? "featured-card flex-col sm:flex-row sm:items-start gap-5"
-                  : "flex-col"
-              }`}
+        {FEATURES.map((feature, i) => {
+          const translated = t.features.items[i];
+          return (
+            <ScrollReveal
+              key={feature.icon}
+              delay={i * 80}
+              className={`flex ${GRID_CLASSES[i] || ""}`}
             >
-              <FeatureIcon icon={feature.icon} size={feature.featured ? "large" : "normal"} />
-              <div className={feature.featured ? "" : "mt-5"}>
-                <h3 className="text-base font-semibold text-text-primary mb-2 tracking-tight">
-                  {feature.title}
-                </h3>
-                <p className="text-text-secondary text-sm leading-relaxed">{feature.description}</p>
-              </div>
-            </GlowCard>
-          </ScrollReveal>
-        ))}
+              <GlowCard
+                className={`flex-1 flex ${
+                  feature.featured
+                    ? "featured-card flex-col sm:flex-row sm:items-start gap-5"
+                    : "flex-col"
+                }`}
+              >
+                <FeatureIcon icon={feature.icon} size={feature.featured ? "large" : "normal"} />
+                <div className={feature.featured ? "" : "mt-5"}>
+                  <h3 className="text-base font-semibold text-text-primary mb-2 tracking-tight">
+                    {translated?.title ?? feature.title}
+                  </h3>
+                  <p className="text-text-secondary text-sm leading-relaxed">
+                    {translated?.description ?? feature.description}
+                  </p>
+                </div>
+              </GlowCard>
+            </ScrollReveal>
+          );
+        })}
       </div>
     </section>
   );

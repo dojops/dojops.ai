@@ -1,5 +1,8 @@
+"use client";
+
 import Image from "next/image";
 import { DEVOPS_TOOLS, LLM_PROVIDERS } from "@/lib/constants";
+import { useTranslation } from "@/i18n";
 import SectionHeading from "./SectionHeading";
 import ScrollReveal from "./ScrollReveal";
 
@@ -7,21 +10,19 @@ import ScrollReveal from "./ScrollReveal";
 const MONO_ICONS = new Set(["openai.svg", "anthropic.svg", "ollama.svg", "github-copilot.svg"]);
 
 export default function ToolsGrid() {
+  const { t } = useTranslation();
+
   return (
     <section className="py-16 sm:py-24 lg:py-32 px-5 bg-bg-primary">
       <ScrollReveal>
-        <SectionHeading
-          id="tools"
-          title="Your tools. Your models."
-          subtitle="13 built-in DevOps modules, 6 LLM providers. Works out of the box."
-        />
+        <SectionHeading id="tools" title={t.tools.title} subtitle={t.tools.subtitle} />
       </ScrollReveal>
       <div className="max-w-5xl mx-auto space-y-20">
         {/* DevOps Tools */}
         <div>
           <ScrollReveal>
             <p className="text-xs font-medium text-text-secondary uppercase tracking-[0.15em] text-center mb-8">
-              DevOps Modules
+              {t.tools.devopsModules}
             </p>
           </ScrollReveal>
           <div className="grid grid-cols-3 sm:grid-cols-4 lg:grid-cols-6 gap-3">
@@ -50,7 +51,7 @@ export default function ToolsGrid() {
         <div>
           <ScrollReveal>
             <p className="text-xs font-medium text-text-secondary uppercase tracking-[0.15em] text-center mb-8">
-              LLM Providers
+              {t.tools.llmProviders}
             </p>
           </ScrollReveal>
           <ScrollReveal delay={100}>
@@ -77,9 +78,7 @@ export default function ToolsGrid() {
             </div>
           </ScrollReveal>
           <ScrollReveal delay={200}>
-            <p className="text-center text-text-secondary text-xs mt-8">
-              Bring your own model. No vendor lock-in. Run fully local with Ollama.
-            </p>
+            <p className="text-center text-text-secondary text-xs mt-8">{t.tools.noVendorLockIn}</p>
           </ScrollReveal>
         </div>
       </div>

@@ -1,6 +1,6 @@
 "use client";
 
-import { HIGHLIGHT_STATS } from "@/lib/constants";
+import { useTranslation } from "@/i18n";
 
 function StatItem({ value, label }: Readonly<{ value: string; label: string }>) {
   return (
@@ -16,10 +16,13 @@ function StatItem({ value, label }: Readonly<{ value: string; label: string }>) 
 }
 
 export default function HighlightStats() {
+  const { t } = useTranslation();
+  const stats = t.stats;
+
   // Build items with separators between them, then duplicate for seamless loop
-  const items = HIGHLIGHT_STATS.flatMap((stat, i) => {
+  const items = stats.flatMap((stat, i) => {
     const el = <StatItem key={`stat-${stat.label}`} value={stat.value} label={stat.label} />;
-    if (i < HIGHLIGHT_STATS.length - 1) {
+    if (i < stats.length - 1) {
       return [el, <div key={`sep-${i}`} className="stat-separator" />];
     }
     return [el];
@@ -29,9 +32,9 @@ export default function HighlightStats() {
   const fullSet = [
     ...items,
     <div key="sep-loop" className="stat-separator" />,
-    ...HIGHLIGHT_STATS.flatMap((stat, i) => {
+    ...stats.flatMap((stat, i) => {
       const el = <StatItem key={`stat-dup-${stat.label}`} value={stat.value} label={stat.label} />;
-      if (i < HIGHLIGHT_STATS.length - 1) {
+      if (i < stats.length - 1) {
         return [el, <div key={`sep-dup-${i}`} className="stat-separator" />];
       }
       return [el];

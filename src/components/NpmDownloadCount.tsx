@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { useTranslation } from "@/i18n";
 
 interface DownloadData {
   downloads: Array<{ downloads: number }>;
@@ -13,6 +14,7 @@ function formatCount(n: number): string {
 }
 
 export default function NpmDownloadCount() {
+  const { t } = useTranslation();
   const [total, setTotal] = useState<number | null>(null);
 
   useEffect(() => {
@@ -35,7 +37,7 @@ export default function NpmDownloadCount() {
       <span className="font-semibold text-text-primary">
         {total !== null ? formatCount(total) : "—"}
       </span>{" "}
-      downloaded
+      {t.hero.downloaded}
     </span>
   );
 }

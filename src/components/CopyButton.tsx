@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { useTranslation } from "@/i18n";
 
 interface CopyButtonProps {
   text: string;
@@ -8,6 +9,7 @@ interface CopyButtonProps {
 }
 
 export default function CopyButton({ text, className = "" }: Readonly<CopyButtonProps>) {
+  const { t } = useTranslation();
   const [copied, setCopied] = useState(false);
 
   const handleCopy = async () => {
@@ -20,7 +22,7 @@ export default function CopyButton({ text, className = "" }: Readonly<CopyButton
     <button
       onClick={handleCopy}
       className={`p-2 -m-2 rounded-lg text-text-secondary hover:text-neon-cyan hover:bg-neon-cyan/5 transition-all ${className}`}
-      aria-label="Copy to clipboard"
+      aria-label={t.install.copyToClipboard}
     >
       {copied ? (
         <svg

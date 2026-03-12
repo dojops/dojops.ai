@@ -16,6 +16,7 @@ import {
   Check,
 } from "lucide-react";
 import { PIPELINE_STAGES } from "@/lib/constants";
+import { useTranslation } from "@/i18n";
 import SectionHeading from "./SectionHeading";
 import ScrollReveal from "./ScrollReveal";
 
@@ -266,11 +267,12 @@ function computeNodeStyles(state: NodeState, category: Category): NodeStyles {
 
 function NodeCard({
   node,
-  stage,
   index,
   state,
   lite,
-}: Readonly<NodeCardProps & { lite: boolean }>) {
+  translatedLabel,
+}: Readonly<NodeCardProps & { lite: boolean; translatedLabel: string }>) {
+  const { t } = useTranslation();
   const s = computeNodeStyles(state, node.category);
   const isActive = state === "active";
   const isDone = state === "done";
@@ -376,7 +378,7 @@ function NodeCard({
             lineHeight: 1,
           }}
         >
-          {stage.label}
+          {translatedLabel}
         </span>
 
         {/* Active indicator */}
@@ -406,7 +408,7 @@ function NodeCard({
                 letterSpacing: "0.5px",
               }}
             >
-              ACTIVE
+              {t.pipelineFlow.active}
             </span>
           </div>
         )}
@@ -607,6 +609,7 @@ function StageInfoContent({
   color: string;
   stage: (typeof PIPELINE_STAGES)[number] | null;
 }>) {
+  const { t } = useTranslation();
   const fontSize = compact ? 8 : 10;
 
   if (activeIndex < 0) {
@@ -619,7 +622,7 @@ function StageInfoContent({
           letterSpacing: "0.5px",
         }}
       >
-        {compact ? "Initializing..." : "Initializing pipeline..."}
+        {compact ? t.pipeline.initializing : t.pipeline.initializingFull}
       </span>
     );
   }
@@ -634,7 +637,7 @@ function StageInfoContent({
           letterSpacing: "0.5px",
         }}
       >
-        {compact ? "Complete" : "All 11 stages complete"}
+        {compact ? t.pipeline.complete : t.pipeline.completeFull}
       </span>
     );
   }
@@ -652,7 +655,7 @@ function StageInfoContent({
           whiteSpace: "nowrap",
         }}
       >
-        {stage?.label}
+        {(activeIndex >= 0 && t.pipelineFlow.stages[activeIndex]?.label) || stage?.label}
       </span>
       {!compact && (
         <span
@@ -663,7 +666,8 @@ function StageInfoContent({
             letterSpacing: "0.3px",
           }}
         >
-          {stage?.description}
+          {(activeIndex >= 0 && t.pipelineFlow.stages[activeIndex]?.description) ||
+            stage?.description}
         </span>
       )}
     </>
@@ -771,29 +775,33 @@ function getNodeState(nodeIndex: number, activeIndex: number): NodeState {
    ═══════════════════════════════════════════════════════════════ */
 
 function MobilePipeline() {
+  const { t } = useTranslation();
   return (
     <div className="sm:hidden max-w-sm mx-auto px-2">
       <div className="relative">
         {/* Vertical connecting line */}
         <div className="absolute left-[13px] top-5 bottom-5 w-px bg-border-secondary" />
         <div className="space-y-1">
-          {PIPELINE_STAGES.map((stage, i) => (
-            <div key={stage.id} className="flex items-start gap-3 py-2 relative">
-              <div className="w-7 h-7 rounded-lg bg-accent-subtle border border-accent-border flex items-center justify-center shrink-0 z-10">
-                <span className="text-[10px] font-bold text-accent-text font-mono">
-                  {String(i + 1).padStart(2, "0")}
-                </span>
+          {PIPELINE_STAGES.map((stage, i) => {
+            const translated = t.pipelineFlow.stages[i];
+            return (
+              <div key={stage.id} className="flex items-start gap-3 py-2 relative">
+                <div className="w-7 h-7 rounded-lg bg-accent-subtle border border-accent-border flex items-center justify-center shrink-0 z-10">
+                  <span className="text-[10px] font-bold text-accent-text font-mono">
+                    {String(i + 1).padStart(2, "0")}
+                  </span>
+                </div>
+                <div className="min-w-0 pt-0.5">
+                  <p className="text-sm font-semibold text-text-primary leading-tight">
+                    {translated?.label ?? stage.label}
+                  </p>
+                  <p className="text-xs text-text-secondary leading-relaxed mt-0.5">
+                    {translated?.description ?? stage.description}
+                  </p>
+                </div>
               </div>
-              <div className="min-w-0 pt-0.5">
-                <p className="text-sm font-semibold text-text-primary leading-tight">
-                  {stage.label}
-                </p>
-                <p className="text-xs text-text-secondary leading-relaxed mt-0.5">
-                  {stage.description}
-                </p>
-              </div>
-            </div>
-          ))}
+            );
+          })}
         </div>
       </div>
     </div>
@@ -805,6 +813,7 @@ function MobilePipeline() {
    ═══════════════════════════════════════════════════════════════ */
 
 export default function PipelineFlow() {
+  const { t } = useTranslation();
   const containerRef = useRef<HTMLDivElement>(null);
   const [activeIndex, setActiveIndex] = useState(-1);
   const [started, setStarted] = useState(false);
@@ -883,8 +892,8 @@ export default function PipelineFlow() {
       <ScrollReveal>
         <SectionHeading
           id="pipeline"
-          title="From Prompt to Production"
-          subtitle="Eleven stages between your request and a deployed config. Here's what happens."
+          title={t.pipelineFlow.title}
+          subtitle={t.pipelineFlow.subtitle}
         />
       </ScrollReveal>
 
@@ -922,6 +931,7 @@ export default function PipelineFlow() {
               index={i}
               state={getNodeState(i, activeIndex)}
               lite={isMobile}
+              translatedLabel={t.pipelineFlow.stages[i]?.label ?? PIPELINE_STAGES[i].label}
             />
           ))}
         </div>

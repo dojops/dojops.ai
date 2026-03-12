@@ -1,26 +1,10 @@
+"use client";
+
 import Image from "next/image";
 import { LINKS } from "@/lib/constants";
+import { useTranslation } from "@/i18n";
 import ScrollReveal from "./ScrollReveal";
 import CopyButton from "./CopyButton";
-
-const FOOTER_LINKS = {
-  Product: [
-    { label: "Get Started", href: "#install" },
-    { label: "Features", href: "#features" },
-    { label: "How It Works", href: "#pipeline" },
-    { label: "Modules", href: "#tools" },
-  ],
-  Resources: [
-    { label: "Documentation", href: LINKS.docs, external: true },
-    { label: "DojOps Hub", href: LINKS.hub, external: true },
-    { label: "npm Package", href: LINKS.npm, external: true },
-  ],
-  Community: [
-    { label: "GitHub", href: LINKS.github, external: true },
-    { label: "Contributing", href: `${LINKS.github}/blob/main/CONTRIBUTING.md`, external: true },
-    { label: "Issues", href: `${LINKS.github}/issues`, external: true },
-  ],
-};
 
 function GitHubIcon() {
   return (
@@ -59,6 +43,31 @@ function DocsIcon() {
 }
 
 export default function Footer() {
+  const { t } = useTranslation();
+
+  const FOOTER_LINKS = {
+    [t.footer.product]: [
+      { label: t.footer.getStarted, href: "#install" },
+      { label: t.footer.features, href: "#features" },
+      { label: t.footer.howItWorks, href: "#pipeline" },
+      { label: t.footer.modules, href: "#tools" },
+    ],
+    [t.footer.resources]: [
+      { label: t.footer.documentation, href: LINKS.docs, external: true },
+      { label: t.footer.hub, href: LINKS.hub, external: true },
+      { label: t.footer.npmPackage, href: LINKS.npm, external: true },
+    ],
+    [t.footer.community]: [
+      { label: t.footer.github, href: LINKS.github, external: true },
+      {
+        label: t.footer.contributing,
+        href: `${LINKS.github}/blob/main/CONTRIBUTING.md`,
+        external: true,
+      },
+      { label: t.footer.issues, href: `${LINKS.github}/issues`, external: true },
+    ],
+  };
+
   return (
     <footer className="relative">
       {/* Animated gradient top border */}
@@ -107,18 +116,18 @@ export default function Footer() {
                     boxShadow: "0 0 6px var(--accent)",
                   }}
                 />
-                OPEN SOURCE
+                {t.cta.badge}
               </span>
             </div>
 
             <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-text-primary mb-4 tracking-tight leading-tight">
-              Ready to stop writing
+              {t.cta.heading1}
               <br />
-              <span className="text-gradient-brand">YAML by hand?</span>
+              <span className="text-gradient-brand">{t.cta.heading2}</span>
             </h2>
 
             <p className="text-text-secondary text-sm sm:text-base mb-10 max-w-md mx-auto leading-relaxed">
-              One install, no telemetry, runs anywhere you have Node.
+              {t.cta.description}
             </p>
 
             {/* Quick install command */}
@@ -158,7 +167,7 @@ export default function Footer() {
                   }}
                 />
                 <span className="relative z-10 flex items-center gap-2">
-                  Get Started
+                  {t.cta.getStarted}
                   <svg
                     width="14"
                     height="14"
@@ -182,7 +191,7 @@ export default function Footer() {
                   color: "var(--text-secondary)",
                 }}
               >
-                Read the Docs
+                {t.cta.readDocs}
                 <svg
                   width="12"
                   height="12"
@@ -218,8 +227,7 @@ export default function Footer() {
                 </span>
               </div>
               <p className="text-xs text-text-tertiary leading-relaxed mb-5 max-w-[200px]">
-                Generate, validate, and apply infrastructure configs with AI. Open source, MIT
-                licensed.
+                {t.footer.brandDescription}
               </p>
               {/* Social icons */}
               <div className="flex items-center gap-3">
@@ -306,10 +314,10 @@ export default function Footer() {
       >
         <div className="max-w-6xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-3">
           <span className="text-[11px] text-text-tertiary">
-            &copy; {new Date().getFullYear()} DojOps &middot; MIT License
+            &copy; {new Date().getFullYear()} {t.footer.copyright}
           </span>
           <span className="text-[11px] text-text-tertiary">
-            Created by{" "}
+            {t.footer.createdBy}{" "}
             <a
               href="https://github.com/MHChlagou"
               target="_blank"

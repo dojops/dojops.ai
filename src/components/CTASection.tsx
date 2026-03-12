@@ -2,8 +2,10 @@
 
 import { useState } from "react";
 import { LINKS } from "@/lib/constants";
+import { useTranslation } from "@/i18n";
 
 export default function CTASection() {
+  const { t } = useTranslation();
   const [email, setEmail] = useState("");
   const [status, setStatus] = useState<"idle" | "loading" | "success" | "already" | "error">(
     "idle",
@@ -98,18 +100,17 @@ export default function CTASection() {
                 }}
               >
                 <span className="w-1.5 h-1.5 rounded-full" style={{ background: "#38bdf8" }} />
-                Stay in the loop
+                {t.newsletter.badge}
               </div>
 
               <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-white mb-4 tracking-tight">
-                Get updates on DojOps
+                {t.newsletter.heading}
               </h2>
               <p
                 className="text-sm sm:text-base leading-relaxed mb-10 max-w-lg mx-auto"
                 style={{ color: "#8b95a8" }}
               >
-                New modules, provider integrations, and releases. Straight to your inbox. No spam,
-                unsubscribe anytime.
+                {t.newsletter.description}
               </p>
 
               {status === "success" || status === "already" ? (
@@ -132,8 +133,8 @@ export default function CTASection() {
                   </svg>
                   <span className="text-sm font-medium" style={{ color: "#34d399" }}>
                     {status === "success"
-                      ? "Welcome aboard! Check your inbox."
-                      : "You\u2019re already subscribed!"}
+                      ? t.newsletter.successMessage
+                      : t.newsletter.alreadySubscribed}
                   </span>
                 </div>
               ) : (
@@ -146,7 +147,7 @@ export default function CTASection() {
                     required
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
-                    placeholder="you@company.com"
+                    placeholder={t.newsletter.placeholder}
                     disabled={status === "loading"}
                     className="flex-1 px-5 py-3.5 rounded-xl text-sm transition-all duration-200 disabled:opacity-50"
                     style={{
@@ -168,7 +169,7 @@ export default function CTASection() {
                     disabled={status === "loading"}
                     className="px-8 py-3.5 rounded-xl bg-gradient-brand text-white text-sm font-semibold hover:opacity-90 transition-opacity shrink-0 disabled:opacity-50"
                   >
-                    {status === "loading" ? "Subscribing..." : "Subscribe"}
+                    {status === "loading" ? t.newsletter.subscribing : t.newsletter.subscribe}
                   </button>
                   {status === "error" && (
                     <p
@@ -182,7 +183,7 @@ export default function CTASection() {
               )}
 
               <p className="text-xs mt-6" style={{ color: "#5a6478" }}>
-                Or reach us at{" "}
+                {t.newsletter.reachUs}{" "}
                 <a
                   href="mailto:contact@dojops.ai"
                   className="hover:text-white transition-colors"

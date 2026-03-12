@@ -2,34 +2,24 @@
 
 import { useState } from "react";
 import { INSTALL_COMMANDS } from "@/lib/constants";
+import { useTranslation } from "@/i18n";
 import CopyButton from "./CopyButton";
 import ScrollReveal from "./ScrollReveal";
 
-const tabs = [
-  { key: "npm" as const, label: "npm", comment: "# Install globally via npm" },
-  { key: "brew" as const, label: "Homebrew", comment: "# macOS / Linux via Homebrew" },
-  { key: "curl" as const, label: "curl", comment: "# One-liner. Works everywhere." },
-  {
-    key: "docker" as const,
-    label: "Docker",
-    comment: "# Mount project + config so nothing is lost",
-  },
-];
-
-const NEXT_STEPS = [
-  { step: "01", label: "Configure your LLM provider", cmd: "dojops config" },
-  { step: "02", label: "Initialize in your project", cmd: "dojops init" },
-  {
-    step: "03",
-    label: "Describe what you need",
-    cmd: 'dojops "Create a Terraform config for S3"',
-  },
-];
+const TAB_KEYS = ["npm", "brew", "curl", "docker"] as const;
+const TAB_LABELS = ["npm", "Homebrew", "curl", "Docker"];
 
 export default function InstallSection() {
+  const { t } = useTranslation();
   const [activeTab, setActiveTab] = useState<keyof typeof INSTALL_COMMANDS>("npm");
 
-  const activeTabData = tabs.find((t) => t.key === activeTab)!;
+  const tabComments: Record<string, string> = {
+    npm: t.install.tabComments.npm,
+    brew: t.install.tabComments.brew,
+    curl: t.install.tabComments.curl,
+    docker: t.install.tabComments.docker,
+  };
+  const activeComment = tabComments[activeTab];
 
   return (
     <section className="py-16 sm:py-24 lg:py-32 px-5 scroll-mt-20 relative" id="install">
@@ -49,7 +39,7 @@ export default function InstallSection() {
             <div className="flex items-center gap-2">
               <span className="text-accent font-mono text-lg">&gt;_</span>
               <h2 className="text-2xl sm:text-3xl font-bold text-text-primary tracking-tight">
-                Get Started
+                {t.install.getStarted}
               </h2>
             </div>
             <div
@@ -85,17 +75,17 @@ export default function InstallSection() {
 
               {/* Tab pills */}
               <div className="flex items-center gap-0.5 bg-[#0f1117] rounded-lg p-0.5">
-                {tabs.map((tab) => (
+                {TAB_KEYS.map((key, i) => (
                   <button
-                    key={tab.key}
-                    onClick={() => setActiveTab(tab.key)}
+                    key={key}
+                    onClick={() => setActiveTab(key)}
                     className="relative px-3 py-1 rounded-md text-[12px] font-medium transition-all duration-200"
                     style={{
-                      color: activeTab === tab.key ? "#7dd3fc" : "#5A6478",
-                      background: activeTab === tab.key ? "#0c2d48" : "transparent",
+                      color: activeTab === key ? "#7dd3fc" : "#5A6478",
+                      background: activeTab === key ? "#0c2d48" : "transparent",
                     }}
                   >
-                    {tab.label}
+                    {TAB_LABELS[i]}
                   </button>
                 ))}
               </div>
@@ -108,7 +98,7 @@ export default function InstallSection() {
             >
               {/* Comment line */}
               <div className="mb-3" style={{ color: "#4a5568" }}>
-                {activeTabData.comment}
+                {activeComment}
               </div>
 
               {/* Command line with copy button */}
@@ -129,7 +119,7 @@ export default function InstallSection() {
         <ScrollReveal delay={200}>
           <div className="mt-10 relative">
             <p className="text-text-tertiary text-[10px] tracking-[0.2em] uppercase font-semibold mb-5 flex items-center gap-3">
-              <span>What&apos;s next</span>
+              <span>{t.install.whatsNext}</span>
               <span
                 className="flex-1 h-px"
                 style={{
@@ -149,7 +139,7 @@ export default function InstallSection() {
               />
 
               <div className="flex flex-col gap-5">
-                {NEXT_STEPS.map((s) => (
+                {t.install.nextSteps.map((s) => (
                   <div key={s.step} className="flex items-start gap-4 group">
                     {/* Dot on the line */}
                     <div

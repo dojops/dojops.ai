@@ -1,15 +1,36 @@
 "use client";
 
-import { useRef, useEffect, useState, useCallback } from "react";
-import { TERMINAL_LINES } from "@/lib/constants";
+import { useRef, useEffect, useState, useCallback, useMemo } from "react";
+import { useTranslation } from "@/i18n";
 
 const LINE_INTERVAL_S = 0.3;
 const INITIAL_DELAY_S = 0.4;
-const TOTAL_ANIM_MS = (INITIAL_DELAY_S + TERMINAL_LINES.length * LINE_INTERVAL_S) * 1000 + 400;
 const HOLD_MS = 3000;
 const FADE_OUT_MS = 600;
 
 export default function TerminalDemo() {
+  const { t } = useTranslation();
+
+  const TERMINAL_LINES = useMemo(
+    () => [
+      { id: "prompt", type: "prompt" as const, text: t.terminal.prompt },
+      { id: "blank-1", type: "info" as const, text: "" },
+      { id: "routing", type: "info" as const, text: t.terminal.routing },
+      { id: "routed", type: "success" as const, text: t.terminal.routed },
+      { id: "blank-2", type: "info" as const, text: "" },
+      { id: "decomposing", type: "info" as const, text: t.terminal.decomposing },
+      { id: "tasks-planned", type: "success" as const, text: t.terminal.tasksPlanned },
+      { id: "blank-3", type: "info" as const, text: "" },
+      { id: "task-1", type: "task" as const, text: t.terminal.task1 },
+      { id: "task-2", type: "task" as const, text: t.terminal.task2 },
+      { id: "task-3", type: "task" as const, text: t.terminal.task3 },
+      { id: "blank-4", type: "info" as const, text: "" },
+      { id: "done", type: "done" as const, text: t.terminal.ready },
+    ],
+    [t.terminal],
+  );
+
+  const TOTAL_ANIM_MS = (INITIAL_DELAY_S + TERMINAL_LINES.length * LINE_INTERVAL_S) * 1000 + 400;
   const containerRef = useRef<HTMLDivElement>(null);
   const [inView, setInView] = useState(false);
   const [animKey, setAnimKey] = useState(0);
@@ -55,7 +76,7 @@ export default function TerminalDemo() {
     );
 
     return timers;
-  }, []);
+  }, [TOTAL_ANIM_MS]);
 
   useEffect(() => {
     if (!inView) return;

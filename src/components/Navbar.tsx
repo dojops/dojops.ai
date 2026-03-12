@@ -4,12 +4,12 @@ import { useState, useEffect, useSyncExternalStore } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { Sun, Moon } from "lucide-react";
-import { NAV_ITEMS, LINKS } from "@/lib/constants";
-
-// Filter out GitHub — it becomes an icon in the right group
-const CENTER_NAV_ITEMS = NAV_ITEMS.filter((item) => item.label !== "GitHub");
+import { LINKS } from "@/lib/constants";
+import { useTranslation } from "@/i18n";
+import LanguageSwitcher from "./LanguageSwitcher";
 
 function ThemeToggle() {
+  const { t } = useTranslation();
   const dark = useSyncExternalStore(
     (cb) => {
       const obs = new MutationObserver(cb);
@@ -33,7 +33,7 @@ function ThemeToggle() {
   return (
     <button
       onClick={toggle}
-      aria-label={dark ? "Switch to light mode" : "Switch to dark mode"}
+      aria-label={dark ? t.nav.lightMode : t.nav.darkMode}
       className="relative p-2 rounded-lg text-text-secondary hover:text-accent transition-colors duration-200"
     >
       {dark ? <Sun size={15} /> : <Moon size={15} />}
@@ -58,8 +58,16 @@ function GitHubLink() {
 }
 
 export default function Navbar() {
+  const { t } = useTranslation();
   const [mobileOpen, setMobileOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+
+  const centerNavItems = [
+    { label: t.nav.howItWorks, href: "#pipeline" },
+    { label: t.nav.features, href: "#features" },
+    { label: t.nav.modules, href: "#tools" },
+    { label: t.nav.docs, href: LINKS.docs, external: true },
+  ];
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 20);
@@ -100,7 +108,7 @@ export default function Navbar() {
 
         {/* Center nav links */}
         <div className="hidden md:flex items-center gap-1 flex-1 justify-center">
-          {CENTER_NAV_ITEMS.map((item) => (
+          {centerNavItems.map((item) => (
             <a
               key={item.label}
               href={item.href}
@@ -133,7 +141,7 @@ export default function Navbar() {
               }}
             />
             <span className="relative z-10 flex items-center gap-1.5">
-              Get Started
+              {t.nav.getStarted}
               <svg
                 width="12"
                 height="12"
@@ -153,16 +161,18 @@ export default function Navbar() {
 
           <GitHubLink />
           <ThemeToggle />
+          <LanguageSwitcher />
         </div>
 
         {/* Mobile controls */}
         <div className="md:hidden flex items-center gap-1 ml-auto">
           <GitHubLink />
           <ThemeToggle />
+          <LanguageSwitcher />
           <button
             className="p-2 -mr-2 rounded-lg text-text-secondary hover:text-text-primary transition-all duration-200"
             onClick={() => setMobileOpen(!mobileOpen)}
-            aria-label="Toggle menu"
+            aria-label={t.nav.toggleMenu}
           >
             <div className="w-5 h-4 relative flex flex-col justify-between">
               <span
@@ -209,7 +219,7 @@ export default function Navbar() {
             background: "color-mix(in srgb, var(--bg-card) 95%, transparent)",
           }}
         >
-          {CENTER_NAV_ITEMS.map((item) => (
+          {centerNavItems.map((item) => (
             <a
               key={item.label}
               href={item.href}
@@ -233,7 +243,7 @@ export default function Navbar() {
               }}
               onClick={() => setMobileOpen(false)}
             >
-              Get Started
+              {t.nav.getStarted}
             </a>
           </div>
         </div>

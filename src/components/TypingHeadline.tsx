@@ -1,35 +1,38 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import { useTranslation } from "@/i18n";
 
-const FULL_TEXT = "From prompt to ";
-const BRAND_TEXT = "production";
 const TYPING_SPEED = 65; // ms per character
 const BRAND_DELAY = 80; // slight pause before "production"
 
 export default function TypingHeadline() {
+  const { t } = useTranslation();
+  const fullText = t.hero.headlinePart1;
+  const brandText = t.hero.headlinePart2;
+
   const [charIndex, setCharIndex] = useState(0);
-  const totalChars = FULL_TEXT.length + BRAND_TEXT.length;
+  const totalChars = fullText.length + brandText.length;
   const done = charIndex >= totalChars;
 
   useEffect(() => {
     if (done) return;
 
     // Small pause before starting the brand word
-    const delay = charIndex === FULL_TEXT.length ? BRAND_DELAY : TYPING_SPEED;
+    const delay = charIndex === fullText.length ? BRAND_DELAY : TYPING_SPEED;
     const timer = setTimeout(() => setCharIndex((i) => i + 1), delay);
     return () => clearTimeout(timer);
-  }, [charIndex, done]);
+  }, [charIndex, done, fullText.length]);
 
-  const plainVisible = FULL_TEXT.slice(0, Math.min(charIndex, FULL_TEXT.length));
+  const plainVisible = fullText.slice(0, Math.min(charIndex, fullText.length));
   const brandVisible =
-    charIndex > FULL_TEXT.length ? BRAND_TEXT.slice(0, charIndex - FULL_TEXT.length) : "";
+    charIndex > fullText.length ? brandText.slice(0, charIndex - fullText.length) : "";
 
   return (
     <h1
       className="font-bold mb-6 tracking-tight leading-[1.15] px-2"
       style={{ fontSize: "clamp(1.75rem, 5vw, 3.5rem)" }}
-      aria-label={`${FULL_TEXT}${BRAND_TEXT}`}
+      aria-label={`${fullText}${brandText}`}
     >
       <span className="text-text-primary">{plainVisible}</span>
       <span className="text-gradient-brand">{brandVisible}</span>

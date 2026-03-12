@@ -11,6 +11,7 @@ import {
   FileCheck,
 } from "lucide-react";
 import { PIPELINE_OVERVIEW_STEPS } from "@/lib/constants";
+import { useTranslation } from "@/i18n";
 import SectionHeading from "./SectionHeading";
 import ScrollReveal from "./ScrollReveal";
 
@@ -30,6 +31,7 @@ const HOLD_MS = 2500;
 const RESET_GAP_MS = 400;
 
 export default function HowItWorks() {
+  const { t } = useTranslation();
   const sectionRef = useRef<HTMLDivElement>(null);
   const [inView, setInView] = useState(false);
   const [activeStep, setActiveStep] = useState(-1);
@@ -87,11 +89,7 @@ export default function HowItWorks() {
   return (
     <section ref={sectionRef} className="py-16 sm:py-24 lg:py-32 px-5 bg-bg-primary">
       <ScrollReveal>
-        <SectionHeading
-          id="how-it-works"
-          title="Seven steps. Zero YAML."
-          subtitle="From natural language to production-ready configs in seconds"
-        />
+        <SectionHeading id="how-it-works" title={t.pipeline.title} subtitle={t.pipeline.subtitle} />
       </ScrollReveal>
 
       {/* Desktop: horizontal pipeline (md+) */}
@@ -100,13 +98,14 @@ export default function HowItWorks() {
           <div className="flex items-start justify-center">
             {PIPELINE_OVERVIEW_STEPS.map((step, i) => {
               const Icon = ICON_MAP[step.icon];
+              const translated = t.pipeline.steps[i];
               const isActive = i <= activeStep;
               const isCurrent = i === activeStep;
               const showConnector = i < TOTAL_STEPS - 1;
               const connectorActive = i < activeStep;
 
               return (
-                <div key={step.label} className="flex items-start flex-1 min-w-0">
+                <div key={step.icon} className="flex items-start flex-1 min-w-0">
                   {/* Step */}
                   <div className="flex flex-col items-center text-center w-full">
                     {/* Step number */}
@@ -153,7 +152,7 @@ export default function HowItWorks() {
                         color: isActive ? "var(--text-primary)" : "var(--text-secondary)",
                       }}
                     >
-                      {step.label}
+                      {translated?.label ?? step.label}
                     </span>
 
                     {/* Description */}
@@ -163,7 +162,7 @@ export default function HowItWorks() {
                         color: isActive ? "var(--text-secondary)" : "var(--text-tertiary)",
                       }}
                     >
-                      {step.description}
+                      {translated?.description ?? step.description}
                     </span>
                   </div>
 
@@ -201,11 +200,12 @@ export default function HowItWorks() {
 
             {PIPELINE_OVERVIEW_STEPS.map((step, i) => {
               const Icon = ICON_MAP[step.icon];
+              const translated = t.pipeline.steps[i];
               const isActive = i <= activeStep;
               const isCurrent = i === activeStep;
 
               return (
-                <div key={step.label} className="relative flex items-start gap-4 mb-7 last:mb-0">
+                <div key={step.icon} className="relative flex items-start gap-4 mb-7 last:mb-0">
                   {/* Circle on the line */}
                   <div
                     className="absolute -left-12 w-9 h-9 rounded-xl border-2 flex items-center justify-center z-10"
@@ -238,7 +238,7 @@ export default function HowItWorks() {
                         color: isActive ? "var(--text-primary)" : "var(--text-secondary)",
                       }}
                     >
-                      {step.label}
+                      {translated?.label ?? step.label}
                     </span>
                     <p
                       className="text-xs leading-relaxed mt-0.5 transition-colors duration-400"
@@ -246,7 +246,7 @@ export default function HowItWorks() {
                         color: isActive ? "var(--text-secondary)" : "var(--text-tertiary)",
                       }}
                     >
-                      {step.description}
+                      {translated?.description ?? step.description}
                     </p>
                   </div>
                 </div>

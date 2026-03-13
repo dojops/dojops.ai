@@ -17,7 +17,7 @@ function ThemeToggle() {
       return () => obs.disconnect();
     },
     () => document.documentElement.classList.contains("dark"),
-    () => false,
+    () => true,
   );
 
   function toggle() {

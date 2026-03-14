@@ -42,7 +42,7 @@ export interface FooterLinksT {
   getStarted: string;
   features: string;
   howItWorks: string;
-  modules: string;
+  skills: string;
   documentation: string;
   hub: string;
   npmPackage: string;
@@ -56,7 +56,7 @@ export interface Translations {
   nav: {
     howItWorks: string;
     features: string;
-    modules: string;
+    skills: string;
     docs: string;
     github: string;
     getStarted: string;

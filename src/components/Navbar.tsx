@@ -65,7 +65,7 @@ export default function Navbar() {
   const centerNavItems = [
     { label: t.nav.howItWorks, href: "#pipeline" },
     { label: t.nav.features, href: "#features" },
-    { label: t.nav.modules, href: "#tools" },
+    { label: t.nav.skills, href: "#tools" },
     { label: t.nav.docs, href: LINKS.docs, external: true },
   ];
 

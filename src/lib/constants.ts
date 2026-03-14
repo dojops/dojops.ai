@@ -14,7 +14,7 @@ export interface NavItem {
 export const NAV_ITEMS: NavItem[] = [
   { label: "How It Works", href: "#pipeline" },
   { label: "Features", href: "#features" },
-  { label: "Modules", href: "#tools" },
+  { label: "Skills", href: "#tools" },
   { label: "Docs", href: LINKS.docs, external: true },
   { label: "GitHub", href: LINKS.github, external: true },
 ];
@@ -67,9 +67,9 @@ export const FEATURES: Feature[] = [
     icon: "scan",
   },
   {
-    title: "Build & Share Modules",
+    title: "Build & Share Skills",
     description:
-      "13 built-in modules for the common stuff. Need something specific? Write a DOPS manifest, publish to the Hub, or grab community modules. All verified with SHA-256 checksums.",
+      "13 built-in skills for the common stuff. Need something specific? Write a DOPS manifest, publish to the Hub, or grab community skills. All verified with SHA-256 checksums.",
     icon: "plugin",
   },
 ];
@@ -251,7 +251,7 @@ export interface HighlightStat {
 }
 
 export const HIGHLIGHT_STATS: HighlightStat[] = [
-  { value: "13", label: "DevOps Modules" },
+  { value: "13", label: "DevOps Skills" },
   { value: "17", label: "Specialist Agents" },
   { value: "10", label: "Security Scanners" },
   { value: "6", label: "LLM Providers" },

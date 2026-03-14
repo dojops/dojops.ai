@@ -4,7 +4,7 @@ export const en: Translations = {
   nav: {
     howItWorks: "How It Works",
     features: "Features",
-    modules: "Modules",
+    skills: "Skills",
     docs: "Docs",
     github: "GitHub",
     getStarted: "Get Started",
@@ -23,7 +23,7 @@ export const en: Translations = {
     downloaded: "downloaded",
   },
   stats: [
-    { value: "13", label: "DevOps Modules" },
+    { value: "13", label: "DevOps Skills" },
     { value: "17", label: "Specialist Agents" },
     { value: "10", label: "Security Scanners" },
     { value: "6", label: "LLM Providers" },
@@ -60,9 +60,9 @@ export const en: Translations = {
           "Trivy, Gitleaks, Checkov, Semgrep, Hadolint, ShellCheck, npm/pip audit, SBOM generation, and license scanning. All run before configs go live. Critical findings get auto-fixed.",
       },
       {
-        title: "Build & Share Modules",
+        title: "Build & Share Skills",
         description:
-          "13 built-in modules for the common stuff. Need something specific? Write a DOPS manifest, publish to the Hub, or grab community modules. All verified with SHA-256 checksums.",
+          "13 built-in skills for the common stuff. Need something specific? Write a DOPS manifest, publish to the Hub, or grab community skills. All verified with SHA-256 checksums.",
       },
     ],
   },
@@ -114,8 +114,8 @@ export const en: Translations = {
   },
   tools: {
     title: "Your tools. Your models.",
-    subtitle: "13 built-in DevOps modules, 6 LLM providers. Works out of the box.",
-    devopsModules: "DevOps Modules",
+    subtitle: "13 built-in DevOps skills, 6 LLM providers. Works out of the box.",
+    devopsModules: "DevOps Skills",
     llmProviders: "LLM Providers",
     noVendorLockIn: "Bring your own model. No vendor lock-in. Run fully local with Ollama.",
   },
@@ -198,7 +198,7 @@ export const en: Translations = {
     badge: "Stay in the loop",
     heading: "Get updates on DojOps",
     description:
-      "New modules, provider integrations, and releases. Straight to your inbox. No spam, unsubscribe anytime.",
+      "New skills, provider integrations, and releases. Straight to your inbox. No spam, unsubscribe anytime.",
     placeholder: "you@company.com",
     subscribe: "Subscribe",
     subscribing: "Subscribing...",
@@ -213,7 +213,7 @@ export const en: Translations = {
     getStarted: "Get Started",
     features: "Features",
     howItWorks: "How It Works",
-    modules: "Modules",
+    skills: "Skills",
     documentation: "Documentation",
     hub: "DojOps Hub",
     npmPackage: "npm Package",

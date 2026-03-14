@@ -4,7 +4,7 @@ export const fr: Translations = {
   nav: {
     howItWorks: "Fonctionnement",
     features: "Fonctions",
-    modules: "Modules",
+    skills: "Skills",
     docs: "Docs",
     github: "GitHub",
     getStarted: "Commencer",
@@ -23,7 +23,7 @@ export const fr: Translations = {
     downloaded: "t\u00e9l\u00e9chargements",
   },
   stats: [
-    { value: "13", label: "Modules DevOps" },
+    { value: "13", label: "Skills DevOps" },
     { value: "17", label: "Agents sp\u00e9cialis\u00e9s" },
     { value: "10", label: "Scanners de s\u00e9curit\u00e9" },
     { value: "6", label: "Fournisseurs LLM" },
@@ -61,9 +61,9 @@ export const fr: Translations = {
           "Trivy, Gitleaks, Checkov, Semgrep, Hadolint, ShellCheck, npm/pip audit, SBOM et licences. Ex\u00e9cut\u00e9s avant toute mise en production. Les probl\u00e8mes critiques sont corrig\u00e9s automatiquement.",
       },
       {
-        title: "Cr\u00e9ez et partagez des modules",
+        title: "Cr\u00e9ez et partagez des skills",
         description:
-          "13 modules int\u00e9gr\u00e9s pour les cas courants. Besoin de quelque chose de sp\u00e9cifique ? \u00c9crivez un manifeste DOPS, publiez sur le Hub ou r\u00e9cup\u00e9rez des modules communautaires. Tous v\u00e9rifi\u00e9s par SHA-256.",
+          "13 skills int\u00e9gr\u00e9s pour les cas courants. Besoin de quelque chose de sp\u00e9cifique ? \u00c9crivez un manifeste DOPS, publiez sur le Hub ou r\u00e9cup\u00e9rez des skills communautaires. Tous v\u00e9rifi\u00e9s par SHA-256.",
       },
     ],
   },
@@ -141,8 +141,8 @@ export const fr: Translations = {
   tools: {
     title: "Vos outils. Vos mod\u00e8les.",
     subtitle:
-      "13 modules DevOps int\u00e9gr\u00e9s, 6 fournisseurs LLM. Fonctionne imm\u00e9diatement.",
-    devopsModules: "Modules DevOps",
+      "13 skills DevOps int\u00e9gr\u00e9s, 6 fournisseurs LLM. Fonctionne imm\u00e9diatement.",
+    devopsModules: "Skills DevOps",
     llmProviders: "Fournisseurs LLM",
     noVendorLockIn:
       "Apportez votre propre mod\u00e8le. Aucun verrouillage fournisseur. Fonctionne enti\u00e8rement en local avec Ollama.",
@@ -227,7 +227,7 @@ export const fr: Translations = {
     badge: "Restez informé",
     heading: "Suivez l\u2019actualité DojOps",
     description:
-      "Nouveaux modules, intégrations et sorties. Directement dans votre boîte mail. Pas de spam, désinscription à tout moment.",
+      "Nouveaux skills, intégrations et sorties. Directement dans votre boîte mail. Pas de spam, désinscription à tout moment.",
     placeholder: "vous@entreprise.com",
     subscribe: "S\u2019abonner",
     subscribing: "Inscription...",
@@ -242,7 +242,7 @@ export const fr: Translations = {
     getStarted: "Commencer",
     features: "Fonctions",
     howItWorks: "Fonctionnement",
-    modules: "Modules",
+    skills: "Skills",
     documentation: "Documentation",
     hub: "DojOps Hub",
     npmPackage: "Package npm",

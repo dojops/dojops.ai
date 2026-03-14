@@ -4,7 +4,7 @@ export const zh: Translations = {
   nav: {
     howItWorks: "\u5de5\u4f5c\u539f\u7406",
     features: "\u529f\u80fd\u7279\u6027",
-    modules: "\u6a21\u5757",
+    skills: "\u6280\u80fd",
     docs: "\u6587\u6863",
     github: "GitHub",
     getStarted: "\u5f00\u59cb\u4f7f\u7528",
@@ -23,7 +23,7 @@ export const zh: Translations = {
     downloaded: "\u6b21\u4e0b\u8f7d",
   },
   stats: [
-    { value: "13", label: "DevOps \u6a21\u5757" },
+    { value: "13", label: "DevOps \u6280\u80fd" },
     { value: "17", label: "\u4e13\u4e1a\u667a\u80fd\u4f53" },
     { value: "10", label: "\u5b89\u5168\u626b\u63cf\u5668" },
     { value: "6", label: "LLM \u63d0\u4f9b\u5546" },
@@ -61,9 +61,9 @@ export const zh: Translations = {
           "Trivy\u3001Gitleaks\u3001Checkov\u3001Semgrep\u3001Hadolint\u3001ShellCheck\u3001npm/pip audit\u3001SBOM \u751f\u6210\u548c\u8bb8\u53ef\u8bc1\u626b\u63cf\u3002\u5168\u90e8\u5728\u914d\u7f6e\u4e0a\u7ebf\u524d\u8fd0\u884c\u3002\u4e25\u91cd\u95ee\u9898\u81ea\u52a8\u4fee\u590d\u3002",
       },
       {
-        title: "\u6784\u5efa\u4e0e\u5206\u4eab\u6a21\u5757",
+        title: "\u6784\u5efa\u4e0e\u5206\u4eab\u6280\u80fd",
         description:
-          "13 \u4e2a\u5185\u7f6e\u6a21\u5757\u8986\u76d6\u5e38\u89c1\u573a\u666f\u3002\u9700\u8981\u7279\u5b9a\u529f\u80fd\uff1f\u7f16\u5199 DOPS \u6e05\u5355\uff0c\u53d1\u5e03\u5230 Hub\uff0c\u6216\u83b7\u53d6\u793e\u533a\u6a21\u5757\u3002\u5168\u90e8\u901a\u8fc7 SHA-256 \u6821\u9a8c\u3002",
+          "13 \u4e2a\u5185\u7f6e\u6280\u80fd\u8986\u76d6\u5e38\u89c1\u573a\u666f\u3002\u9700\u8981\u7279\u5b9a\u529f\u80fd\uff1f\u7f16\u5199 DOPS \u6e05\u5355\uff0c\u53d1\u5e03\u5230 Hub\uff0c\u6216\u83b7\u53d6\u793e\u533a\u6280\u80fd\u3002\u5168\u90e8\u901a\u8fc7 SHA-256 \u6821\u9a8c\u3002",
       },
     ],
   },
@@ -134,8 +134,8 @@ export const zh: Translations = {
   tools: {
     title: "\u60a8\u7684\u5de5\u5177\u3002\u60a8\u7684\u6a21\u578b\u3002",
     subtitle:
-      "13 \u4e2a\u5185\u7f6e DevOps \u6a21\u5757\uff0c6 \u4e2a LLM \u63d0\u4f9b\u5546\u3002\u5f00\u7bb1\u5373\u7528\u3002",
-    devopsModules: "DevOps \u6a21\u5757",
+      "13 \u4e2a\u5185\u7f6e DevOps \u6280\u80fd\uff0c6 \u4e2a LLM \u63d0\u4f9b\u5546\u3002\u5f00\u7bb1\u5373\u7528\u3002",
+    devopsModules: "DevOps \u6280\u80fd",
     llmProviders: "LLM \u63d0\u4f9b\u5546",
     noVendorLockIn:
       "\u81ea\u5e26\u6a21\u578b\u3002\u65e0\u4f9b\u5e94\u5546\u9501\u5b9a\u3002\u4f7f\u7528 Ollama \u5b8c\u5168\u672c\u5730\u8fd0\u884c\u3002",
@@ -227,7 +227,7 @@ export const zh: Translations = {
   newsletter: {
     badge: "保持关注",
     heading: "获取 DojOps 最新动态",
-    description: "新模块、提供商集成和版本发布，直达您的收件箱。无垃圾邮件，随时退订。",
+    description: "新技能、提供商集成和版本发布，直达您的收件箱。无垃圾邮件，随时退订。",
     placeholder: "you@company.com",
     subscribe: "订阅",
     subscribing: "订阅中...",
@@ -242,7 +242,7 @@ export const zh: Translations = {
     getStarted: "\u5f00\u59cb\u4f7f\u7528",
     features: "\u529f\u80fd\u7279\u6027",
     howItWorks: "\u5de5\u4f5c\u539f\u7406",
-    modules: "\u6a21\u5757",
+    skills: "\u6280\u80fd",
     documentation: "\u6587\u6863",
     hub: "DojOps Hub",
     npmPackage: "npm \u5305",

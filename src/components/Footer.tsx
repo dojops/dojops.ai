@@ -50,7 +50,7 @@ export default function Footer() {
       { label: t.footer.getStarted, href: "#install" },
       { label: t.footer.features, href: "#features" },
       { label: t.footer.howItWorks, href: "#pipeline" },
-      { label: t.footer.modules, href: "#tools" },
+      { label: t.footer.skills, href: "#tools" },
     ],
     [t.footer.resources]: [
       { label: t.footer.documentation, href: LINKS.docs, external: true },

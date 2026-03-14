@@ -139,7 +139,7 @@ export const fr: Translations = {
     ready: "  Pr\u00eat. Lancez dojops apply pour ex\u00e9cuter.",
   },
   tools: {
-    title: "Vos outils. Vos mod\u00e8les.",
+    title: "Skills int\u00e9gr\u00e9s. Simplicit\u00e9 cl\u00e9 en main.",
     subtitle:
       "13 skills DevOps int\u00e9gr\u00e9s, 6 fournisseurs LLM. Fonctionne imm\u00e9diatement.",
     devopsModules: "Skills DevOps",

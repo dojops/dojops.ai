@@ -132,7 +132,7 @@ export const zh: Translations = {
     ready: "  \u5c31\u7eea\u3002\u8fd0\u884c dojops apply \u6267\u884c\u3002",
   },
   tools: {
-    title: "\u60a8\u7684\u5de5\u5177\u3002\u60a8\u7684\u6a21\u578b\u3002",
+    title: "\u5185\u7f6e\u6280\u80fd\uff0c\u5373\u63d2\u5373\u7528\u3002",
     subtitle:
       "13 \u4e2a\u5185\u7f6e DevOps \u6280\u80fd\uff0c6 \u4e2a LLM \u63d0\u4f9b\u5546\u3002\u5f00\u7bb1\u5373\u7528\u3002",
     devopsModules: "DevOps \u6280\u80fd",

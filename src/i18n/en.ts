@@ -113,7 +113,7 @@ export const en: Translations = {
     ready: "  Ready. Run dojops apply to execute.",
   },
   tools: {
-    title: "Your tools. Your models.",
+    title: "Built-in skills. Plug-and-play simplicity.",
     subtitle: "13 built-in DevOps skills, 6 LLM providers. Works out of the box.",
     devopsModules: "DevOps Skills",
     llmProviders: "LLM Providers",

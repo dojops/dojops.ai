@@ -156,7 +156,6 @@ export interface Translations {
     subscribe: string;
     subscribing: string;
     successMessage: string;
-    alreadySubscribed: string;
     reachUs: string;
   };
   // Footer

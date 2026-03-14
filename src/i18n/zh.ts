@@ -231,8 +231,7 @@ export const zh: Translations = {
     placeholder: "you@company.com",
     subscribe: "订阅",
     subscribing: "订阅中...",
-    successMessage: "欢迎加入！请查收邮件。",
-    alreadySubscribed: "您已订阅！",
+    successMessage: "请查收邮件以验证您的订阅。",
     reachUs: "或通过邮件联系我们",
   },
   footer: {

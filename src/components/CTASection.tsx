@@ -7,9 +7,7 @@ import { useTranslation } from "@/i18n";
 export default function CTASection() {
   const { t } = useTranslation();
   const [email, setEmail] = useState("");
-  const [status, setStatus] = useState<"idle" | "loading" | "success" | "already" | "error">(
-    "idle",
-  );
+  const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
   const [errorMsg, setErrorMsg] = useState("");
 
   async function handleSubmit(e: React.FormEvent) {
@@ -29,10 +27,8 @@ export default function CTASection() {
 
       const data = await res.json();
 
-      if (res.status === 201) {
+      if (res.ok) {
         setStatus("success");
-      } else if (res.status === 200) {
-        setStatus("already");
       } else {
         setStatus("error");
         setErrorMsg(data.error || "Something went wrong. Please try again.");
@@ -113,7 +109,7 @@ export default function CTASection() {
                 {t.newsletter.description}
               </p>
 
-              {status === "success" || status === "already" ? (
+              {status === "success" ? (
                 <div
                   className="inline-flex items-center gap-2 px-6 py-3 rounded-xl"
                   style={{
@@ -132,9 +128,7 @@ export default function CTASection() {
                     <path d="M20 6L9 17l-5-5" />
                   </svg>
                   <span className="text-sm font-medium" style={{ color: "#34d399" }}>
-                    {status === "success"
-                      ? t.newsletter.successMessage
-                      : t.newsletter.alreadySubscribed}
+                    {t.newsletter.successMessage}
                   </span>
                 </div>
               ) : (

@@ -231,8 +231,7 @@ export const fr: Translations = {
     placeholder: "vous@entreprise.com",
     subscribe: "S\u2019abonner",
     subscribing: "Inscription...",
-    successMessage: "Bienvenue à bord ! Vérifiez votre boîte mail.",
-    alreadySubscribed: "Vous êtes déjà abonné !",
+    successMessage: "Vérifiez votre boîte mail pour confirmer votre inscription.",
     reachUs: "Ou contactez-nous à",
   },
   footer: {

@@ -202,8 +202,7 @@ export const en: Translations = {
     placeholder: "you@company.com",
     subscribe: "Subscribe",
     subscribing: "Subscribing...",
-    successMessage: "Welcome aboard! Check your inbox.",
-    alreadySubscribed: "You\u2019re already subscribed!",
+    successMessage: "Check your inbox to verify your subscription.",
     reachUs: "Or reach us at",
   },
   footer: {

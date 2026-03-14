@@ -21,7 +21,7 @@ const jetbrainsMono = JetBrains_Mono({
 export const metadata: Metadata = {
   metadataBase: new URL("https://dojops.ai"),
   title: {
-    default: "DojOps — AI DevOps Automation Engine",
+    default: "DojOps AI DevOps Automation Engine",
     template: "%s | DojOps",
   },
   description:

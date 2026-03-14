@@ -23,7 +23,7 @@ export const fr: Translations = {
     downloaded: "t\u00e9l\u00e9chargements",
   },
   stats: [
-    { value: "13", label: "Skills DevOps" },
+    { value: "12+", label: "Skills DevOps" },
     { value: "17", label: "Agents sp\u00e9cialis\u00e9s" },
     { value: "10", label: "Scanners de s\u00e9curit\u00e9" },
     { value: "6", label: "Fournisseurs LLM" },
@@ -63,7 +63,7 @@ export const fr: Translations = {
       {
         title: "Cr\u00e9ez et partagez des skills",
         description:
-          "13 skills int\u00e9gr\u00e9s pour les cas courants. Besoin de quelque chose de sp\u00e9cifique ? \u00c9crivez un manifeste DOPS, publiez sur le Hub ou r\u00e9cup\u00e9rez des skills communautaires. Tous v\u00e9rifi\u00e9s par SHA-256.",
+          "Skills int\u00e9gr\u00e9s pour les cas courants. Besoin de quelque chose de sp\u00e9cifique ? \u00c9crivez un manifeste DOPS, publiez sur le Hub ou r\u00e9cup\u00e9rez des skills communautaires. Tous v\u00e9rifi\u00e9s par SHA-256.",
       },
     ],
   },
@@ -141,7 +141,7 @@ export const fr: Translations = {
   tools: {
     title: "Skills int\u00e9gr\u00e9s. Simplicit\u00e9 cl\u00e9 en main.",
     subtitle:
-      "13 skills DevOps int\u00e9gr\u00e9s, 6 fournisseurs LLM. Fonctionne imm\u00e9diatement.",
+      "12+ skills DevOps int\u00e9gr\u00e9s, 6 fournisseurs LLM. Fonctionne imm\u00e9diatement.",
     devopsModules: "Skills DevOps",
     llmProviders: "Fournisseurs LLM",
     noVendorLockIn:

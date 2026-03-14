@@ -88,10 +88,10 @@ export const DEVOPS_TOOLS: Tool[] = [
   { name: "Compose", icon: "docker-compose.png" },
   { name: "Dockerfile", icon: "docker.svg" },
   { name: "Nginx", icon: "nginx.svg" },
-  { name: "Makefile", icon: "makefile.svg" },
   { name: "GitLab CI", icon: "gitLab.svg" },
   { name: "Prometheus", icon: "prometheus.svg" },
   { name: "Systemd", icon: "systemd.svg" },
+  { name: "Jenkinsfile", icon: "jenkins.svg" },
 ];
 
 export interface Provider {
@@ -251,7 +251,7 @@ export interface HighlightStat {
 }
 
 export const HIGHLIGHT_STATS: HighlightStat[] = [
-  { value: "13", label: "DevOps Skills" },
+  { value: "12+", label: "DevOps Skills" },
   { value: "17", label: "Specialist Agents" },
   { value: "10", label: "Security Scanners" },
   { value: "6", label: "LLM Providers" },

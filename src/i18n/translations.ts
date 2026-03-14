@@ -3,10 +3,10 @@
 
 export type Locale = "en" | "fr" | "zh";
 
-export const SUPPORTED_LOCALES: { code: Locale; label: string; flag: string }[] = [
-  { code: "en", label: "English", flag: "EN" },
-  { code: "fr", label: "Français", flag: "FR" },
-  { code: "zh", label: "中文", flag: "中" },
+export const SUPPORTED_LOCALES: { code: Locale; label: string }[] = [
+  { code: "en", label: "English" },
+  { code: "fr", label: "Français" },
+  { code: "zh", label: "中文" },
 ];
 
 export interface FeatureT {

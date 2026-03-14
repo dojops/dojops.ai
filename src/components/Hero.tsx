@@ -15,7 +15,7 @@ export default function Hero() {
         {/* Logo */}
         <div className="relative mb-6 flex items-center justify-center">
           <Image
-            src="/icons/dojops-new-icon.png"
+            src="/icons/dojops-new-logo.png"
             alt="DojOps Logo"
             width={180}
             height={180}

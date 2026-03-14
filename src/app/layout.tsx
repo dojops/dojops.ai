@@ -87,7 +87,7 @@ export const metadata: Metadata = {
   },
   icons: {
     icon: [{ url: "/icons/dojops-favicon.png", sizes: "32x32", type: "image/png" }],
-    apple: [{ url: "/icons/dojops-new-icon.png", sizes: "180x180", type: "image/png" }],
+    apple: [{ url: "/icons/dojops-new-logo.png", sizes: "180x180", type: "image/png" }],
   },
   manifest: "/manifest.json",
 };

@@ -5,6 +5,7 @@ import { LINKS } from "@/lib/constants";
 import { useTranslation } from "@/i18n";
 import ScrollReveal from "./ScrollReveal";
 import CopyButton from "./CopyButton";
+import NpmVersion from "./NpmVersion";
 
 function GitHubIcon() {
   return (
@@ -259,6 +260,7 @@ export default function Footer() {
                   <DocsIcon />
                 </a>
               </div>
+              <NpmVersion />
             </div>
 
             {/* Link columns */}

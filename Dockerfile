@@ -36,9 +36,9 @@ server {
 
     error_page 404 /404.html;
 
+    # Use expires only — add_header here would override all parent security headers
     location ~* \.(js|css|png|jpg|jpeg|gif|ico|svg|woff|woff2|ttf|eot)$ {
         expires 1y;
-        add_header Cache-Control "public, immutable";
     }
 }
 EOF

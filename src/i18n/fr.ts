@@ -23,7 +23,7 @@ export const fr: Translations = {
     downloaded: "t\u00e9l\u00e9chargements",
   },
   stats: [
-    { value: "12+", label: "Skills DevOps" },
+    { value: "18", label: "Skills DevOps" },
     { value: "17", label: "Agents sp\u00e9cialis\u00e9s" },
     { value: "10", label: "Scanners de s\u00e9curit\u00e9" },
     { value: "6", label: "Fournisseurs LLM" },
@@ -141,7 +141,7 @@ export const fr: Translations = {
   tools: {
     title: "Skills int\u00e9gr\u00e9s. Simplicit\u00e9 cl\u00e9 en main.",
     subtitle:
-      "12+ skills DevOps int\u00e9gr\u00e9s, 6 fournisseurs LLM. Fonctionne imm\u00e9diatement.",
+      "18 skills DevOps int\u00e9gr\u00e9s, 6 fournisseurs LLM. Fonctionne imm\u00e9diatement.",
     devopsModules: "Skills DevOps",
     llmProviders: "Fournisseurs LLM",
     noVendorLockIn:

@@ -23,7 +23,7 @@ export const en: Translations = {
     downloaded: "downloaded",
   },
   stats: [
-    { value: "12+", label: "DevOps Skills" },
+    { value: "18", label: "DevOps Skills" },
     { value: "17", label: "Specialist Agents" },
     { value: "10", label: "Security Scanners" },
     { value: "6", label: "LLM Providers" },
@@ -114,7 +114,7 @@ export const en: Translations = {
   },
   tools: {
     title: "Built-in skills. Plug-and-play simplicity.",
-    subtitle: "12+ built-in DevOps skills, 6 LLM providers. Works out of the box.",
+    subtitle: "18 built-in DevOps skills, 6 LLM providers. Works out of the box.",
     devopsModules: "DevOps Skills",
     llmProviders: "LLM Providers",
     noVendorLockIn: "Bring your own model. No vendor lock-in. Run fully local with Ollama.",

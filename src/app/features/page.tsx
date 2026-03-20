@@ -9,12 +9,12 @@ import Footer from "@/components/Footer";
 export const metadata: Metadata = {
   title: "Features — AI-Powered DevOps Automation",
   description:
-    "18 DevOps skills, 17 specialist agents, 10 security scanners, 6 LLM providers. Schema-validated configs with sandboxed execution.",
+    "12+ DevOps skills, 17 specialist agents, 10 security scanners, 6 LLM providers. Schema-validated configs with sandboxed execution.",
   alternates: { canonical: "https://dojops.ai/features" },
   openGraph: {
     title: "DojOps Features — AI-Powered DevOps Automation",
     description:
-      "18 DevOps skills, 17 specialist agents, 10 security scanners, 6 LLM providers. Schema-validated configs with sandboxed execution.",
+      "12+ DevOps skills, 17 specialist agents, 10 security scanners, 6 LLM providers. Schema-validated configs with sandboxed execution.",
     url: "https://dojops.ai/features",
   },
 };

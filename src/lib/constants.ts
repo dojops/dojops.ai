@@ -69,7 +69,7 @@ export const FEATURES: Feature[] = [
   {
     title: "Build & Share Skills",
     description:
-      "18 built-in skills for the common stuff. Need something specific? Write a DOPS manifest, publish to the Hub, or grab community skills. All verified with SHA-256 checksums.",
+      "12+ built-in skills for the common stuff. Need something specific? Write a DOPS manifest, publish to the Hub, or grab community skills. All verified with SHA-256 checksums.",
     icon: "plugin",
   },
 ];
@@ -251,7 +251,7 @@ export interface HighlightStat {
 }
 
 export const HIGHLIGHT_STATS: HighlightStat[] = [
-  { value: "18", label: "DevOps Skills" },
+  { value: "12+", label: "DevOps Skills" },
   { value: "17", label: "Specialist Agents" },
   { value: "10", label: "Security Scanners" },
   { value: "6", label: "LLM Providers" },

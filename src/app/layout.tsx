@@ -23,7 +23,7 @@ export const metadata: Metadata = {
     template: "%s | DojOps",
   },
   description:
-    "Generate, validate, and execute infrastructure & CI/CD configurations using AI. 18 DevOps skills, 17 specialist agents, 6 LLM providers, sandboxed execution, and hash-chained audit trails.",
+    "Generate, validate, and execute infrastructure & CI/CD configurations using AI. 12+ DevOps skills, 17 specialist agents, 6 LLM providers, sandboxed execution, and hash-chained audit trails.",
   keywords: [
     "DevOps",
     "AI",
@@ -51,7 +51,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "DojOps — AI DevOps Automation Engine",
     description:
-      "Generate, validate, and execute infrastructure & CI/CD configurations using AI. 18 skills, 17 agents, sandboxed execution.",
+      "Generate, validate, and execute infrastructure & CI/CD configurations using AI. 12+ skills, 17 agents, sandboxed execution.",
     url: "https://dojops.ai",
     siteName: "DojOps",
     locale: "en_US",
@@ -69,7 +69,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "DojOps — AI DevOps Automation Engine",
     description:
-      "Generate, validate, and execute infrastructure & CI/CD configurations using AI. 18 skills, 17 agents, sandboxed execution.",
+      "Generate, validate, and execute infrastructure & CI/CD configurations using AI. 12+ skills, 17 agents, sandboxed execution.",
     images: ["/icons/dojops-new-logo.png"],
   },
   robots: {
@@ -113,7 +113,7 @@ const jsonLd = {
       applicationCategory: "DeveloperApplication",
       operatingSystem: "Linux, macOS, Windows",
       description:
-        "AI-powered DevOps automation engine that generates, validates, and executes infrastructure and CI/CD configurations with 18 built-in skills, 17 specialist agents, and sandboxed execution.",
+        "AI-powered DevOps automation engine that generates, validates, and executes infrastructure and CI/CD configurations with 12+ built-in skills, 17 specialist agents, and sandboxed execution.",
       url: "https://dojops.ai",
       downloadUrl: "https://www.npmjs.com/package/@dojops/cli",
       softwareVersion: "2.0.0",
@@ -124,7 +124,7 @@ const jsonLd = {
         priceCurrency: "USD",
       },
       featureList: [
-        "18 built-in DevOps skills",
+        "12+ built-in DevOps skills",
         "17 specialist AI agents",
         "6 LLM providers (OpenAI, Anthropic, Ollama, DeepSeek, Gemini, GitHub Copilot)",
         "Sandboxed execution with approval workflows",

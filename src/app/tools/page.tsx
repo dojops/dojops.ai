@@ -6,12 +6,12 @@ import CTASection from "@/components/CTASection";
 import Footer from "@/components/Footer";
 
 export const metadata: Metadata = {
-  title: "Tools — 18 DevOps Skills + 6 LLM Providers",
+  title: "Tools — 12+ DevOps Skills + 6 LLM Providers",
   description:
     "Terraform, Kubernetes, Docker, GitHub Actions, Ansible, and more. Works with OpenAI, Anthropic, Ollama, DeepSeek, Gemini, GitHub Copilot.",
   alternates: { canonical: "https://dojops.ai/tools" },
   openGraph: {
-    title: "DojOps Tools — 18 DevOps Skills + 6 LLM Providers",
+    title: "DojOps Tools — 12+ DevOps Skills + 6 LLM Providers",
     description:
       "Terraform, Kubernetes, Docker, GitHub Actions, Ansible, and more. Works with OpenAI, Anthropic, Ollama, DeepSeek, Gemini, GitHub Copilot.",
     url: "https://dojops.ai/tools",

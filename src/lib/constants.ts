@@ -104,6 +104,7 @@ export const LLM_PROVIDERS: Provider[] = [
   { name: "Anthropic", icon: "anthropic.svg" },
   { name: "Ollama", icon: "ollama.svg" },
   { name: "DeepSeek", icon: "deepseek.svg" },
+  { name: "Mistral", icon: "mistral.svg" },
   { name: "Google Gemini", icon: "gemini.svg" },
   { name: "GitHub Copilot", icon: "github-copilot.svg" },
 ];
@@ -254,7 +255,7 @@ export const HIGHLIGHT_STATS: HighlightStat[] = [
   { value: "12+", label: "DevOps Skills" },
   { value: "17", label: "Specialist Agents" },
   { value: "10", label: "Security Scanners" },
-  { value: "6", label: "LLM Providers" },
+  { value: "7", label: "LLM Providers" },
   { value: "8", label: "Security Layers" },
   { value: "21", label: "API Endpoints" },
 ];

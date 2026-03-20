@@ -5,7 +5,7 @@
 <h1 align="center">dojops.ai</h1>
 
 <p align="center">
-  Landing page for <a href="https://github.com/dojops/dojops">DojOps</a> — the AI DevOps Automation Engine.
+  Landing page for <a href="https://github.com/dojops/dojops">DojOps</a>.
 </p>
 
 <p align="center">
@@ -14,15 +14,15 @@
 
 **Live:** [https://dojops.ai](https://dojops.ai)
 
-## Tech Stack
+## Stack
 
-- **Next.js 15** (App Router, static export)
-- **Tailwind CSS v4** (`@theme inline` for design tokens)
-- **TypeScript**
-- **Sora** (headings/body) + **JetBrains Mono** (code/terminal)
-- Deployed on **Vercel**
+- Next.js 15 (App Router, static export)
+- Tailwind CSS v4 (`@theme inline` for design tokens)
+- TypeScript
+- Sora (headings/body) + JetBrains Mono (code/terminal)
+- Deployed on Vercel
 
-## Project Structure
+## Project structure
 
 ```
 src/
@@ -35,10 +35,10 @@ src/
 │   ├── Hero.tsx              # Logo, headline, CTA buttons, terminal demo
 │   ├── TerminalDemo.tsx      # CSS-animated terminal showing dojops plan
 │   ├── InstallSection.tsx    # Tabbed install (npm / curl / Docker) with terminal UI
-│   ├── HighlightStats.tsx    # Stats bar (18 tools, 17 agents, 10 scanners, etc.)
+│   ├── HighlightStats.tsx    # Stats bar (18 skills, 17 agents, 10 scanners, etc.)
 │   ├── HowItWorks.tsx        # 3-step flow: Describe → Review → Apply
 │   ├── Features.tsx          # 6 feature cards with glow hover
-│   ├── ToolsGrid.tsx         # 18 DevOps tools + 6 LLM providers
+│   ├── ToolsGrid.tsx         # 18 DevOps skills + 6 LLM providers
 │   ├── Security.tsx          # 8 security layers grid
 │   ├── Footer.tsx            # Final CTA + links
 │   ├── FloatingIconsBg.tsx   # Atmospheric floating DevOps tool icons background
@@ -50,24 +50,20 @@ src/
     └── constants.ts          # All content data, links, features, tools, terminal lines
 ```
 
-## Page Sections
+## Page sections
 
-1. **Hero** — Animated 3D logo, headline, CTA buttons, terminal demo
-2. **Get Started** — Tabbed install commands (npm/curl/Docker) + "What's next" steps
-3. **Stats Bar** — Key numbers (18 tools, 17 agents, 10 scanners, 6 providers, 8 security layers, 20 endpoints)
-4. **How It Works** — Three steps: Describe → Review → Apply
-5. **Features** — 6 capability cards (agents, planning, validation, sandboxing, scanning, custom tools)
-6. **Tools & Models** — 18 DevOps tools grid + 6 LLM providers
-7. **Security** — 8 layers of defense grid
-8. **Footer** — Final CTA + links
+1. Hero — animated logo, headline, CTA buttons, terminal demo
+2. Get started — tabbed install commands (npm/curl/Docker) + "What's next" steps
+3. Stats bar — 18 skills, 17 agents, 10 scanners, 6 providers, 8 security layers, 20+ endpoints
+4. How it works — Describe → Review → Apply
+5. Features — 6 capability cards (agents, planning, validation, sandboxing, scanning, custom skills)
+6. Tools and providers — 18 DevOps skills grid + 6 LLM providers
+7. Security — 8 defense layers
+8. Footer — CTA + links
 
 ## Design
 
-- **Theme:** Dark cyberpunk with neon cyan (`#00e5ff`) accent on deep black (`#050508`)
-- **Background:** Floating DevOps tool icons at 3-4% opacity with slow CSS drift animations
-- **Animations:** Scroll-triggered reveals (Intersection Observer), staggered entrance delays, terminal typewriter effect, badge shimmer
-- **Accessibility:** `prefers-reduced-motion` support, `:focus-visible` styles, WCAG-compliant text contrast
-- **Noise texture overlay** for depth
+Dark cyberpunk theme with neon cyan (`#00e5ff`) on deep black (`#050508`). Floating DevOps tool icons drift at 3-4% opacity in the background. Scroll-triggered reveals via Intersection Observer, staggered entrance delays, terminal typewriter effect, badge shimmer. `prefers-reduced-motion` disables all animations. Noise texture overlay adds depth.
 
 ## Development
 
@@ -78,13 +74,13 @@ npm run build     # Static export to out/
 npm run lint      # ESLint
 ```
 
-## Related Repos
+## Related repos
 
-| Repo                                                      | Description                                       |
+| Repo                                                      | What it is                                        |
 | --------------------------------------------------------- | ------------------------------------------------- |
 | [dojops/dojops](https://github.com/dojops/dojops)         | Main monorepo — CLI, API, all @dojops/\* packages |
 | [dojops/dojops-doc](https://github.com/dojops/dojops-doc) | Documentation site                                |
-| [dojops/dojops-hub](https://github.com/dojops/dojops-hub) | Tool/agent marketplace                            |
+| [dojops/dojops-hub](https://github.com/dojops/dojops-hub) | Skill marketplace                                 |
 
 ## License
 

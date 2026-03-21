@@ -26,7 +26,7 @@ export const zh: Translations = {
     { value: "12+", label: "DevOps \u6280\u80fd" },
     { value: "17", label: "\u4e13\u4e1a\u667a\u80fd\u4f53" },
     { value: "10", label: "\u5b89\u5168\u626b\u63cf\u5668" },
-    { value: "6", label: "LLM \u63d0\u4f9b\u5546" },
+    { value: "7", label: "LLM \u63d0\u4f9b\u5546" },
     { value: "8", label: "\u5b89\u5168\u5c42" },
     { value: "21", label: "API \u7aef\u70b9" },
   ],
@@ -134,7 +134,7 @@ export const zh: Translations = {
   tools: {
     title: "\u5185\u7f6e\u6280\u80fd\uff0c\u5373\u63d2\u5373\u7528\u3002",
     subtitle:
-      "12+ \u4e2a\u5185\u7f6e DevOps \u6280\u80fd\uff0c6 \u4e2a LLM \u63d0\u4f9b\u5546\u3002\u5f00\u7bb1\u5373\u7528\u3002",
+      "12+ \u4e2a\u5185\u7f6e DevOps \u6280\u80fd\uff0c7 \u4e2a LLM \u63d0\u4f9b\u5546\u3002\u5f00\u7bb1\u5373\u7528\u3002",
     devopsModules: "DevOps \u6280\u80fd",
     llmProviders: "LLM \u63d0\u4f9b\u5546",
     noVendorLockIn:

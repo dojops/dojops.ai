@@ -23,7 +23,7 @@ export const metadata: Metadata = {
     template: "%s | DojOps",
   },
   description:
-    "Generate, validate, and execute infrastructure & CI/CD configurations using AI. 12+ DevOps skills, 17 specialist agents, 6 LLM providers, sandboxed execution, and hash-chained audit trails.",
+    "Generate, validate, and execute infrastructure & CI/CD configurations using AI. 12+ DevOps skills, 17 specialist agents, 7 LLM providers, sandboxed execution, and hash-chained audit trails.",
   keywords: [
     "DevOps",
     "AI",
@@ -126,7 +126,7 @@ const jsonLd = {
       featureList: [
         "12+ built-in DevOps skills",
         "17 specialist AI agents",
-        "6 LLM providers (OpenAI, Anthropic, Ollama, DeepSeek, Gemini, GitHub Copilot)",
+        "7 LLM providers (OpenAI, Anthropic, Ollama, DeepSeek, Mistral, Gemini, GitHub Copilot)",
         "Sandboxed execution with approval workflows",
         "Hash-chained audit trails",
         "10 security scanners",

@@ -3,6 +3,7 @@ export const LINKS = {
   npm: "https://www.npmjs.com/package/@dojops/cli",
   docs: "https://doc.dojops.ai",
   hub: "https://hub.dojops.ai",
+  pixcot: "https://pixcot.com",
 } as const;
 
 export interface NavItem {

@@ -57,6 +57,7 @@ export default function Footer() {
       { label: t.footer.documentation, href: LINKS.docs, external: true },
       { label: t.footer.hub, href: LINKS.hub, external: true },
       { label: t.footer.npmPackage, href: LINKS.npm, external: true },
+      { label: t.footer.pixcot, href: LINKS.pixcot, external: true },
     ],
     [t.footer.community]: [
       { label: t.footer.github, href: LINKS.github, external: true },

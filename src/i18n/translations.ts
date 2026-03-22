@@ -46,6 +46,7 @@ export interface FooterLinksT {
   documentation: string;
   hub: string;
   npmPackage: string;
+  pixcot: string;
   github: string;
   contributing: string;
   issues: string;

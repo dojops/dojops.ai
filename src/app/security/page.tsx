@@ -24,6 +24,9 @@ export default function SecurityPage() {
       <FloatingIconsBg />
       <Navbar />
       <main>
+        <h1 className="sr-only">
+          DojOps security — 8 layers of defense for AI-generated infrastructure
+        </h1>
         <Security />
         <CTASection />
       </main>

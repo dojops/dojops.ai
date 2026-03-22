@@ -216,7 +216,7 @@ export const en: Translations = {
     documentation: "Documentation",
     hub: "DojOps Hub",
     npmPackage: "npm Package",
-    pixcot: "Pixcot — Pixel Art Editor",
+    pixcot: "Pixcot Pixel Art Editor",
     github: "GitHub",
     contributing: "Contributing",
     issues: "Issues",

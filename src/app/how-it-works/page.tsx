@@ -24,6 +24,7 @@ export default function HowItWorksPage() {
       <FloatingIconsBg />
       <Navbar />
       <main>
+        <h1 className="sr-only">How DojOps works — from prompt to production</h1>
         <PipelineFlow />
         <CTASection />
       </main>

@@ -25,6 +25,7 @@ export default function FeaturesPage() {
       <FloatingIconsBg />
       <Navbar />
       <main>
+        <h1 className="sr-only">DojOps features — AI-powered DevOps automation</h1>
         <HighlightStats />
         <Features />
         <CTASection />

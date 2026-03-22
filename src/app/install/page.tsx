@@ -24,6 +24,7 @@ export default function InstallPage() {
       <FloatingIconsBg />
       <Navbar />
       <main>
+        <h1 className="sr-only">Install DojOps — npm, Homebrew, curl, or Docker</h1>
         <InstallSection />
         <CTASection />
       </main>

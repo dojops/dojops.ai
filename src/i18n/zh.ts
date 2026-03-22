@@ -245,7 +245,7 @@ export const zh: Translations = {
     documentation: "\u6587\u6863",
     hub: "DojOps Hub",
     npmPackage: "npm \u5305",
-    pixcot: "Pixcot \u2014 \u50cf\u7d20\u827a\u672f\u7f16\u8f91\u5668",
+    pixcot: "Pixcot \u50cf\u7d20\u827a\u672f\u7f16\u8f91\u5668",
     github: "GitHub",
     contributing: "\u8d21\u732e\u6307\u5357",
     issues: "\u95ee\u9898\u53cd\u9988",

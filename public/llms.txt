@@ -1,0 +1,38 @@
+# DojOps — AI DevOps automation engine
+
+> DojOps generates, validates, and executes infrastructure and CI/CD configurations using AI. Open source, MIT licensed.
+
+## What DojOps does
+
+DojOps is a CLI tool that turns natural-language prompts into production-ready DevOps configurations. It routes your request to one of 17 specialist AI agents, decomposes goals into task graphs, generates configs with structured Zod output, validates with 10 security scanners, and applies changes through sandboxed execution with approval gates and hash-chained audit trails.
+
+## Key capabilities
+
+- 12+ built-in DevOps skills: GitHub Actions, Terraform, Kubernetes, Helm, Ansible, Docker Compose, Dockerfile, Nginx, Makefile, GitLab CI, Prometheus, Systemd, Jenkinsfile
+- 17 specialist AI agents with automatic routing
+- 7 LLM providers: OpenAI, Anthropic, Ollama, DeepSeek, Mistral, Google Gemini, GitHub Copilot
+- 10 security scanners: Trivy, Gitleaks, Checkov, Semgrep, Hadolint, ShellCheck, npm/pip audit, SBOM, license scanning
+- 8 security layers: structured output, schema validation, deep verification, policy engine, approval workflows, sandboxed execution, audit trail, zero telemetry
+- Custom skill system with SHA-256 verified marketplace (DojOps Hub)
+- REST API with web dashboard (21 endpoints)
+- Runs fully local with Ollama — zero telemetry
+
+## Installation
+
+```
+npm i -g @dojops/cli
+```
+
+Or via Homebrew, curl, or Docker. See https://dojops.ai/#install
+
+## Links
+
+- Website: https://dojops.ai
+- Documentation: https://doc.dojops.ai
+- GitHub: https://github.com/dojops/dojops
+- npm: https://www.npmjs.com/package/@dojops/cli
+- Skill Hub: https://hub.dojops.ai
+
+## License
+
+MIT

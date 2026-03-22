@@ -24,6 +24,7 @@ export default function ToolsPage() {
       <FloatingIconsBg />
       <Navbar />
       <main>
+        <h1 className="sr-only">DojOps tools — 12+ DevOps skills and 7 LLM providers</h1>
         <ToolsGrid />
         <CTASection />
       </main>

@@ -105,23 +105,32 @@ const jsonLd = {
         height: 600,
       },
       sameAs: ["https://github.com/dojops", "https://www.npmjs.com/package/@dojops/cli"],
+      contactPoint: {
+        "@type": "ContactPoint",
+        email: "contact@dojops.ai",
+        contactType: "customer support",
+      },
     },
     {
       "@type": "SoftwareApplication",
       "@id": "https://dojops.ai/#software",
       name: "DojOps",
       applicationCategory: "DeveloperApplication",
+      applicationSubCategory: "DevOps Automation",
       operatingSystem: "Linux, macOS, Windows",
       description:
         "AI-powered DevOps automation engine that generates, validates, and executes infrastructure and CI/CD configurations with 12+ built-in skills, 17 specialist agents, and sandboxed execution.",
       url: "https://dojops.ai",
       downloadUrl: "https://www.npmjs.com/package/@dojops/cli",
+      installUrl: "https://dojops.ai/#install",
       softwareVersion: "2.0.0",
       author: { "@id": "https://dojops.ai/#organization" },
       offers: {
         "@type": "Offer",
         price: "0",
         priceCurrency: "USD",
+        availability: "https://schema.org/InStock",
+        url: "https://dojops.ai/#install",
       },
       featureList: [
         "12+ built-in DevOps skills",
@@ -130,9 +139,15 @@ const jsonLd = {
         "Sandboxed execution with approval workflows",
         "Hash-chained audit trails",
         "10 security scanners",
-        "Custom skill system",
-        "REST API with web dashboard",
+        "Custom skill system with SHA-256 verification",
+        "REST API with web dashboard (21 endpoints)",
       ],
+      screenshot: "https://dojops.ai/icons/dojops-new-logo.png",
+      softwareHelp: {
+        "@type": "CreativeWork",
+        url: "https://doc.dojops.ai",
+      },
+      releaseNotes: "https://github.com/dojops/dojops/blob/main/CHANGELOG.md",
     },
     {
       "@type": "WebSite",
@@ -140,6 +155,37 @@ const jsonLd = {
       url: "https://dojops.ai",
       name: "DojOps",
       publisher: { "@id": "https://dojops.ai/#organization" },
+      potentialAction: {
+        "@type": "SearchAction",
+        target: {
+          "@type": "EntryPoint",
+          urlTemplate: "https://doc.dojops.ai?q={search_term_string}",
+        },
+        "query-input": "required name=search_term_string",
+      },
+    },
+    {
+      "@type": "WebPage",
+      "@id": "https://dojops.ai/#webpage",
+      url: "https://dojops.ai",
+      name: "DojOps — AI DevOps Automation Engine",
+      description:
+        "Generate, validate, and execute infrastructure & CI/CD configurations using AI. 12+ DevOps skills, 17 specialist agents, 7 LLM providers, sandboxed execution, and hash-chained audit trails.",
+      isPartOf: { "@id": "https://dojops.ai/#website" },
+      about: { "@id": "https://dojops.ai/#software" },
+      inLanguage: "en",
+    },
+    {
+      "@type": "BreadcrumbList",
+      "@id": "https://dojops.ai/#breadcrumb",
+      itemListElement: [
+        {
+          "@type": "ListItem",
+          position: 1,
+          name: "Home",
+          item: "https://dojops.ai",
+        },
+      ],
     },
   ],
 };
@@ -163,8 +209,16 @@ export default function RootLayout({
             __html: `(function(){try{var t=localStorage.getItem("theme");if(t==="light"){document.documentElement.classList.remove("dark");}else{document.documentElement.classList.add("dark");}}catch(e){document.documentElement.classList.add("dark");}})();`,
           }}
         />
+        {/* Preconnect to Google Fonts for faster font loading */}
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <link rel="dns-prefetch" href="https://github.com" />
         <link rel="dns-prefetch" href="https://doc.dojops.ai" />
+        {/* Hreflang — single-page app with client-side i18n */}
+        <link rel="alternate" hrefLang="en" href="https://dojops.ai" />
+        <link rel="alternate" hrefLang="fr" href="https://dojops.ai" />
+        <link rel="alternate" hrefLang="zh" href="https://dojops.ai" />
+        <link rel="alternate" hrefLang="x-default" href="https://dojops.ai" />
       </head>
       <body
         className={`${plusJakartaSans.variable} ${jetbrainsMono.variable} antialiased ambient-glow noise-overlay`}

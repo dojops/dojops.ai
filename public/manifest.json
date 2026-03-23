@@ -1,5 +1,5 @@
 {
-  "name": "DojOps — AI DevOps Automation Engine",
+  "name": "DojOps — AI Automation Engine",
   "short_name": "DojOps",
   "description": "Generate, validate, and execute infrastructure & CI/CD configurations using AI.",
   "start_url": "/",

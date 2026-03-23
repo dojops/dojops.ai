@@ -19,7 +19,7 @@ const jetbrainsMono = JetBrains_Mono({
 export const metadata: Metadata = {
   metadataBase: new URL("https://dojops.ai"),
   title: {
-    default: "DojOps AI DevOps Automation Engine",
+    default: "DojOps AI Automation Engine",
     template: "%s | DojOps",
   },
   description:
@@ -49,7 +49,7 @@ export const metadata: Metadata = {
     canonical: "https://dojops.ai",
   },
   openGraph: {
-    title: "DojOps — AI DevOps Automation Engine",
+    title: "DojOps — AI Automation Engine",
     description:
       "Generate, validate, and execute infrastructure & CI/CD configurations using AI. 12+ skills, 17 agents, sandboxed execution.",
     url: "https://dojops.ai",
@@ -60,14 +60,14 @@ export const metadata: Metadata = {
         url: "/icons/dojops-new-logo.png",
         width: 600,
         height: 600,
-        alt: "DojOps — AI DevOps Automation Engine",
+        alt: "DojOps — AI Automation Engine",
       },
     ],
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
-    title: "DojOps — AI DevOps Automation Engine",
+    title: "DojOps — AI Automation Engine",
     description:
       "Generate, validate, and execute infrastructure & CI/CD configurations using AI. 12+ skills, 17 agents, sandboxed execution.",
     images: ["/icons/dojops-new-logo.png"],
@@ -168,7 +168,7 @@ const jsonLd = {
       "@type": "WebPage",
       "@id": "https://dojops.ai/#webpage",
       url: "https://dojops.ai",
-      name: "DojOps — AI DevOps Automation Engine",
+      name: "DojOps — AI Automation Engine",
       description:
         "Generate, validate, and execute infrastructure & CI/CD configurations using AI. 12+ DevOps skills, 17 specialist agents, 7 LLM providers, sandboxed execution, and hash-chained audit trails.",
       isPartOf: { "@id": "https://dojops.ai/#website" },

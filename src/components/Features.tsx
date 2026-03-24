@@ -77,7 +77,7 @@ function FeatureIcon({
  * No dead space.
  */
 const GRID_CLASSES: string[] = [
-  "md:col-span-2 lg:col-span-3", // 0: "17 Specialist Agents" — featured
+  "md:col-span-2 lg:col-span-3", // 0: "32 Specialist Agents" — featured
   "md:col-span-1 lg:col-span-1", // 1: "Plan Before You Ship"
   "md:col-span-1 lg:col-span-1", // 2: "Zero Hallucinated YAML"
   "md:col-span-2 lg:col-span-3", // 3: "Every Write is Sandboxed" — featured

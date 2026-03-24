@@ -36,7 +36,7 @@ export interface Feature {
 
 export const FEATURES: Feature[] = [
   {
-    title: "17 Specialist Agents",
+    title: "32 Specialist Agents",
     description:
       "You describe the goal, DojOps picks the right agent. Terraform, Kubernetes, CI/CD, security, and more. You can also create your own agents with a single README.",
     icon: "agents",
@@ -260,7 +260,7 @@ export interface HighlightStat {
 
 export const HIGHLIGHT_STATS: HighlightStat[] = [
   { value: "53", label: "DevOps Skills" },
-  { value: "17", label: "Specialist Agents" },
+  { value: "32", label: "Specialist Agents" },
   { value: "10", label: "Security Scanners" },
   { value: "7", label: "LLM Providers" },
   { value: "8", label: "Security Layers" },

@@ -24,7 +24,7 @@ export const en: Translations = {
   },
   stats: [
     { value: "53", label: "DevOps Skills" },
-    { value: "17", label: "Specialist Agents" },
+    { value: "32", label: "Specialist Agents" },
     { value: "10", label: "Security Scanners" },
     { value: "7", label: "LLM Providers" },
     { value: "8", label: "Security Layers" },
@@ -35,7 +35,7 @@ export const en: Translations = {
     subtitle: "Every step is validated, sandboxed, and logged before anything touches your repo",
     items: [
       {
-        title: "17 Specialist Agents",
+        title: "32 Specialist Agents",
         description:
           "You describe the goal, DojOps picks the right agent. Terraform, Kubernetes, CI/CD, security, and more. You can also create your own agents with a single README.",
       },

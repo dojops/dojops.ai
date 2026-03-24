@@ -24,7 +24,7 @@ export const zh: Translations = {
   },
   stats: [
     { value: "53", label: "DevOps \u6280\u80fd" },
-    { value: "17", label: "\u4e13\u4e1a\u667a\u80fd\u4f53" },
+    { value: "32", label: "\u4e13\u4e1a\u667a\u80fd\u4f53" },
     { value: "10", label: "\u5b89\u5168\u626b\u63cf\u5668" },
     { value: "7", label: "LLM \u63d0\u4f9b\u5546" },
     { value: "8", label: "\u5b89\u5168\u5c42" },
@@ -36,7 +36,7 @@ export const zh: Translations = {
       "\u6bcf\u4e00\u6b65\u90fd\u7ecf\u8fc7\u9a8c\u8bc1\u3001\u6c99\u7bb1\u9694\u79bb\u548c\u65e5\u5fd7\u8bb0\u5f55\uff0c\u7136\u540e\u624d\u89e6\u53ca\u60a8\u7684\u4ed3\u5e93",
     items: [
       {
-        title: "17 \u4e2a\u4e13\u4e1a\u667a\u80fd\u4f53",
+        title: "32 \u4e2a\u4e13\u4e1a\u667a\u80fd\u4f53",
         description:
           "\u63cf\u8ff0\u60a8\u7684\u76ee\u6807\uff0cDojOps \u9009\u62e9\u5408\u9002\u7684\u667a\u80fd\u4f53\u3002Terraform\u3001Kubernetes\u3001CI/CD\u3001\u5b89\u5168\u7b49\u3002\u60a8\u8fd8\u53ef\u4ee5\u7528\u4e00\u4e2a README \u521b\u5efa\u81ea\u5df1\u7684\u667a\u80fd\u4f53\u3002",
       },

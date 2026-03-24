@@ -24,7 +24,7 @@ export const fr: Translations = {
   },
   stats: [
     { value: "53", label: "Skills DevOps" },
-    { value: "17", label: "Agents sp\u00e9cialis\u00e9s" },
+    { value: "32", label: "Agents sp\u00e9cialis\u00e9s" },
     { value: "10", label: "Scanners de s\u00e9curit\u00e9" },
     { value: "7", label: "Fournisseurs LLM" },
     { value: "8", label: "Couches de s\u00e9curit\u00e9" },
@@ -36,7 +36,7 @@ export const fr: Translations = {
       "Chaque \u00e9tape est valid\u00e9e, isol\u00e9e et journalis\u00e9e avant de toucher votre d\u00e9p\u00f4t",
     items: [
       {
-        title: "17 agents sp\u00e9cialis\u00e9s",
+        title: "32 agents sp\u00e9cialis\u00e9s",
         description:
           "D\u00e9crivez votre objectif, DojOps choisit le bon agent. Terraform, Kubernetes, CI/CD, s\u00e9curit\u00e9, et plus. Cr\u00e9ez vos propres agents avec un simple README.",
       },

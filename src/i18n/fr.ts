@@ -23,7 +23,7 @@ export const fr: Translations = {
     downloaded: "t\u00e9l\u00e9chargements",
   },
   stats: [
-    { value: "12+", label: "Skills DevOps" },
+    { value: "53", label: "Skills DevOps" },
     { value: "17", label: "Agents sp\u00e9cialis\u00e9s" },
     { value: "10", label: "Scanners de s\u00e9curit\u00e9" },
     { value: "7", label: "Fournisseurs LLM" },
@@ -63,7 +63,7 @@ export const fr: Translations = {
       {
         title: "Cr\u00e9ez et partagez des skills",
         description:
-          "Skills int\u00e9gr\u00e9s pour les cas courants. Besoin de quelque chose de sp\u00e9cifique ? \u00c9crivez un manifeste DOPS, publiez sur le Hub ou r\u00e9cup\u00e9rez des skills communautaires. Tous v\u00e9rifi\u00e9s par SHA-256.",
+          "53 skills int\u00e9gr\u00e9s couvrant CI/CD, conteneurs, cloud, monitoring et s\u00e9curit\u00e9. Besoin de quelque chose de sp\u00e9cifique ? \u00c9crivez un manifeste DOPS, publiez sur le Hub ou r\u00e9cup\u00e9rez des skills communautaires. Tous v\u00e9rifi\u00e9s par SHA-256.",
       },
     ],
   },
@@ -128,20 +128,20 @@ export const fr: Translations = {
     ],
   },
   terminal: {
-    prompt: '$ dojops plan "Configurer CI/CD pour Node.js avec Docker"',
-    routing: "  Routage vers l\u2019agent sp\u00e9cialiste...",
-    routed: "  \u2713 Rout\u00e9 vers cicd-specialist",
-    decomposing: "  D\u00e9composition de l\u2019objectif en t\u00e2ches...",
-    tasksPlanned: "  \u2713 3 t\u00e2ches planifi\u00e9es (risque : BAS)",
-    task1: "  #1  github-actions   Cr\u00e9er le workflow CI",
-    task2: "  #2  dockerfile       Construire l\u2019image Docker",
-    task3: "  #3  docker-compose   Orchestration de services",
-    ready: "  Pr\u00eat. Lancez dojops apply pour ex\u00e9cuter.",
+    prompt: "$ dojops arise --yes",
+    routing: "  Analyse du d\u00e9p\u00f4t...",
+    routed: "  \u2713 Node.js d\u00e9tect\u00e9, npm, pas de CI",
+    decomposing: "  Pipeline : build \u2192 test \u2192 containerize \u2192 deploy",
+    tasksPlanned: "  G\u00e9n\u00e9ration des fichiers en parall\u00e8le...",
+    task1: "  \u2713 .github/workflows/ci.yml",
+    task2: "  \u2713 Dockerfile",
+    task3: "  \u2713 docker-compose.yml",
+    ready: "  Pipeline g\u00e9n\u00e9r\u00e9 : 3/3 t\u00e2ches en 24s",
   },
   tools: {
     title: "Skills int\u00e9gr\u00e9s. Simplicit\u00e9 cl\u00e9 en main.",
     subtitle:
-      "12+ skills DevOps int\u00e9gr\u00e9s, 7 fournisseurs LLM. Fonctionne imm\u00e9diatement.",
+      "53 skills DevOps int\u00e9gr\u00e9s, 7 fournisseurs LLM. Fonctionne imm\u00e9diatement.",
     devopsModules: "Skills DevOps",
     llmProviders: "Fournisseurs LLM",
     noVendorLockIn:

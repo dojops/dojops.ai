@@ -23,7 +23,7 @@ export const zh: Translations = {
     downloaded: "\u6b21\u4e0b\u8f7d",
   },
   stats: [
-    { value: "12+", label: "DevOps \u6280\u80fd" },
+    { value: "53", label: "DevOps \u6280\u80fd" },
     { value: "17", label: "\u4e13\u4e1a\u667a\u80fd\u4f53" },
     { value: "10", label: "\u5b89\u5168\u626b\u63cf\u5668" },
     { value: "7", label: "LLM \u63d0\u4f9b\u5546" },
@@ -63,7 +63,7 @@ export const zh: Translations = {
       {
         title: "\u6784\u5efa\u4e0e\u5206\u4eab\u6280\u80fd",
         description:
-          "\u5185\u7f6e\u6280\u80fd\u8986\u76d6\u5e38\u89c1\u573a\u666f\u3002\u9700\u8981\u7279\u5b9a\u529f\u80fd\uff1f\u7f16\u5199 DOPS \u6e05\u5355\uff0c\u53d1\u5e03\u5230 Hub\uff0c\u6216\u83b7\u53d6\u793e\u533a\u6280\u80fd\u3002\u5168\u90e8\u901a\u8fc7 SHA-256 \u6821\u9a8c\u3002",
+          "53 \u4e2a\u5185\u7f6e\u6280\u80fd\u8986\u76d6 CI/CD\u3001\u5bb9\u5668\u3001\u4e91\u3001\u76d1\u63a7\u548c\u5b89\u5168\u3002\u9700\u8981\u7279\u5b9a\u529f\u80fd\uff1f\u7f16\u5199 DOPS \u6e05\u5355\uff0c\u53d1\u5e03\u5230 Hub\uff0c\u6216\u83b7\u53d6\u793e\u533a\u6280\u80fd\u3002\u5168\u90e8\u901a\u8fc7 SHA-256 \u6821\u9a8c\u3002",
       },
     ],
   },
@@ -120,21 +120,21 @@ export const zh: Translations = {
     ],
   },
   terminal: {
-    prompt: '$ dojops plan "\u4e3a Node.js \u914d\u7f6e Docker CI/CD"',
-    routing: "  \u8def\u7531\u5230\u4e13\u4e1a\u667a\u80fd\u4f53...",
-    routed: "  \u2713 \u5df2\u8def\u7531\u5230 cicd-specialist",
-    decomposing: "  \u5c06\u76ee\u6807\u5206\u89e3\u4e3a\u4efb\u52a1...",
-    tasksPlanned:
-      "  \u2713 \u5df2\u89c4\u5212 3 \u4e2a\u4efb\u52a1\uff08\u98ce\u9669\uff1a\u4f4e\uff09",
-    task1: "  #1  github-actions   \u521b\u5efa CI \u5de5\u4f5c\u6d41",
-    task2: "  #2  dockerfile       \u6784\u5efa Docker \u955c\u50cf",
-    task3: "  #3  docker-compose   \u670d\u52a1\u7f16\u6392",
-    ready: "  \u5c31\u7eea\u3002\u8fd0\u884c dojops apply \u6267\u884c\u3002",
+    prompt: "$ dojops arise --yes",
+    routing: "  \u626b\u63cf\u4ed3\u5e93...",
+    routed: "  \u2713 \u68c0\u6d4b\u5230 Node.js\u3001npm\u3001\u65e0 CI",
+    decomposing: "  \u6d41\u6c34\u7ebf\uff1abuild \u2192 test \u2192 containerize \u2192 deploy",
+    tasksPlanned: "  \u5e76\u884c\u751f\u6210\u6587\u4ef6...",
+    task1: "  \u2713 .github/workflows/ci.yml",
+    task2: "  \u2713 Dockerfile",
+    task3: "  \u2713 docker-compose.yml",
+    ready:
+      "  \u6d41\u6c34\u7ebf\u5df2\u751f\u6210\uff1a3/3 \u4efb\u52a1\u5728 24s \u5185\u5b8c\u6210",
   },
   tools: {
     title: "\u5185\u7f6e\u6280\u80fd\uff0c\u5373\u63d2\u5373\u7528\u3002",
     subtitle:
-      "12+ \u4e2a\u5185\u7f6e DevOps \u6280\u80fd\uff0c7 \u4e2a LLM \u63d0\u4f9b\u5546\u3002\u5f00\u7bb1\u5373\u7528\u3002",
+      "53 \u4e2a\u5185\u7f6e DevOps \u6280\u80fd\uff0c7 \u4e2a LLM \u63d0\u4f9b\u5546\u3002\u5f00\u7bb1\u5373\u7528\u3002",
     devopsModules: "DevOps \u6280\u80fd",
     llmProviders: "LLM \u63d0\u4f9b\u5546",
     noVendorLockIn:

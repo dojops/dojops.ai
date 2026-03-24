@@ -70,7 +70,7 @@ export const FEATURES: Feature[] = [
   {
     title: "Build & Share Skills",
     description:
-      "12+ built-in skills for the common stuff. Need something specific? Write a DOPS manifest, publish to the Hub, or grab community skills. All verified with SHA-256 checksums.",
+      "53 built-in skills covering CI/CD, containers, cloud, monitoring, and security. Need something specific? Write a DOPS manifest, publish to the Hub, or grab community skills. All verified with SHA-256 checksums.",
     icon: "plugin",
   },
 ];
@@ -121,8 +121,9 @@ export const HOW_IT_WORKS_STEPS: HowItWorksStep[] = [
   {
     step: 1,
     title: "Describe",
-    description: "Tell DojOps what you need in plain English. It picks the right agent and tools.",
-    command: 'dojops "Create a CI pipeline for Node.js with Docker deploy"',
+    description:
+      "Tell DojOps what you need in plain English, or run arise to generate a full pipeline from scratch.",
+    command: "dojops arise --yes",
   },
   {
     step: 2,
@@ -158,20 +159,25 @@ export const TERMINAL_LINES = [
   {
     id: "prompt",
     type: "prompt" as const,
-    text: '$ dojops plan "Set up CI/CD for Node.js with Docker"',
+    text: "$ dojops arise --yes",
   },
   { id: "blank-1", type: "info" as const, text: "" },
-  { id: "routing", type: "info" as const, text: "  Routing to specialist agent..." },
-  { id: "routed", type: "success" as const, text: "  \u2713 Routed to cicd-specialist" },
+  { id: "scanning", type: "info" as const, text: "  Scanning repository..." },
+  { id: "scanned", type: "success" as const, text: "  \u2713 Node.js detected, npm, no CI" },
   { id: "blank-2", type: "info" as const, text: "" },
-  { id: "decomposing", type: "info" as const, text: "  Decomposing goal into tasks..." },
-  { id: "tasks-planned", type: "success" as const, text: "  \u2713 3 tasks planned (risk: LOW)" },
+  {
+    id: "pipeline",
+    type: "info" as const,
+    text: "  Pipeline: build \u2192 test \u2192 containerize \u2192 deploy",
+  },
+  { id: "generating", type: "info" as const, text: "  Generating 4 files in parallel..." },
   { id: "blank-3", type: "info" as const, text: "" },
-  { id: "task-1", type: "task" as const, text: "  #1  github-actions   Create CI workflow" },
-  { id: "task-2", type: "task" as const, text: "  #2  dockerfile       Build Docker image" },
-  { id: "task-3", type: "task" as const, text: "  #3  docker-compose   Service orchestration" },
+  { id: "task-1", type: "task" as const, text: "  \u2713 .github/workflows/ci.yml" },
+  { id: "task-2", type: "task" as const, text: "  \u2713 Dockerfile" },
+  { id: "task-3", type: "task" as const, text: "  \u2713 docker-compose.yml" },
+  { id: "task-4", type: "task" as const, text: "  \u2713 manifests/deployment.yaml" },
   { id: "blank-4", type: "info" as const, text: "" },
-  { id: "done", type: "done" as const, text: "  Ready. Run dojops apply to execute." },
+  { id: "done", type: "done" as const, text: "  Pipeline generated: 4/4 tasks in 24s" },
 ];
 
 export interface SecurityFeature {
@@ -253,7 +259,7 @@ export interface HighlightStat {
 }
 
 export const HIGHLIGHT_STATS: HighlightStat[] = [
-  { value: "12+", label: "DevOps Skills" },
+  { value: "53", label: "DevOps Skills" },
   { value: "17", label: "Specialist Agents" },
   { value: "10", label: "Security Scanners" },
   { value: "7", label: "LLM Providers" },

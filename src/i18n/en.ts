@@ -13,7 +13,7 @@ export const en: Translations = {
     darkMode: "Switch to dark mode",
   },
   hero: {
-    badge: "AI DevOps Engine",
+    badge: "AI Automation Engine",
     headlinePart1: "From prompt to ",
     headlinePart2: "production",
     subtitle:

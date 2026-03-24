@@ -7,12 +7,12 @@ import CTASection from "@/components/CTASection";
 import Footer from "@/components/Footer";
 
 export const metadata: Metadata = {
-  title: "Features — AI-Powered DevOps Automation",
+  title: "Features — AI-Powered Automation",
   description:
     "53 DevOps skills, 32 specialist agents, 10 security scanners, 7 LLM providers. Schema-validated configs with sandboxed execution.",
   alternates: { canonical: "https://dojops.ai/features" },
   openGraph: {
-    title: "DojOps Features — AI-Powered DevOps Automation",
+    title: "DojOps Features — AI-Powered Automation",
     description:
       "53 DevOps skills, 32 specialist agents, 10 security scanners, 7 LLM providers. Schema-validated configs with sandboxed execution.",
     url: "https://dojops.ai/features",
@@ -25,7 +25,7 @@ export default function FeaturesPage() {
       <FloatingIconsBg />
       <Navbar />
       <main>
-        <h1 className="sr-only">DojOps features — AI-powered DevOps automation</h1>
+        <h1 className="sr-only">DojOps features — AI-powered automation</h1>
         <HighlightStats />
         <Features />
         <CTASection />

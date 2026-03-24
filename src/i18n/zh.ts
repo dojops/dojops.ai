@@ -13,7 +13,7 @@ export const zh: Translations = {
     darkMode: "\u5207\u6362\u5230\u6df1\u8272\u6a21\u5f0f",
   },
   hero: {
-    badge: "AI DevOps \u5f15\u64ce",
+    badge: "AI \u81ea\u52a8\u5316\u5f15\u64ce",
     headlinePart1: "\u4ece\u63d0\u793a\u8bcd\u5230",
     headlinePart2: "\u751f\u4ea7\u73af\u5883",
     subtitle:

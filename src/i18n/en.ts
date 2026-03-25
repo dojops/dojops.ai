@@ -23,7 +23,7 @@ export const en: Translations = {
     downloaded: "downloaded",
   },
   stats: [
-    { value: "53", label: "DevOps Skills" },
+    { value: "38", label: "DevOps Skills" },
     { value: "32", label: "Specialist Agents" },
     { value: "10", label: "Security Scanners" },
     { value: "7", label: "LLM Providers" },
@@ -62,7 +62,7 @@ export const en: Translations = {
       {
         title: "Build & Share Skills",
         description:
-          "53 built-in skills covering CI/CD, containers, cloud, monitoring, and security. Need something specific? Write a DOPS manifest, publish to the Hub, or grab community skills. All verified with SHA-256 checksums.",
+          "38 built-in skills covering CI/CD, containers, cloud, monitoring, and security. Need something specific? Write a DOPS manifest, publish to the Hub, or grab community skills. All verified with SHA-256 checksums.",
       },
     ],
   },
@@ -114,7 +114,7 @@ export const en: Translations = {
   },
   tools: {
     title: "Built-in skills. Plug-and-play simplicity.",
-    subtitle: "53 built-in DevOps skills, 7 LLM providers. Works out of the box.",
+    subtitle: "38 built-in DevOps skills, 7 LLM providers. Works out of the box.",
     devopsModules: "DevOps Skills",
     llmProviders: "LLM Providers",
     noVendorLockIn: "Bring your own model. No vendor lock-in. Run fully local with Ollama.",

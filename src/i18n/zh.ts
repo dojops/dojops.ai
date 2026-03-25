@@ -23,7 +23,7 @@ export const zh: Translations = {
     downloaded: "\u6b21\u4e0b\u8f7d",
   },
   stats: [
-    { value: "53", label: "DevOps \u6280\u80fd" },
+    { value: "38", label: "DevOps \u6280\u80fd" },
     { value: "32", label: "\u4e13\u4e1a\u667a\u80fd\u4f53" },
     { value: "10", label: "\u5b89\u5168\u626b\u63cf\u5668" },
     { value: "7", label: "LLM \u63d0\u4f9b\u5546" },
@@ -63,7 +63,7 @@ export const zh: Translations = {
       {
         title: "\u6784\u5efa\u4e0e\u5206\u4eab\u6280\u80fd",
         description:
-          "53 \u4e2a\u5185\u7f6e\u6280\u80fd\u8986\u76d6 CI/CD\u3001\u5bb9\u5668\u3001\u4e91\u3001\u76d1\u63a7\u548c\u5b89\u5168\u3002\u9700\u8981\u7279\u5b9a\u529f\u80fd\uff1f\u7f16\u5199 DOPS \u6e05\u5355\uff0c\u53d1\u5e03\u5230 Hub\uff0c\u6216\u83b7\u53d6\u793e\u533a\u6280\u80fd\u3002\u5168\u90e8\u901a\u8fc7 SHA-256 \u6821\u9a8c\u3002",
+          "38 \u4e2a\u5185\u7f6e\u6280\u80fd\u8986\u76d6 CI/CD\u3001\u5bb9\u5668\u3001\u4e91\u3001\u76d1\u63a7\u548c\u5b89\u5168\u3002\u9700\u8981\u7279\u5b9a\u529f\u80fd\uff1f\u7f16\u5199 DOPS \u6e05\u5355\uff0c\u53d1\u5e03\u5230 Hub\uff0c\u6216\u83b7\u53d6\u793e\u533a\u6280\u80fd\u3002\u5168\u90e8\u901a\u8fc7 SHA-256 \u6821\u9a8c\u3002",
       },
     ],
   },
@@ -134,7 +134,7 @@ export const zh: Translations = {
   tools: {
     title: "\u5185\u7f6e\u6280\u80fd\uff0c\u5373\u63d2\u5373\u7528\u3002",
     subtitle:
-      "53 \u4e2a\u5185\u7f6e DevOps \u6280\u80fd\uff0c7 \u4e2a LLM \u63d0\u4f9b\u5546\u3002\u5f00\u7bb1\u5373\u7528\u3002",
+      "38 \u4e2a\u5185\u7f6e DevOps \u6280\u80fd\uff0c7 \u4e2a LLM \u63d0\u4f9b\u5546\u3002\u5f00\u7bb1\u5373\u7528\u3002",
     devopsModules: "DevOps \u6280\u80fd",
     llmProviders: "LLM \u63d0\u4f9b\u5546",
     noVendorLockIn:

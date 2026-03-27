@@ -67,6 +67,7 @@ export default function Navbar() {
     { label: t.nav.features, href: "#features" },
     { label: t.nav.skills, href: "#tools" },
     { label: t.nav.docs, href: LINKS.docs, external: true },
+    { label: t.nav.contact, href: "/contact" },
   ];
 
   useEffect(() => {

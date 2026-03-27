@@ -2,6 +2,7 @@ import FloatingIconsBg from "@/components/FloatingIconsBg";
 import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
 import HighlightStats from "@/components/HighlightStats";
+import Platform from "@/components/Platform";
 import Features from "@/components/Features";
 import PipelineFlow from "@/components/PipelineFlow";
 import ToolsGrid from "@/components/ToolsGrid";
@@ -19,6 +20,7 @@ export default function Home() {
       <main>
         <Hero />
         <HighlightStats />
+        <Platform />
         <Features />
         <PipelineFlow />
         <ToolsGrid />

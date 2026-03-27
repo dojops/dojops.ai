@@ -8,13 +8,14 @@ DojOps is a CLI tool that turns natural-language prompts into production-ready D
 
 ## Key capabilities
 
-- 12+ built-in DevOps skills: GitHub Actions, Terraform, Kubernetes, Helm, Ansible, Docker Compose, Dockerfile, Nginx, Makefile, GitLab CI, Prometheus, Systemd, Jenkinsfile
-- 17 specialist AI agents with automatic routing
+- 38 built-in DevOps skills: GitHub Actions, Terraform, Kubernetes, Helm, Ansible, Docker Compose, Dockerfile, Nginx, Makefile, GitLab CI, Prometheus, Systemd, Jenkinsfile, shell, Python, PowerShell, Packer, and more
+- 32 specialist AI agents with automatic routing
 - 7 LLM providers: OpenAI, Anthropic, Ollama, DeepSeek, Mistral, Google Gemini, GitHub Copilot
 - 10 security scanners: Trivy, Gitleaks, Checkov, Semgrep, Hadolint, ShellCheck, npm/pip audit, SBOM, license scanning
 - 8 security layers: structured output, schema validation, deep verification, policy engine, approval workflows, sandboxed execution, audit trail, zero telemetry
 - Custom skill system with SHA-256 verified marketplace (DojOps Hub)
-- REST API with web dashboard (21 endpoints)
+- MCP client and server: connect external tool servers or expose DojOps as an MCP server for Claude Code, Gemini CLI, Copilot
+- REST API with web dashboard (22 endpoints)
 - Runs fully local with Ollama — zero telemetry
 
 ## Installation

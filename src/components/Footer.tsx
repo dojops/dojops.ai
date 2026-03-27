@@ -67,6 +67,7 @@ export default function Footer() {
         external: true,
       },
       { label: t.footer.issues, href: `${LINKS.github}/issues`, external: true },
+      { label: t.footer.contact, href: "/contact" },
     ],
   };
 

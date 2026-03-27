@@ -50,15 +50,31 @@ export interface FooterLinksT {
   github: string;
   contributing: string;
   issues: string;
+  contact: string;
+}
+
+export interface PlatformItemT {
+  title: string;
+  tagline: string;
+  features: string[];
+  ctaLabel: string;
+  badge?: string;
 }
 
 export interface Translations {
+  // Platform section
+  platform: {
+    title: string;
+    subtitle: string;
+    items: PlatformItemT[];
+  };
   // Navigation
   nav: {
     howItWorks: string;
     features: string;
     skills: string;
     docs: string;
+    contact: string;
     github: string;
     getStarted: string;
     toggleMenu: string;
@@ -158,6 +174,26 @@ export interface Translations {
     subscribing: string;
     successMessage: string;
     reachUs: string;
+  };
+  // Contact page
+  contact: {
+    title: string;
+    subtitle: string;
+    nameLabel: string;
+    namePlaceholder: string;
+    emailLabel: string;
+    emailPlaceholder: string;
+    companyLabel: string;
+    companyPlaceholder: string;
+    subjectLabel: string;
+    subjects: string[];
+    messageLabel: string;
+    messagePlaceholder: string;
+    submit: string;
+    submitting: string;
+    successTitle: string;
+    successMessage: string;
+    backHome: string;
   };
   // Footer
   footer: FooterLinksT & {

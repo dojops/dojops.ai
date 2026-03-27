@@ -13,11 +13,13 @@ export interface NavItem {
 }
 
 export const NAV_ITEMS: NavItem[] = [
+  { label: "Platform", href: "#platform" },
   { label: "How It Works", href: "#pipeline" },
   { label: "Features", href: "#features" },
   { label: "Skills", href: "#tools" },
   { label: "Docs", href: LINKS.docs, external: true },
   { label: "GitHub", href: LINKS.github, external: true },
+  { label: "Contact", href: "/contact" },
 ];
 
 export const INSTALL_COMMANDS = {
@@ -253,6 +255,64 @@ export const PIPELINE_STAGES: PipelineStage[] = PIPELINE_STAGE_DEFS.map(
   ([id, label, description]) => ({ id, label, description }),
 );
 
+export interface PlatformProduct {
+  id: string;
+  icon: string;
+  title: string;
+  tagline: string;
+  features: string[];
+  cta: { label: string; href: string };
+  badge?: string;
+  featured?: boolean;
+}
+
+export const PLATFORM_PRODUCTS: PlatformProduct[] = [
+  {
+    id: "cli",
+    icon: "terminal",
+    title: "DojOps CLI",
+    tagline: "Your hands on the wheel",
+    features: [
+      "38 built-in DevOps skills",
+      "32 specialist agents",
+      "Sandboxed execution with approval gates",
+      "7 LLM providers, run local with Ollama",
+      "MCP server for Claude Code, Gemini CLI, Copilot",
+    ],
+    cta: { label: "Get Started", href: "#install" },
+    featured: true,
+  },
+  {
+    id: "super-agent",
+    icon: "bot",
+    title: "Super Agent",
+    tagline: "Set it and forget it",
+    features: [
+      "Polls Jira and GitLab for tickets",
+      "Spawns DojOps CLI to resolve them",
+      "Pushes code and reports on tickets",
+      "Runs entirely on your machine",
+      "Free license key for first 100 requests",
+    ],
+    cta: { label: "Request Access", href: "/contact?subject=Super+Agent+beta+access" },
+    badge: "Beta",
+  },
+  {
+    id: "console",
+    icon: "browser",
+    title: "DojOps Console",
+    tagline: "Talk to DojOps from a browser",
+    features: [
+      "Chat interface with streaming responses",
+      "Connect GitHub, GitLab, Bitbucket, Azure DevOps",
+      "Team management and role-based access",
+      "Free, Pro, and Business plans",
+    ],
+    cta: { label: "Open Console", href: "https://console.dojops.ai" },
+    badge: "New",
+  },
+];
+
 export interface HighlightStat {
   value: string;
   label: string;
@@ -264,5 +324,5 @@ export const HIGHLIGHT_STATS: HighlightStat[] = [
   { value: "10", label: "Security Scanners" },
   { value: "7", label: "LLM Providers" },
   { value: "8", label: "Security Layers" },
-  { value: "21", label: "API Endpoints" },
+  { value: "22", label: "API Endpoints" },
 ];

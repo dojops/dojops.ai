@@ -1,11 +1,54 @@
 import type { Translations } from "./translations";
 
 export const fr: Translations = {
+  platform: {
+    title: "Une plateforme, trois outils",
+    subtitle: "Utilisez le terminal, laissez-le travailler seul, ou passez par le navigateur",
+    items: [
+      {
+        title: "DojOps CLI",
+        tagline: "Vous gardez le controle",
+        features: [
+          "38 skills DevOps integres",
+          "32 agents specialises",
+          "Execution isolee avec portes d'approbation",
+          "7 fournisseurs LLM, local avec Ollama",
+        ],
+        ctaLabel: "Commencer",
+      },
+      {
+        title: "Super Agent",
+        tagline: "Configurez et oubliez",
+        features: [
+          "Surveille Jira et GitLab pour les tickets",
+          "Lance DojOps CLI pour les resoudre",
+          "Pousse le code et rapporte sur les tickets",
+          "Fonctionne entierement sur votre machine",
+          "Cle de licence gratuite pour les 100 premieres requetes",
+        ],
+        ctaLabel: "Demander l'acces",
+        badge: "Beta",
+      },
+      {
+        title: "DojOps Console",
+        tagline: "Parlez a DojOps depuis un navigateur",
+        features: [
+          "Interface de chat avec reponses en streaming",
+          "Connectez GitHub, GitLab, Bitbucket, Azure DevOps",
+          "Gestion d'equipe et acces par roles",
+          "Plans Free, Pro et Business",
+        ],
+        ctaLabel: "Ouvrir la Console",
+        badge: "Nouveau",
+      },
+    ],
+  },
   nav: {
     howItWorks: "Fonctionnement",
     features: "Fonctions",
     skills: "Skills",
     docs: "Docs",
+    contact: "Contact",
     github: "GitHub",
     getStarted: "Commencer",
     toggleMenu: "Ouvrir le menu",
@@ -28,7 +71,7 @@ export const fr: Translations = {
     { value: "10", label: "Scanners de s\u00e9curit\u00e9" },
     { value: "7", label: "Fournisseurs LLM" },
     { value: "8", label: "Couches de s\u00e9curit\u00e9" },
-    { value: "21", label: "Points d\u2019API" },
+    { value: "22", label: "Points d\u2019API" },
   ],
   features: {
     title: "Con\u00e7u pour la vraie infra",
@@ -234,6 +277,31 @@ export const fr: Translations = {
     successMessage: "Vérifiez votre boîte mail pour confirmer votre inscription.",
     reachUs: "Ou contactez-nous à",
   },
+  contact: {
+    title: "Contactez-nous",
+    subtitle: "Demandez l'acces beta, posez une question ou dites-nous ce que vous construisez",
+    nameLabel: "Nom",
+    namePlaceholder: "Votre nom",
+    emailLabel: "Email",
+    emailPlaceholder: "vous@entreprise.com",
+    companyLabel: "Entreprise (optionnel)",
+    companyPlaceholder: "Acme Corp",
+    subjectLabel: "Sujet",
+    subjects: [
+      "Acces beta Super Agent",
+      "Demande plan Business",
+      "Partenariat",
+      "Rapport de bug",
+      "Question generale",
+    ],
+    messageLabel: "Message",
+    messagePlaceholder: "Dites-nous ce dont vous avez besoin...",
+    submit: "Envoyer",
+    submitting: "Envoi...",
+    successTitle: "Message envoye",
+    successMessage: "Nous vous repondrons sous 48 heures.",
+    backHome: "Retour a l'accueil",
+  },
   footer: {
     product: "Produit",
     resources: "Ressources",
@@ -249,6 +317,7 @@ export const fr: Translations = {
     github: "GitHub",
     contributing: "Contribuer",
     issues: "Probl\u00e8mes",
+    contact: "Contact",
     brandDescription:
       "G\u00e9n\u00e9rez, validez et appliquez des configs d\u2019infrastructure avec l\u2019IA. Open source, licence MIT.",
     copyright: "DojOps \u00b7 Licence MIT",

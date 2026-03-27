@@ -1,11 +1,55 @@
 import type { Translations } from "./translations";
 
 export const zh: Translations = {
+  platform: {
+    title: "\u4e00\u4e2a\u5e73\u53f0\uff0c\u4e09\u4e2a\u5de5\u5177",
+    subtitle:
+      "\u4ece\u7ec8\u7aef\u8fd0\u884c\u3001\u8ba9\u5b83\u81ea\u4e3b\u5de5\u4f5c\u3001\u6216\u4f7f\u7528\u7f51\u9875\u754c\u9762",
+    items: [
+      {
+        title: "DojOps CLI",
+        tagline: "\u60a8\u638c\u63e7\u65b9\u5411\u76d8",
+        features: [
+          "38 \u4e2a\u5185\u7f6e DevOps \u6280\u80fd",
+          "32 \u4e2a\u4e13\u4e1a\u667a\u80fd\u4f53",
+          "\u6c99\u7bb1\u6267\u884c\u4e0e\u5ba1\u6279\u95e8\u63a7",
+          "7 \u4e2a LLM \u63d0\u4f9b\u5546\uff0c\u652f\u6301 Ollama \u672c\u5730\u8fd0\u884c",
+        ],
+        ctaLabel: "\u5f00\u59cb\u4f7f\u7528",
+      },
+      {
+        title: "Super Agent",
+        tagline: "\u8bbe\u7f6e\u540e\u65e0\u9700\u7ba1\u7406",
+        features: [
+          "\u76d1\u63a7 Jira \u548c GitLab \u7684\u5de5\u5355",
+          "\u542f\u52a8 DojOps CLI \u89e3\u51b3\u5de5\u5355",
+          "\u63a8\u9001\u4ee3\u7801\u5e76\u5728\u5de5\u5355\u4e0a\u62a5\u544a",
+          "\u5b8c\u5168\u5728\u60a8\u7684\u673a\u5668\u4e0a\u8fd0\u884c",
+          "\u524d 100 \u6b21\u8bf7\u6c42\u514d\u8d39\u8bb8\u53ef\u8bc1",
+        ],
+        ctaLabel: "\u7533\u8bf7\u8bbf\u95ee",
+        badge: "Beta",
+      },
+      {
+        title: "DojOps Console",
+        tagline: "\u5728\u6d4f\u89c8\u5668\u4e2d\u4e0e DojOps \u5bf9\u8bdd",
+        features: [
+          "\u5e26\u6d41\u5f0f\u54cd\u5e94\u7684\u804a\u5929\u754c\u9762",
+          "\u8fde\u63a5 GitHub\u3001GitLab\u3001Bitbucket\u3001Azure DevOps",
+          "\u56e2\u961f\u7ba1\u7406\u4e0e\u89d2\u8272\u8bbf\u95ee\u63a7\u5236",
+          "Free\u3001Pro \u548c Business \u8ba1\u5212",
+        ],
+        ctaLabel: "\u6253\u5f00\u63a7\u5236\u53f0",
+        badge: "\u65b0",
+      },
+    ],
+  },
   nav: {
     howItWorks: "\u5de5\u4f5c\u539f\u7406",
     features: "\u529f\u80fd\u7279\u6027",
     skills: "\u6280\u80fd",
     docs: "\u6587\u6863",
+    contact: "\u8054\u7cfb\u6211\u4eec",
     github: "GitHub",
     getStarted: "\u5f00\u59cb\u4f7f\u7528",
     toggleMenu: "\u5207\u6362\u83dc\u5355",
@@ -28,7 +72,7 @@ export const zh: Translations = {
     { value: "10", label: "\u5b89\u5168\u626b\u63cf\u5668" },
     { value: "7", label: "LLM \u63d0\u4f9b\u5546" },
     { value: "8", label: "\u5b89\u5168\u5c42" },
-    { value: "21", label: "API \u7aef\u70b9" },
+    { value: "22", label: "API \u7aef\u70b9" },
   ],
   features: {
     title: "\u4e3a\u771f\u5b9e\u57fa\u7840\u8bbe\u65bd\u800c\u6784\u5efa",
@@ -234,6 +278,32 @@ export const zh: Translations = {
     successMessage: "请查收邮件以验证您的订阅。",
     reachUs: "或通过邮件联系我们",
   },
+  contact: {
+    title: "\u8054\u7cfb\u6211\u4eec",
+    subtitle:
+      "\u7533\u8bf7 Beta \u8bbf\u95ee\u3001\u63d0\u95ee\u6216\u544a\u8bc9\u6211\u4eec\u60a8\u5728\u6784\u5efa\u4ec0\u4e48",
+    nameLabel: "\u59d3\u540d",
+    namePlaceholder: "\u60a8\u7684\u59d3\u540d",
+    emailLabel: "\u90ae\u7bb1",
+    emailPlaceholder: "you@company.com",
+    companyLabel: "\u516c\u53f8\uff08\u53ef\u9009\uff09",
+    companyPlaceholder: "Acme Corp",
+    subjectLabel: "\u4e3b\u9898",
+    subjects: [
+      "Super Agent Beta \u8bbf\u95ee",
+      "Business \u8ba1\u5212\u54a8\u8be2",
+      "\u5408\u4f5c\u4f19\u4f34",
+      "Bug \u62a5\u544a",
+      "\u5e38\u89c4\u95ee\u9898",
+    ],
+    messageLabel: "\u6d88\u606f",
+    messagePlaceholder: "\u544a\u8bc9\u6211\u4eec\u60a8\u9700\u8981\u4ec0\u4e48...",
+    submit: "\u53d1\u9001\u6d88\u606f",
+    submitting: "\u53d1\u9001\u4e2d...",
+    successTitle: "\u6d88\u606f\u5df2\u53d1\u9001",
+    successMessage: "\u6211\u4eec\u5c06\u5728 48 \u5c0f\u65f6\u5185\u56de\u590d\u60a8\u3002",
+    backHome: "\u8fd4\u56de\u9996\u9875",
+  },
   footer: {
     product: "产品",
     resources: "\u8d44\u6e90",
@@ -249,6 +319,7 @@ export const zh: Translations = {
     github: "GitHub",
     contributing: "\u8d21\u732e\u6307\u5357",
     issues: "\u95ee\u9898\u53cd\u9988",
+    contact: "\u8054\u7cfb\u6211\u4eec",
     brandDescription:
       "\u4f7f\u7528 AI \u751f\u6210\u3001\u9a8c\u8bc1\u548c\u5e94\u7528\u57fa\u7840\u8bbe\u65bd\u914d\u7f6e\u3002\u5f00\u6e90\uff0cMIT \u8bb8\u53ef\u8bc1\u3002",
     copyright: "DojOps \u00b7 MIT \u8bb8\u53ef\u8bc1",

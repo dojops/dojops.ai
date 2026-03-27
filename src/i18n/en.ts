@@ -1,11 +1,54 @@
 import type { Translations } from "./translations";
 
 export const en: Translations = {
+  platform: {
+    title: "One platform, three tools",
+    subtitle: "Run it from your terminal, let it work autonomously, or use the web interface",
+    items: [
+      {
+        title: "DojOps CLI",
+        tagline: "Your hands on the wheel",
+        features: [
+          "38 built-in DevOps skills",
+          "32 specialist agents",
+          "Sandboxed execution with approval gates",
+          "7 LLM providers, run local with Ollama",
+        ],
+        ctaLabel: "Get Started",
+      },
+      {
+        title: "Super Agent",
+        tagline: "Set it and forget it",
+        features: [
+          "Polls Jira and GitLab for tickets",
+          "Spawns DojOps CLI to resolve them",
+          "Pushes code and reports on tickets",
+          "Runs entirely on your machine",
+          "Free license key for first 100 requests",
+        ],
+        ctaLabel: "Request Access",
+        badge: "Beta",
+      },
+      {
+        title: "DojOps Console",
+        tagline: "Talk to DojOps from a browser",
+        features: [
+          "Chat interface with streaming responses",
+          "Connect GitHub, GitLab, Bitbucket, Azure DevOps",
+          "Team management and role-based access",
+          "Free, Pro, and Business plans",
+        ],
+        ctaLabel: "Open Console",
+        badge: "New",
+      },
+    ],
+  },
   nav: {
     howItWorks: "How It Works",
     features: "Features",
     skills: "Skills",
     docs: "Docs",
+    contact: "Contact",
     github: "GitHub",
     getStarted: "Get Started",
     toggleMenu: "Toggle menu",
@@ -28,7 +71,7 @@ export const en: Translations = {
     { value: "10", label: "Security Scanners" },
     { value: "7", label: "LLM Providers" },
     { value: "8", label: "Security Layers" },
-    { value: "21", label: "API Endpoints" },
+    { value: "22", label: "API Endpoints" },
   ],
   features: {
     title: "Built for real infrastructure",
@@ -205,6 +248,31 @@ export const en: Translations = {
     successMessage: "Check your inbox to verify your subscription.",
     reachUs: "Or reach us at",
   },
+  contact: {
+    title: "Contact us",
+    subtitle: "Request beta access, ask a question, or tell us what you're building",
+    nameLabel: "Name",
+    namePlaceholder: "Your name",
+    emailLabel: "Email",
+    emailPlaceholder: "you@company.com",
+    companyLabel: "Company (optional)",
+    companyPlaceholder: "Acme Corp",
+    subjectLabel: "Subject",
+    subjects: [
+      "Super Agent beta access",
+      "Business plan inquiry",
+      "Partnership",
+      "Bug report",
+      "General question",
+    ],
+    messageLabel: "Message",
+    messagePlaceholder: "Tell us what you need...",
+    submit: "Send message",
+    submitting: "Sending...",
+    successTitle: "Message sent",
+    successMessage: "We'll get back to you within 48 hours.",
+    backHome: "Back to home",
+  },
   footer: {
     product: "Product",
     resources: "Resources",
@@ -220,6 +288,7 @@ export const en: Translations = {
     github: "GitHub",
     contributing: "Contributing",
     issues: "Issues",
+    contact: "Contact",
     brandDescription:
       "Generate, validate, and apply infrastructure configs with AI. Open source, MIT licensed.",
     copyright: "DojOps \u00b7 MIT License",

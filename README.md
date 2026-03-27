@@ -35,7 +35,7 @@ src/
 │   ├── Hero.tsx              # Logo, headline, CTA buttons, terminal demo
 │   ├── TerminalDemo.tsx      # CSS-animated terminal showing dojops plan
 │   ├── InstallSection.tsx    # Tabbed install (npm / curl / Docker) with terminal UI
-│   ├── HighlightStats.tsx    # Stats bar (18 skills, 17 agents, 10 scanners, etc.)
+│   ├── HighlightStats.tsx    # Stats bar (38 skills, 32 agents, 10 scanners, etc.)
 │   ├── HowItWorks.tsx        # 3-step flow: Describe → Review → Apply
 │   ├── Features.tsx          # 6 feature cards with glow hover
 │   ├── ToolsGrid.tsx         # 18 DevOps skills + 6 LLM providers
@@ -54,7 +54,7 @@ src/
 
 1. Hero — animated logo, headline, CTA buttons, terminal demo
 2. Get started — tabbed install commands (npm/curl/Docker) + "What's next" steps
-3. Stats bar — 18 skills, 17 agents, 10 scanners, 6 providers, 8 security layers, 20+ endpoints
+3. Stats bar — 38 skills, 32 agents, 10 scanners, 7 providers, 8 security layers, 22 endpoints
 4. How it works — Describe → Review → Apply
 5. Features — 6 capability cards (agents, planning, validation, sandboxing, scanning, custom skills)
 6. Tools and providers — 18 DevOps skills grid + 6 LLM providers

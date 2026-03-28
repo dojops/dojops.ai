@@ -324,5 +324,5 @@ export const HIGHLIGHT_STATS: HighlightStat[] = [
   { value: "10", label: "Security Scanners" },
   { value: "7", label: "LLM Providers" },
   { value: "8", label: "Security Layers" },
-  { value: "22", label: "API Endpoints" },
+  { value: "23", label: "API Endpoints" },
 ];

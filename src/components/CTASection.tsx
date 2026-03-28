@@ -142,6 +142,7 @@ export default function CTASection() {
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                     placeholder={t.newsletter.placeholder}
+                    aria-label={t.newsletter.placeholder}
                     disabled={status === "loading"}
                     className="flex-1 px-5 py-3.5 rounded-xl text-sm transition-all duration-200 disabled:opacity-50"
                     style={{

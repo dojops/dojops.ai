@@ -71,7 +71,7 @@ export const fr: Translations = {
     { value: "10", label: "Scanners de s\u00e9curit\u00e9" },
     { value: "7", label: "Fournisseurs LLM" },
     { value: "8", label: "Couches de s\u00e9curit\u00e9" },
-    { value: "22", label: "Points d\u2019API" },
+    { value: "23", label: "Points d\u2019API" },
   ],
   features: {
     title: "Con\u00e7u pour la vraie infra",

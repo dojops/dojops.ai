@@ -21,7 +21,7 @@ export default function CopyButton({ text, className = "" }: Readonly<CopyButton
   return (
     <button
       onClick={handleCopy}
-      className={`p-2 -m-2 rounded-lg text-text-secondary hover:text-neon-cyan hover:bg-neon-cyan/5 transition-all ${className}`}
+      className={`p-2 -m-2 rounded-lg text-text-secondary hover:text-accent hover:bg-accent/5 transition-all ${className}`}
       aria-label={t.install.copyToClipboard}
     >
       {copied ? (

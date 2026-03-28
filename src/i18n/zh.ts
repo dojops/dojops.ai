@@ -72,7 +72,7 @@ export const zh: Translations = {
     { value: "10", label: "\u5b89\u5168\u626b\u63cf\u5668" },
     { value: "7", label: "LLM \u63d0\u4f9b\u5546" },
     { value: "8", label: "\u5b89\u5168\u5c42" },
-    { value: "22", label: "API \u7aef\u70b9" },
+    { value: "23", label: "API \u7aef\u70b9" },
   ],
   features: {
     title: "\u4e3a\u771f\u5b9e\u57fa\u7840\u8bbe\u65bd\u800c\u6784\u5efa",

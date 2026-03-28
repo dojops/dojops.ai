@@ -142,9 +142,9 @@
      @theme resolves at build time and cannot forward-reference
      runtime CSS variables. */
 
-  /* Fonts */
-  --font-sans: "Plus Jakarta Sans", system-ui, sans-serif;
-  --font-mono: "JetBrains Mono", ui-monospace, monospace;
+  /* Fonts — reference next/font CSS variables so optimized subsets load */
+  --font-sans: var(--font-plus-jakarta), "Plus Jakarta Sans", system-ui, sans-serif;
+  --font-mono: var(--font-jetbrains-mono), "JetBrains Mono", ui-monospace, monospace;
 }
 
 /* ======== BASE STYLES ======== */

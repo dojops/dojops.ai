@@ -121,55 +121,71 @@ function ContactContent() {
               >
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
                   <div>
-                    <label className="block text-sm font-medium text-text-secondary mb-1.5">
+                    <label
+                      htmlFor="contact-name"
+                      className="block text-sm font-medium text-text-secondary mb-1.5"
+                    >
                       {t.contact.nameLabel} <span className="text-accent">*</span>
                     </label>
                     <input
+                      id="contact-name"
                       type="text"
                       required
                       value={name}
                       onChange={(e) => setName(e.target.value)}
                       placeholder={t.contact.namePlaceholder}
-                      className="w-full rounded-xl border border-border-secondary bg-bg-primary px-4 py-3 text-sm text-text-primary placeholder:text-text-tertiary focus:outline-none focus:border-accent transition-colors"
+                      className="w-full rounded-xl border border-border-secondary bg-bg-primary px-4 py-3 text-sm text-text-primary placeholder:text-text-tertiary focus:border-accent focus:ring-2 focus:ring-accent/30 transition-colors outline-none"
                     />
                   </div>
                   <div>
-                    <label className="block text-sm font-medium text-text-secondary mb-1.5">
+                    <label
+                      htmlFor="contact-email"
+                      className="block text-sm font-medium text-text-secondary mb-1.5"
+                    >
                       {t.contact.emailLabel} <span className="text-accent">*</span>
                     </label>
                     <input
+                      id="contact-email"
                       type="email"
                       required
                       value={email}
                       onChange={(e) => setEmail(e.target.value)}
                       placeholder={t.contact.emailPlaceholder}
-                      className="w-full rounded-xl border border-border-secondary bg-bg-primary px-4 py-3 text-sm text-text-primary placeholder:text-text-tertiary focus:outline-none focus:border-accent transition-colors"
+                      className="w-full rounded-xl border border-border-secondary bg-bg-primary px-4 py-3 text-sm text-text-primary placeholder:text-text-tertiary focus:border-accent focus:ring-2 focus:ring-accent/30 transition-colors outline-none"
                     />
                   </div>
                 </div>
 
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
                   <div>
-                    <label className="block text-sm font-medium text-text-secondary mb-1.5">
+                    <label
+                      htmlFor="contact-company"
+                      className="block text-sm font-medium text-text-secondary mb-1.5"
+                    >
                       {t.contact.companyLabel}
                     </label>
                     <input
+                      id="contact-company"
                       type="text"
                       value={company}
                       onChange={(e) => setCompany(e.target.value)}
                       placeholder={t.contact.companyPlaceholder}
-                      className="w-full rounded-xl border border-border-secondary bg-bg-primary px-4 py-3 text-sm text-text-primary placeholder:text-text-tertiary focus:outline-none focus:border-accent transition-colors"
+                      className="w-full rounded-xl border border-border-secondary bg-bg-primary px-4 py-3 text-sm text-text-primary placeholder:text-text-tertiary focus:border-accent focus:ring-2 focus:ring-accent/30 transition-colors outline-none"
                     />
                   </div>
                   <div>
-                    <label className="block text-sm font-medium text-text-secondary mb-1.5">
+                    <label
+                      htmlFor="contact-subject"
+                      className="block text-sm font-medium text-text-secondary mb-1.5"
+                    >
                       {t.contact.subjectLabel} <span className="text-accent">*</span>
                     </label>
                     <select
+                      id="contact-subject"
                       required
                       value={subject}
                       onChange={(e) => setSubject(e.target.value)}
-                      className="w-full rounded-xl border border-border-secondary bg-bg-primary px-4 py-3 text-sm text-text-primary focus:outline-none focus:border-accent transition-colors"
+                      className="w-full rounded-xl border border-border-secondary bg-bg-primary px-4 py-3 text-sm text-text-primary focus:border-accent focus:ring-2 focus:ring-accent/30 transition-colors outline-none"
                     >
                       <option value="" disabled>
                         --
@@ -184,16 +200,20 @@ function ContactContent() {
                 </div>
 
                 <div>
-                  <label className="block text-sm font-medium text-text-secondary mb-1.5">
+                  <label
+                    htmlFor="contact-message"
+                    className="block text-sm font-medium text-text-secondary mb-1.5"
+                  >
                     {t.contact.messageLabel} <span className="text-accent">*</span>
                   </label>
                   <textarea
+                    id="contact-message"
                     required
                     rows={5}
                     value={message}
                     onChange={(e) => setMessage(e.target.value)}
                     placeholder={t.contact.messagePlaceholder}
-                    className="w-full rounded-xl border border-border-secondary bg-bg-primary px-4 py-3 text-sm text-text-primary placeholder:text-text-tertiary focus:outline-none focus:border-accent transition-colors resize-none"
+                    className="w-full rounded-xl border border-border-secondary bg-bg-primary px-4 py-3 text-sm text-text-primary placeholder:text-text-tertiary focus:border-accent focus:ring-2 focus:ring-accent/30 transition-colors resize-none outline-none"
                   />
                 </div>
 

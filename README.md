@@ -54,7 +54,7 @@ src/
 
 1. Hero — animated logo, headline, CTA buttons, terminal demo
 2. Get started — tabbed install commands (npm/curl/Docker) + "What's next" steps
-3. Stats bar — 38 skills, 32 agents, 10 scanners, 7 providers, 8 security layers, 22 endpoints
+3. Stats bar — 38 skills, 32 agents, 10 scanners, 7 providers, 8 security layers, 23 endpoints
 4. How it works — Describe → Review → Apply
 5. Features — 6 capability cards (agents, planning, validation, sandboxing, scanning, custom skills)
 6. Tools and providers — 18 DevOps skills grid + 6 LLM providers

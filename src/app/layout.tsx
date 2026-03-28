@@ -140,7 +140,7 @@ const jsonLd = {
         "Hash-chained audit trails",
         "10 security scanners",
         "Custom skill system with SHA-256 verification",
-        "REST API with web dashboard (22 endpoints)",
+        "REST API with web dashboard (23 endpoints)",
       ],
       screenshot: "https://dojops.ai/icons/dojops-new-logo.png",
       softwareHelp: {

@@ -74,10 +74,18 @@ export default function InstallSection() {
               </div>
 
               {/* Tab pills */}
-              <div className="flex items-center gap-0.5 bg-[#0f1117] rounded-lg p-0.5">
+              <div
+                className="flex items-center gap-0.5 bg-[#0f1117] rounded-lg p-0.5"
+                role="tablist"
+                aria-label="Installation method"
+              >
                 {TAB_KEYS.map((key, i) => (
                   <button
                     key={key}
+                    role="tab"
+                    id={`tab-${key}`}
+                    aria-selected={activeTab === key}
+                    aria-controls={`panel-${key}`}
                     onClick={() => setActiveTab(key)}
                     className="relative px-3 py-1 rounded-md text-[12px] font-medium transition-all duration-200"
                     style={{
@@ -93,6 +101,9 @@ export default function InstallSection() {
 
             {/* Terminal body */}
             <div
+              role="tabpanel"
+              id={`panel-${activeTab}`}
+              aria-labelledby={`tab-${activeTab}`}
               className="p-5 sm:p-6 font-mono text-[13px] text-left"
               style={{ background: "#0c0e14", color: "#E8EDF5" }}
             >

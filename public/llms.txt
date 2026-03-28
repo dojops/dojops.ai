@@ -15,7 +15,7 @@ DojOps is a CLI tool that turns natural-language prompts into production-ready D
 - 8 security layers: structured output, schema validation, deep verification, policy engine, approval workflows, sandboxed execution, audit trail, zero telemetry
 - Custom skill system with SHA-256 verified marketplace (DojOps Hub)
 - MCP client and server: connect external tool servers or expose DojOps as an MCP server for Claude Code, Gemini CLI, Copilot
-- REST API with web dashboard (22 endpoints)
+- REST API with web dashboard (23 endpoints)
 - Runs fully local with Ollama — zero telemetry
 
 ## Installation

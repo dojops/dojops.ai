@@ -124,11 +124,13 @@ export default function HowItWorks() {
                       style={{
                         borderColor: isActive ? "var(--accent)" : "var(--border-primary)",
                         backgroundColor: isActive ? "var(--accent-subtle)" : "var(--bg-card)",
-                        boxShadow: isCurrent
-                          ? "0 0 20px color-mix(in srgb, var(--accent) 20%, transparent), 0 0 40px color-mix(in srgb, var(--accent) 8%, transparent)"
-                          : isActive
-                            ? "0 0 12px color-mix(in srgb, var(--accent) 10%, transparent)"
-                            : "none",
+                        boxShadow: (() => {
+                          if (isCurrent)
+                            return "0 0 20px color-mix(in srgb, var(--accent) 20%, transparent), 0 0 40px color-mix(in srgb, var(--accent) 8%, transparent)";
+                          if (isActive)
+                            return "0 0 12px color-mix(in srgb, var(--accent) 10%, transparent)";
+                          return "none";
+                        })(),
                         transition: "all 0.5s cubic-bezier(0.16, 1, 0.3, 1)",
                         transform: isCurrent ? "scale(1.08)" : "scale(1)",
                       }}

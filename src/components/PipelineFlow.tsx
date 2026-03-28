@@ -685,11 +685,9 @@ function ProgressDots({
       {PIPELINE_STAGES.map((s, i) => {
         const filled = i <= activeIndex;
         const isCurrent = i === activeIndex && !done;
-        const bg = filled
-          ? done
-            ? "var(--success-fg)"
-            : "var(--accent)"
-          : "var(--border-secondary)";
+        let bg = "var(--border-secondary)";
+        if (filled && done) bg = "var(--success-fg)";
+        else if (filled) bg = "var(--accent)";
         return (
           <div
             key={s.id}
@@ -698,7 +696,11 @@ function ProgressDots({
               height: dotSize,
               borderRadius: "50%",
               background: bg,
-              opacity: isCurrent ? 1 : filled ? 0.8 : 0.4,
+              opacity: (() => {
+                if (isCurrent) return 1;
+                if (filled) return 0.8;
+                return 0.4;
+              })(),
               transition: "all 0.3s",
             }}
           />

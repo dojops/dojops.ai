@@ -4,6 +4,7 @@ import {
   createContext,
   useContext,
   useCallback,
+  useMemo,
   useSyncExternalStore,
   useEffect,
   type ReactNode,
@@ -57,7 +58,7 @@ const I18nContext = createContext<I18nContextValue>({
   setLocale: () => {},
 });
 
-export function I18nProvider({ children }: { children: ReactNode }) {
+export function I18nProvider({ children }: Readonly<{ children: ReactNode }>) {
   const locale = useSyncExternalStore(subscribe, getSnapshot, getServerSnapshot);
 
   const setLocale = useCallback((l: Locale) => {
@@ -72,11 +73,12 @@ export function I18nProvider({ children }: { children: ReactNode }) {
     document.documentElement.lang = locale === "zh" ? "zh-CN" : locale;
   }, [locale]);
 
-  return (
-    <I18nContext.Provider value={{ locale, t: DICTIONARIES[locale], setLocale }}>
-      {children}
-    </I18nContext.Provider>
+  const value = useMemo(
+    () => ({ locale, t: DICTIONARIES[locale], setLocale }),
+    [locale, setLocale],
   );
+
+  return <I18nContext.Provider value={value}>{children}</I18nContext.Provider>;
 }
 
 export function useTranslation() {

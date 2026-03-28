@@ -35,7 +35,7 @@ export default function NpmDownloadCount() {
   return (
     <span className="text-xs text-text-secondary">
       <span className="font-semibold text-text-primary">
-        {total !== null ? formatCount(total) : "—"}
+        {total === null ? "—" : formatCount(total)}
       </span>{" "}
       {t.hero.downloaded}
     </span>

@@ -23,7 +23,7 @@ export default function HighlightStats() {
   const items = stats.flatMap((stat, i) => {
     const el = <StatItem key={`stat-${stat.label}`} value={stat.value} label={stat.label} />;
     if (i < stats.length - 1) {
-      return [el, <div key={`sep-${i}`} className="stat-separator" />];
+      return [el, <div key={`sep-${stat.label}`} className="stat-separator" />];
     }
     return [el];
   });
@@ -35,7 +35,7 @@ export default function HighlightStats() {
     ...stats.flatMap((stat, i) => {
       const el = <StatItem key={`stat-dup-${stat.label}`} value={stat.value} label={stat.label} />;
       if (i < stats.length - 1) {
-        return [el, <div key={`sep-dup-${i}`} className="stat-separator" />];
+        return [el, <div key={`sep-dup-${stat.label}`} className="stat-separator" />];
       }
       return [el];
     }),

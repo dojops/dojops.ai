@@ -55,17 +55,11 @@ export default function TerminalDemo() {
 
   // Loop: animate in → hold → fade out → reset → repeat
   const scheduleLoop = useCallback(() => {
-    const timers: ReturnType<typeof setTimeout>[] = [];
-
-    // After lines finish + hold, start fade-out
-    timers.push(
+    // After lines finish + hold, start fade-out; then reset and restart
+    const timers: ReturnType<typeof setTimeout>[] = [
       setTimeout(() => {
         setFading(true);
       }, TOTAL_ANIM_MS + HOLD_MS),
-    );
-
-    // After fade-out completes, reset and restart
-    timers.push(
       setTimeout(
         () => {
           setFading(false);
@@ -73,7 +67,7 @@ export default function TerminalDemo() {
         },
         TOTAL_ANIM_MS + HOLD_MS + FADE_OUT_MS,
       ),
-    );
+    ];
 
     return timers;
   }, [TOTAL_ANIM_MS]);

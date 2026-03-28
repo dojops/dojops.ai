@@ -143,7 +143,7 @@ export default function Footer() {
             >
               <code className="text-[13px] font-mono truncate" style={{ color: "#e8edf5" }}>
                 <span style={{ color: "#38bdf8" }} className="select-none">
-                  ${" "}
+                  {"$ "}
                 </span>
                 npm i -g @dojops/cli
               </code>

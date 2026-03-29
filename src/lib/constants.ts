@@ -7,6 +7,29 @@ export const LINKS = {
   pixcot: "https://pixcot.com",
 } as const;
 
+/**
+ * Returns a validated API base URL. Only allows origins that belong to
+ * dojops.ai (production) or localhost (local dev). Falls back to the
+ * known-good production URL if the env var is absent or contains an
+ * unexpected origin — prevents a tampered build-time env from redirecting
+ * form submissions to an attacker-controlled host.
+ */
+export function getApiUrl(): string {
+  const raw = process.env.NEXT_PUBLIC_API_URL;
+  if (!raw) return LINKS.api;
+  try {
+    const { origin } = new URL(raw);
+    const allowed =
+      origin === "https://api.dojops.ai" ||
+      origin.endsWith(".dojops.ai") ||
+      /^https?:\/\/localhost(:\d+)?$/.test(origin) ||
+      /^https?:\/\/127\.0\.0\.1(:\d+)?$/.test(origin);
+    return allowed ? raw.replace(/\/$/, "") : LINKS.api;
+  } catch {
+    return LINKS.api;
+  }
+}
+
 export interface NavItem {
   label: string;
   href: string;
@@ -295,7 +318,7 @@ export const PLATFORM_PRODUCTS: PlatformProduct[] = [
       "Runs entirely on your machine",
       "Free license key for first 100 requests",
     ],
-    cta: { label: "Request Access", href: "/contact?subject=Super+Agent+beta+access" },
+    cta: { label: "Get License", href: "https://console.dojops.ai/settings/licenses" },
     badge: "Beta",
   },
   {

@@ -26,7 +26,7 @@ export const en: Translations = {
           "Runs entirely on your machine",
           "Free license key for first 100 requests",
         ],
-        ctaLabel: "Request Access",
+        ctaLabel: "Get License",
         badge: "Beta",
       },
       {

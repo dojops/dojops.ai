@@ -5,7 +5,7 @@ import { useSearchParams } from "next/navigation";
 import Link from "next/link";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
-import { LINKS } from "@/lib/constants";
+import { getApiUrl } from "@/lib/constants";
 import { useTranslation } from "@/i18n";
 
 export default function ContactPage() {
@@ -36,7 +36,7 @@ function ContactContent() {
     setErrorMsg("");
 
     try {
-      const apiUrl = process.env.NEXT_PUBLIC_API_URL || LINKS.api;
+      const apiUrl = getApiUrl();
       const res = await fetch(`${apiUrl}/api/contact`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },

@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { LINKS } from "@/lib/constants";
+import { getApiUrl } from "@/lib/constants";
 import { useTranslation } from "@/i18n";
 
 export default function CTASection() {
@@ -18,7 +18,7 @@ export default function CTASection() {
     setErrorMsg("");
 
     try {
-      const apiUrl = process.env.NEXT_PUBLIC_API_URL || LINKS.api;
+      const apiUrl = getApiUrl();
       const res = await fetch(`${apiUrl}/api/newsletter/subscribe`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },

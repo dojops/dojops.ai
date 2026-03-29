@@ -18,8 +18,8 @@ export default function CTASection() {
     setErrorMsg("");
 
     try {
-      const hubUrl = process.env.NEXT_PUBLIC_HUB_URL || LINKS.hub;
-      const res = await fetch(`${hubUrl}/api/newsletter/subscribe`, {
+      const apiUrl = process.env.NEXT_PUBLIC_API_URL || LINKS.api;
+      const res = await fetch(`${apiUrl}/api/newsletter/subscribe`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ email }),

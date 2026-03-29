@@ -36,8 +36,8 @@ function ContactContent() {
     setErrorMsg("");
 
     try {
-      const hubUrl = process.env.NEXT_PUBLIC_HUB_URL || LINKS.hub;
-      const res = await fetch(`${hubUrl}/api/contact`, {
+      const apiUrl = process.env.NEXT_PUBLIC_API_URL || LINKS.api;
+      const res = await fetch(`${apiUrl}/api/contact`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({

@@ -16,6 +16,13 @@ export const metadata: Metadata = {
     description:
       "38 DevOps skills, 32 specialist agents, 10 security scanners, 7 LLM providers. Schema-validated configs with sandboxed execution.",
     url: "https://dojops.ai/features",
+    siteName: "DojOps",
+  },
+  twitter: {
+    card: "summary",
+    title: "DojOps Features — AI-Powered Automation",
+    description:
+      "38 DevOps skills, 32 specialist agents, 10 security scanners, 7 LLM providers. Schema-validated configs with sandboxed execution.",
   },
 };
 

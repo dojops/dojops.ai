@@ -15,6 +15,13 @@ export const metadata: Metadata = {
     description:
       "Three steps to AI-powered DevOps: describe what you need, review the generated config, apply with sandboxed execution and approval workflows.",
     url: "https://dojops.ai/how-it-works",
+    siteName: "DojOps",
+  },
+  twitter: {
+    card: "summary",
+    title: "How DojOps Works — Describe, Review, Apply",
+    description:
+      "Three steps to AI-powered DevOps: describe what you need, review the generated config, apply with sandboxed execution and approval workflows.",
   },
 };
 

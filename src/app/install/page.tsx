@@ -15,6 +15,13 @@ export const metadata: Metadata = {
     description:
       "Install DojOps in 30 seconds via npm, Homebrew, curl, or Docker. Configure your LLM provider and start generating DevOps configs.",
     url: "https://dojops.ai/install",
+    siteName: "DojOps",
+  },
+  twitter: {
+    card: "summary",
+    title: "Install DojOps — npm, Homebrew, curl, Docker",
+    description:
+      "Install DojOps in 30 seconds via npm, Homebrew, curl, or Docker. Configure your LLM provider and start generating DevOps configs.",
   },
 };
 

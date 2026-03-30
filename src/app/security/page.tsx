@@ -15,6 +15,13 @@ export const metadata: Metadata = {
     description:
       "Structured output enforcement, Zod validation, sandboxed writes, hash-chained audit trails. Enterprise-grade security for AI automation.",
     url: "https://dojops.ai/security",
+    siteName: "DojOps",
+  },
+  twitter: {
+    card: "summary",
+    title: "DojOps Security — 8 Layers of Defense for AI-Generated Infrastructure",
+    description:
+      "Structured output enforcement, Zod validation, sandboxed writes, hash-chained audit trails. Enterprise-grade security for AI automation.",
   },
 };
 

@@ -324,16 +324,15 @@ export const PLATFORM_PRODUCTS: PlatformProduct[] = [
   {
     id: "console",
     icon: "browser",
-    title: "DojOps Console",
-    tagline: "Talk to DojOps from a browser",
+    title: "dojops-sa console",
+    tagline: "Manage licenses and billing",
     features: [
-      "Chat interface with streaming responses",
-      "Connect GitHub, GitLab, Bitbucket, Azure DevOps",
-      "Team management and role-based access",
-      "Free, Pro, and Business plans",
+      "License management for dojops-sa",
+      "Billing history and payment tracking",
+      "Offline license activation for air-gapped servers",
     ],
     cta: { label: "Open Console", href: "https://console.dojops.ai" },
-    badge: "New",
+    badge: "Beta",
   },
 ];
 

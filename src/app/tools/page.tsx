@@ -15,6 +15,13 @@ export const metadata: Metadata = {
     description:
       "Terraform, Kubernetes, Docker, GitHub Actions, Ansible, and more. Works with OpenAI, Anthropic, Ollama, DeepSeek, Mistral, Gemini, GitHub Copilot.",
     url: "https://dojops.ai/tools",
+    siteName: "DojOps",
+  },
+  twitter: {
+    card: "summary",
+    title: "DojOps Tools — 38 DevOps Skills + 7 LLM Providers",
+    description:
+      "Terraform, Kubernetes, Docker, GitHub Actions, Ansible, and more. Works with OpenAI, Anthropic, Ollama, DeepSeek, Mistral, Gemini, GitHub Copilot.",
   },
 };
 

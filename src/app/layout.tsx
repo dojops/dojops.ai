@@ -36,7 +36,6 @@ export const metadata: Metadata = {
     "Docker",
     "LLM",
     "infrastructure automation",
-    "infrastructure automation",
     "AI automation",
     "GitOps",
     "DevSecOps",
@@ -57,9 +56,9 @@ export const metadata: Metadata = {
     locale: "en_US",
     images: [
       {
-        url: "/icons/dojops-new-logo.png",
-        width: 600,
-        height: 600,
+        url: "/og-image.png",
+        width: 1200,
+        height: 630,
         alt: "DojOps — AI Automation Engine",
       },
     ],
@@ -70,7 +69,7 @@ export const metadata: Metadata = {
     title: "DojOps — AI Automation Engine",
     description:
       "Generate, validate, and execute infrastructure & CI/CD configurations using AI. 38 skills, 32 agents, sandboxed execution.",
-    images: ["/icons/dojops-new-logo.png"],
+    images: ["/og-image.png"],
   },
   robots: {
     index: true,

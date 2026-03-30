@@ -286,8 +286,8 @@ export const fr: Translations = {
     companyPlaceholder: "Acme Corp",
     subjectLabel: "Sujet",
     subjects: [
+      "Demande de licence demo",
       "Acces beta Super Agent",
-      "Demande plan Business",
       "Partenariat",
       "Rapport de bug",
       "Question generale",

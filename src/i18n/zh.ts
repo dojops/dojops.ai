@@ -288,8 +288,8 @@ export const zh: Translations = {
     companyPlaceholder: "Acme Corp",
     subjectLabel: "\u4e3b\u9898",
     subjects: [
+      "\u6f14\u793a\u8bb8\u53ef\u8bc1\u7533\u8bf7",
       "Super Agent Beta \u8bbf\u95ee",
-      "Business \u8ba1\u5212\u54a8\u8be2",
       "\u5408\u4f5c\u4f19\u4f34",
       "Bug \u62a5\u544a",
       "\u5e38\u89c4\u95ee\u9898",

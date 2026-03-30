@@ -195,7 +195,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" className="dark">
       <head>
         {/* JSON-LD structured data — all values are static constants, no user input */}
         <script

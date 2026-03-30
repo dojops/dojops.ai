@@ -257,8 +257,8 @@ export const en: Translations = {
     companyPlaceholder: "Acme Corp",
     subjectLabel: "Subject",
     subjects: [
+      "Demo license request",
       "Super Agent beta access",
-      "Business plan inquiry",
       "Partnership",
       "Bug report",
       "General question",

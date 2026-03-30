@@ -79,11 +79,11 @@ export default function PromoOffer() {
                     Limited offer
                   </div>
                   <h3 className="text-xl sm:text-2xl font-bold text-white tracking-tight mb-2">
-                    Try dojops-sa free for 100 requests
+                    Try dojops-sa with a free demo license
                   </h3>
                   <p className="text-sm leading-relaxed max-w-xl" style={{ color: "#8b95a8" }}>
-                    Get a free dojops-sa license and let the autonomous agent resolve your tickets.
-                    No credit card required. Contact us to get started.
+                    Request a 7-day demo license and let the autonomous agent resolve your tickets.
+                    No credit card required. Fill out the form and we will review your request.
                   </p>
                 </div>
 

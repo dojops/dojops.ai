@@ -57,8 +57,7 @@ export default function CTASection() {
           <div
             className="absolute inset-0 rounded-2xl"
             style={{
-              background:
-                "linear-gradient(135deg, #06b6d4 0%, #3b82f6 40%, #d946ef 70%, #06b6d4 100%)",
+              background: "#3b82f6",
               opacity: 0.4,
             }}
           />
@@ -162,7 +161,8 @@ export default function CTASection() {
                   <button
                     type="submit"
                     disabled={status === "loading"}
-                    className="px-8 py-3.5 rounded-xl bg-gradient-brand text-white text-sm font-semibold hover:opacity-90 transition-opacity shrink-0 disabled:opacity-50"
+                    className="px-8 py-3.5 rounded-xl text-white text-sm font-semibold hover:opacity-90 transition-opacity shrink-0 disabled:opacity-50"
+                    style={{ background: "#3b82f6" }}
                   >
                     {status === "loading" ? t.newsletter.subscribing : t.newsletter.subscribe}
                   </button>

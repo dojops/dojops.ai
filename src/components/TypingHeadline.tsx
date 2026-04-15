@@ -35,7 +35,7 @@ export default function TypingHeadline() {
       aria-label={`${fullText}${brandText}`}
     >
       <span className="text-text-primary">{plainVisible}</span>
-      <span className="text-gradient-brand">{brandVisible}</span>
+      <span style={{ color: "#3b82f6" }}>{brandVisible}</span>
       {!done && (
         <span className="text-accent" style={{ animation: "blink 1s step-end infinite" }}>
           |

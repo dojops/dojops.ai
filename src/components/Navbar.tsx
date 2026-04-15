@@ -131,7 +131,7 @@ export default function Navbar() {
             <span
               className="absolute inset-0 rounded-lg"
               style={{
-                background: "linear-gradient(135deg, #06b6d4, #3b82f6, #8b5cf6)",
+                background: "#3b82f6",
               }}
             />
             <span
@@ -240,7 +240,7 @@ export default function Navbar() {
               href="#install"
               className="text-sm font-medium px-4 py-2.5 rounded-lg text-white text-center transition-all block"
               style={{
-                background: "linear-gradient(135deg, #06b6d4, #3b82f6, #8b5cf6)",
+                background: "#3b82f6",
               }}
               onClick={() => setMobileOpen(false)}
             >

@@ -60,7 +60,7 @@ export default function Hero() {
         <div className="flex flex-col sm:flex-row items-center gap-3 mb-14 sm:mb-16 w-full sm:w-auto px-4 sm:px-0">
           <a
             href="#install"
-            className="group inline-flex items-center justify-center gap-2 w-full sm:w-auto bg-accent text-white hover:bg-accent-hover rounded-md px-5 py-2.5 shadow-[var(--shadow-sm)] font-medium text-sm transition-all"
+            className="group inline-flex items-center justify-center gap-2 w-full sm:w-auto bg-[#3b82f6] text-white hover:bg-[#2563eb] rounded-md px-5 py-2.5 shadow-[var(--shadow-sm)] font-medium text-sm transition-all"
           >
             {t.hero.getStarted}
             <svg

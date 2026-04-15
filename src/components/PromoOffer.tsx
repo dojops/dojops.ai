@@ -91,7 +91,8 @@ export default function PromoOffer() {
                 <div className="shrink-0 flex flex-col items-center gap-2">
                   <a
                     href="/contact"
-                    className="inline-flex items-center gap-2 px-8 py-3.5 rounded-xl bg-gradient-brand text-white text-sm font-semibold hover:opacity-90 transition-opacity"
+                    className="inline-flex items-center gap-2 px-8 py-3.5 rounded-xl text-white text-sm font-semibold hover:opacity-90 transition-opacity"
+                    style={{ background: "#3b82f6" }}
                   >
                     Contact us
                     <svg

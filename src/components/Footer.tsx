@@ -126,7 +126,7 @@ export default function Footer() {
             <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-text-primary mb-4 tracking-tight leading-tight">
               {t.cta.heading1}
               <br />
-              <span className="text-gradient-brand">{t.cta.heading2}</span>
+              <span style={{ color: "#3b82f6" }}>{t.cta.heading2}</span>
             </h2>
 
             <p className="text-text-secondary text-sm sm:text-base mb-10 max-w-md mx-auto leading-relaxed">
@@ -159,7 +159,7 @@ export default function Footer() {
                 <span
                   className="absolute inset-0 rounded-xl"
                   style={{
-                    background: "linear-gradient(135deg, #06b6d4, #3b82f6, #8b5cf6)",
+                    background: "#3b82f6",
                   }}
                 />
                 <span
